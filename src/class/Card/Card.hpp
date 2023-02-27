@@ -2,8 +2,8 @@
 // Created by lenovo on 27/02/2023.
 //
 
-#ifndef TUBES1_OOP_CARD_H
-#define TUBES1_OOP_CARD_H
+#ifndef TUBES1_OOP_CARD_HPP
+#define TUBES1_OOP_CARD_HPP
 
 
 #include <iostream>

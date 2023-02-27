@@ -1,6 +1,4 @@
-
-
-#include "../Header/card.h"
+#include "card.hpp"
 
 
 card::card(string nama) {
