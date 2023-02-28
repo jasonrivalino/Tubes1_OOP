@@ -25,6 +25,7 @@ public:
     void removeSpecificCard(Card c);
     void removeTopCard(Card c);
     void setPoin(int);
+
 };
 
 #endif

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-ReRoll::ReRoll() : Card("ReRoll"){
+ReRoll::ReRoll() : Card("ReRoll",false){
 }
 
 ReRoll::~ReRoll(){
@@ -10,18 +10,18 @@ ReRoll::~ReRoll(){
 }
 
 void ReRoll::setReRoll(bool adaCard){
-    this -> available = adaCard;
+    this ->setIsCardUsed(adaCard);
 }
 
 bool ReRoll::getReRoll(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void ReRoll::ReRollEffect(){
     // Masukin efeknya
 }
 
-Quadruple::Quadruple() : Card("Quadruple"){
+Quadruple::Quadruple() : Card("Quadruple",false){
 }
 
 Quadruple::~Quadruple(){
@@ -29,18 +29,18 @@ Quadruple::~Quadruple(){
 }
 
 void Quadruple::setQuadruple(bool adaCard){
-    this -> available = adaCard;
+    this ->setIsCardUsed(adaCard);
 }
 
 bool Quadruple::getQuadruple(){
-    return this -> available;
+    return getIsCardUsed();
 }
 
 void Quadruple::QuadrupleEffect(){
     // Masukin efeknya
 }
 
-Quarter::Quarter() : Card("Quarter"){
+Quarter::Quarter() : Card("Quarter",false){
 }
 
 Quarter::~Quarter(){
@@ -48,18 +48,18 @@ Quarter::~Quarter(){
 }
 
 void Quarter::setQuarter(bool adaCard){
-    this -> available = adaCard;
+    this ->setIsCardUsed(adaCard);
 }
 
 bool Quarter::getQuarter(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void Quarter::QuarterEffect(){
     // Masukin efeknya
 }
 
-ReverseDirection::ReverseDirection() : Card("ReverseDirection"){
+ReverseDirection::ReverseDirection() : Card("ReverseDirection",false){
 }
 
 ReverseDirection::~ReverseDirection(){
@@ -67,18 +67,18 @@ ReverseDirection::~ReverseDirection(){
 }
 
 void ReverseDirection::setReverseDirection(bool adaCard){
-    this -> available = adaCard;
+    this ->setIsCardUsed(adaCard);
 }
 
 bool ReverseDirection::getReverseDirection(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void ReverseDirection::ReverseDirectionEffect(){
     // Masukin efeknya
 }
 
-SwapCard::SwapCard() : Card("swap_card"){
+SwapCard::SwapCard() : Card("swap_card", false){
 }
 
 SwapCard::~SwapCard(){
@@ -86,18 +86,18 @@ SwapCard::~SwapCard(){
 }
 
 void SwapCard::setSwapCard(bool adaCard){
-    this -> available = adaCard;
+    setIsCardUsed(adaCard);
 }
 
 bool SwapCard::getSwapCard(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void SwapCard::SwapCardEffect(){
     // Masukin efeknya
 }
 
-Switch::Switch() : Card("switch"){
+Switch::Switch() : Card("switch",false){
 }
 
 Switch::~Switch(){
@@ -105,18 +105,18 @@ Switch::~Switch(){
 }
 
 void Switch::setSwitch(bool adaCard){
-    this -> available = adaCard;
+    setIsCardUsed(adaCard);
 }
 
 bool Switch::getSwitch(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void Switch::SwitchEffect(){
     // Masukin efeknya
 }
 
-Abilityless::Abilityless() : Card("abilityless"){
+Abilityless::Abilityless() : Card("abilityless", false){
 }
 
 Abilityless::~Abilityless(){
@@ -124,11 +124,11 @@ Abilityless::~Abilityless(){
 }
 
 void Abilityless::setAbilityless(bool adaCard){
-    this -> available = adaCard;
+    this ->setIsCardUsed(adaCard);
 }
 
 bool Abilityless::getAbilityless(){
-    return this -> available;
+    return this -> getIsCardUsed();
 }
 
 void Abilityless::AbilitylessEffect(){

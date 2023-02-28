@@ -15,8 +15,6 @@ class ReRoll : public Card{
         void setReRoll(bool);
         bool getReRoll();
         void ReRollEffect();
-    private:
-        bool available;
 };
 
 class Quadruple : public Card{
@@ -29,8 +27,6 @@ class Quadruple : public Card{
         void setQuadruple(bool);
         bool getQuadruple();
         void QuadrupleEffect();
-    private:
-        bool available;
 };
 
 class Quarter : public Card{
@@ -43,8 +39,6 @@ class Quarter : public Card{
         void setQuarter(bool);
         bool getQuarter();
         void QuarterEffect();
-    private:
-        bool available;
 };
 
 class ReverseDirection : public Card{
@@ -57,8 +51,6 @@ class ReverseDirection : public Card{
         void setReverseDirection(bool);
         bool getReverseDirection();
         void ReverseDirectionEffect();
-    private:
-        bool available;
 };
 
 class SwapCard : public Card{
@@ -71,8 +63,6 @@ class SwapCard : public Card{
         void setSwapCard(bool);
         bool getSwapCard();
         void SwapCardEffect();
-    private:
-        bool available;
 };
 
 class Switch : public Card{
@@ -85,9 +75,6 @@ class Switch : public Card{
         void setSwitch(bool);
         bool getSwitch();
         void SwitchEffect();
-    protected:
-    private:
-    bool available;
 };
 
 class Abilityless : public Card{
@@ -100,9 +87,6 @@ class Abilityless : public Card{
         void setAbilityless(bool);
         bool getAbilityless();
         void AbilitylessEffect();
-    protected:
-    private:
-    bool available;
 };
 
 #endif

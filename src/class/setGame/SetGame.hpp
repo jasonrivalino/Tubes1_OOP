@@ -24,7 +24,7 @@ public:
      untuk melakukan setting awal pada kartu, kartu ability, dan player
      yang dimana mengacak kartu, kartu ability agar mudah dibagi ke pada para pemain
      */
-    SetGame();
+    SetGame(int jumPlayer);
 
     /*
      ddc
@@ -68,6 +68,19 @@ public:
     untuk menampilkan point seluruh player
     */
     void showAllPoint();
+    /*
+     share kartu ke pada player
+     shareCard merupakan jumlah card yang akan dibagi ke pada player
+     */
+    void shareCardToPlayer(int shareCard);
+    /*
+    share kartu ability kepada seluruh player
+     */
+    void shareAbilityCard();
+    /*
+     untuk menampilkan seluruh kartu yang masih ada pada game
+     */
+    void printCards();
 };
 
 

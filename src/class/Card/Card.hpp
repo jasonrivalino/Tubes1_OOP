@@ -9,15 +9,18 @@
 
 using namespace std;
 
-class Card {
+class Card{
 private:
     string nama;
+    bool isUsed;
     int nomorKartu;
 public:
-    Card(string nama);
+    Card(string nama,bool isUsed);
     Card(string nama,int number);
 
     string getNameCard();
+    bool getIsCardUsed();
+    void setIsCardUsed(bool);
     int getNumberCard();
 };
 
