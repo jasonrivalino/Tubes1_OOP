@@ -19,6 +19,7 @@ SetGame::SetGame() {
     this->ability.push_back(*new Switch);
     this->ability.push_back(*new Abilityless);
 
+
     random_shuffle(this->ability.begin(), this->ability.end());
 
     for(int i=0;i<52;i++){
@@ -29,6 +30,11 @@ SetGame::SetGame() {
     }
 
     random_shuffle(this->cards.begin(), this->cards.end());
+}
+SetGame::~SetGame() {
+    this->ability.clear();
+    this->cards.clear();
+    this->players.clear();
 }
 void SetGame::addCard(Card card) {
     this->cards.push_back(card);

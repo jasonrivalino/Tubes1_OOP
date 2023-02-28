@@ -27,6 +27,10 @@ public:
     SetGame();
 
     /*
+     ddc
+    */
+    ~SetGame();
+    /*
       Untuk melakukan penambahan kartu
       dibuat untuk pemain yang melakukan swap
     */
