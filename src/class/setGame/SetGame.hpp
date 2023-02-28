@@ -59,6 +59,11 @@ public:
      Untuk melihat player
     */
     vector<Player> getPlayers();
+
+    /*
+    untuk menampilkan point seluruh player
+    */
+    void showAllPoint();
 };
 
 

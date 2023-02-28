@@ -39,6 +39,9 @@ void  SetGame::removeTopCard() {
 void SetGame::removeAbilityCards() {
     this->ability.clear();
 }
+void SetGame::showAllPoint() {
+    for(int i=0;i< this->players.size();i++) cout<<"Player "<< this->players[i].getTurn()<<endl;
+}
 vector<Card> SetGame::getCards() {
     return this->cards;
 }
