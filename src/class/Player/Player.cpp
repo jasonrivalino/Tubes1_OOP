@@ -5,6 +5,7 @@ int Player::currentTurn=0;
 
 Player::Player(string playerName):turn(currentTurn+1){
     this->playerName = playerName;
+    this->point=0;
     currentTurn++;
 }
 
@@ -12,16 +13,15 @@ int Player::getTurn() const{
     return turn;
 }
 
-void Player::addCard(card c){
+void Player::addCard(Card c){
     cards.push_back(c);
 }
 
 Player::~Player(){
     cards.clear();
-    cout << "Player " << playerName << " has been deleted" << endl;
 }
 
-void Player::removeSpecificCard(card c){
+void Player::removeSpecificCard(Card c){
     for(int i = 0; i < cards.size();i++){
         if(cards[i].getNumberCard() == c.getNumberCard()){
             cards.erase(cards.begin() + i);
@@ -29,7 +29,7 @@ void Player::removeSpecificCard(card c){
     }
 }
 
-void Player::removeTopCard(card c){
+void Player::removeTopCard(Card c){
     cards.pop_back();
 }
 
@@ -43,3 +43,5 @@ void Player::printCards(){
     }
     }
 }
+void Player::setPoin(int point) { this->point=point;}
+int Player::getPoint() {return this->point;}

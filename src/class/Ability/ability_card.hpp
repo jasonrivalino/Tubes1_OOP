@@ -2,10 +2,10 @@
 #define __ABILITY__CARD__HPP__
 
 #include <iostream>
-#include "card.h"
+#include "../Card/Card.hpp"
 using namespace std;
 
-class ReRoll : public card{
+class ReRoll : public Card{
     public:
         // Konstruktor
         ReRoll();
@@ -17,9 +17,9 @@ class ReRoll : public card{
         void ReRollEffect();
     private:
         bool available;
-}
+};
 
-class Quadruple : public card{
+class Quadruple : public Card{
     public:
         // Konstruktor
         Quadruple();
@@ -31,9 +31,9 @@ class Quadruple : public card{
         void QuadrupleEffect();
     private:
         bool available;
-}
+};
 
-class Quarter : public card{
+class Quarter : public Card{
     public:
         // Konstruktor
         Quarter();
@@ -45,62 +45,64 @@ class Quarter : public card{
         void QuarterEffect();
     private:
         bool available;
-}
+};
 
-class ReverseDirection : public card{
+class ReverseDirection : public Card{
     public:
         // Konstruktor
         ReverseDirection();
         // Destruktor
         ~ReverseDirection();
         // Setter and Getter
-        void setReverseDirection(bool));
+        void setReverseDirection(bool);
         bool getReverseDirection();
         void ReverseDirectionEffect();
     private:
         bool available;
-}
+};
 
-class swap_card : public card{
+class SwapCard : public Card{
     public:
         // Konstruktor
-        swap_card();
+        SwapCard();
         // Destruktor
-        ~swap_card();
+        ~SwapCard();
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
         void SwapCardEffect();
     private:
         bool available;
-}
+};
 
-class switch : public card{
+class Switch : public Card{
     public:
         // Konstruktor
-        switch();
+        Switch();
         // Destruktor
-        ~switch();
+        ~Switch();
         // Setter and Getter
         void setSwitch(bool);
-        int getSwitch();
+        bool getSwitch();
         void SwitchEffect();
     protected:
     private:
-}
+    bool available;
+};
 
-class abilityless : public card{
+class Abilityless : public Card{
     public:
         // Konstruktor
-        abilityless();
+        Abilityless();
         // Destruktor
-        ~abilityless();
+        ~Abilityless();
         // Setter and Getter
         void setAbilityless(bool);
-        int getAbilityless();
+        bool getAbilityless();
         void AbilitylessEffect();
     protected:
     private:
-}
+    bool available;
+};
 
 #endif

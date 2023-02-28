@@ -78,59 +78,59 @@ void ReverseDirection::ReverseDirectionEffect(){
     // Masukin efeknya
 }
 
-swap_card::swap_card() : Card("swap_card"){
+SwapCard::SwapCard() : Card("swap_card"){
 }
 
-swap_card::~swap_card(){
+SwapCard::~SwapCard(){
     // dtor
 }
 
-void swap_card::setSwapCard(bool adaCard){
+void SwapCard::setSwapCard(bool adaCard){
     this -> available = adaCard;
 }
 
-bool swap_card::getSwapCard(){
+bool SwapCard::getSwapCard(){
     return this -> available;
 }
 
-void swap_card::swap_card(){
+void SwapCard::SwapCardEffect(){
     // Masukin efeknya
 }
 
-switch::switch() : Card("switch"){
+Switch::Switch() : Card("switch"){
 }
 
-switch::~switch(){
+Switch::~Switch(){
     // dtor
 }
 
-void switch::setSwitch(bool adaCard){
+void Switch::setSwitch(bool adaCard){
     this -> available = adaCard;
 }
 
-bool switch::getSwitch(){
+bool Switch::getSwitch(){
     return this -> available;
 }
 
-void switch::SwitchEffect(){
+void Switch::SwitchEffect(){
     // Masukin efeknya
 }
 
-abilityless::abilityless() : Card("abilityless"){
+Abilityless::Abilityless() : Card("abilityless"){
 }
 
-abilityless::~abilityless(){
+Abilityless::~Abilityless(){
     // dtor
 }
 
-void abilityless::setAbilityless(bool adaCard){
+void Abilityless::setAbilityless(bool adaCard){
     this -> available = adaCard;
 }
 
-bool abilityless::getAbilityless(){
+bool Abilityless::getAbilityless(){
     return this -> available;
 }
 
-void abilityless::abilitylessEffect(){
+void Abilityless::AbilitylessEffect(){
     // Masukin efeknya
 }

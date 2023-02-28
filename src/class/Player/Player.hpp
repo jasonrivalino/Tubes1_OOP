@@ -12,16 +12,19 @@ class Player{
 protected:
     static int currentTurn;
     const int turn;
+    int point;
     string playerName; 
-    vector <card> cards;
+    vector <Card> cards;
 public:
     Player(string playerName);
     ~Player();
     int getTurn() const;
-    void addCard(card c);
+    int getPoint();
+    void addCard(Card c);
     void printCards();
-    void removeSpecificCard(card c);
-    void removeTopCard(card c);
+    void removeSpecificCard(Card c);
+    void removeTopCard(Card c);
+    void setPoin(int);
 };
 
 #endif

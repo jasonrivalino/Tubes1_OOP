@@ -1,16 +1,17 @@
-#include "card.hpp"
+#include "Card.hpp"
 
 
-card::card(string nama) {
+Card::Card(string nama) {
+
     this->nama=nama;
 }
-card::card(string nama, int number) {
+Card::Card(string nama, int number) {
     this->nama=nama;
     this->nomorKartu=number;
 }
-string card::getNameCard() {
+string Card::getNameCard() {
     return this->nama;
 }
-int card::getNumberCard() {
+int Card::getNumberCard() {
     return this->nomorKartu;
 }

@@ -10,13 +10,13 @@
 
 using namespace std;
 
-class card {
+class Card {
 private:
     string nama;
     int nomorKartu;
 public:
-    card(string nama);
-    card(string nama,int number);
+    Card(string nama);
+    Card(string nama,int number);
 
     string getNameCard();
     int getNumberCard();
