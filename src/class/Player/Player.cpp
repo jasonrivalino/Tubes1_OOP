@@ -29,10 +29,12 @@ void Player::removeSpecificCard(Card c){
     }
 }
 
-void Player::removeTopCard(Card c){
+void Player::removeBackCard(){
     cards.pop_back();
 }
-
+int Player::getSizeCardsPlayer() {
+    return this->cards.size();
+}
 void Player::printCards(){
     if (cards.size() == 0){
         cout << "No cards" << endl;

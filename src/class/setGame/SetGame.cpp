@@ -36,10 +36,13 @@ SetGame::~SetGame() {
     this->cards.clear();
     this->players.clear();
 }
+int SetGame::getSizeCards() {
+    return this->cards.size();
+}
 void SetGame::addCard(Card card) {
     this->cards.push_back(card);
 }
-void  SetGame::removeTopCard() {
+void  SetGame::removeBackCard() {
     this->cards.pop_back();
 }
 void SetGame::removeAbilityCards() {
@@ -59,7 +62,7 @@ void SetGame::shareCardToPlayer(int shareCard) {
 }
 void SetGame::shareAbilityCard() {
     for(int i=0;i< this->players.size();i++) this->players[i].addCard(this->ability[i]);
-    this->removeTopCard();
+    this->removeBackCard();
 }
 void SetGame::printCards() {
     for(int i=0;i< this->cards.size();i++){

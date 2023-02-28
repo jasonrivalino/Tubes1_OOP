@@ -20,10 +20,12 @@ public:
     ~Player();
     int getTurn() const;
     int getPoint();
+    vector<Card> getCardsPlayer();
+    int getSizeCardsPlayer();
     void addCard(Card c);
     void printCards();
     void removeSpecificCard(Card c);
-    void removeTopCard(Card c);
+    void removeBackCard();
     void setPoin(int);
 
 };

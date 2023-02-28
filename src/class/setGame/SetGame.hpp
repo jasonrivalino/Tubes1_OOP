@@ -9,6 +9,7 @@
 #include "../Card/Card.hpp"
 #include "../Ability/ability_card.hpp"
 
+
 using namespace std;
 #include <iostream>
 #include <vector>
@@ -40,7 +41,7 @@ public:
       Untuk melakukan pengurangan kartu
       dibuat untuk pemain yang melakukan swap
     */
-    void removeTopCard();
+    void removeBackCard();
 
     /*
      Untuk menghapus seluruh ability card
@@ -63,6 +64,10 @@ public:
      Untuk melihat player
     */
     vector<Player> getPlayers();
+    /*
+     untuk mengambil size dari card
+    */
+    int getSizeCards();
 
     /*
     untuk menampilkan point seluruh player
