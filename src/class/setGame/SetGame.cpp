@@ -100,7 +100,7 @@ void SetGame::endRound(Player &playerWin, int point) {
     random_shuffle(this->cards.begin(), this->cards.end());
 
 
-    playerWin.setPoin(point);
+    playerWin.setPoint(point);
 }
 vector<Card> SetGame::getCards() {
     return this->cards;

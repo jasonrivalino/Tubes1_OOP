@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../Card/Card.hpp"
+#include "../Player/Player.hpp"
 #include "../setGame/SetGame.hpp"
 using namespace std;
 

@@ -163,14 +163,14 @@ void Abilityless::AbilitylessEffect(Player abilityPlayer, vector<Player> p){
     int idxIsNoUsedAbility;
     vector<int> collect;
     vector<Card> nameCardRegular = {*new ReRoll,*new Switch,*new SwapCard,*new ReverseDirection,*new Quarter,*new Quadruple};
-
-    for(int i=0;i<p.size();i++){
-        if(p[i].getTurn()!=abilityPlayer.getTurn()){
-            for(Card name:nameCardRegular){
-                auto it = find_if(p[i].getCardsPlayer().begin(),p[i].getCardsPlayer().end(),[=](const Card &obj){
-                    return obj.getNameCard()==name;
-                });
-            }
-        }
-    }
+//
+//    for(int i=0;i<p.size();i++){
+//        if(p[i].getTurn()!=abilityPlayer.getTurn()){
+//            for(Card name:nameCardRegular){
+//                auto it = find_if(p[i].getCardsPlayer().begin(),p[i].getCardsPlayer().end(),[=](const Card &obj){
+//                    return obj.getNameCard()==name;
+//                });
+//            }
+//        }
+//    }
 }
