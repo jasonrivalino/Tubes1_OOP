@@ -4,10 +4,16 @@
 #include <iostream>
 #include "../Card/Card.hpp"
 #include "../Player/Player.hpp"
-#include "../setGame/SetGame.hpp"
+#include "../SetGame/SetGame.hpp"
+
+
 using namespace std;
 
+
+class SetGame;
+
 class ReRoll : public Card{
+
     public:
         // Konstruktor
         ReRoll();
@@ -16,7 +22,7 @@ class ReRoll : public Card{
         // Setter and Getter
         void setReRoll(bool);
         bool getReRoll();
-        void ReRollEffect(Player p,SetGame s);
+        void ReRollEffect(Player &p,SetGame &s);
 };
 
 class Quadruple : public Card{
@@ -64,7 +70,7 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
-        void SwapCardEffect(Player p1, Player p2);
+        void SwapCardEffect(Player &p1, Player &p2);
 };
 
 class Switch : public Card{
@@ -76,7 +82,7 @@ class Switch : public Card{
         // Setter and Getter
         void setSwitch(bool);
         bool getSwitch();
-        void SwitchEffect(Player p1,Player p2);
+        void SwitchEffect(Player &p1,Player &p2);
 };
 
 class Abilityless : public Card{
@@ -88,7 +94,7 @@ class Abilityless : public Card{
         // Setter and Getter
         void setAbilityless(bool);
         bool getAbilityless();
-        void AbilitylessEffect(Player abilityPlayer, vector<Player> p);
+        void AbilitylessEffect(Player &abilityPlayer, vector<Player*> p);
 };
 
 #endif

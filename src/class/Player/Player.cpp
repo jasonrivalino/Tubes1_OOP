@@ -11,7 +11,7 @@ int Player::getTurn() const{
     return turn;
 }
 
-void Player::addCard(Card c){
+void Player::addCard(Card &c){
     cards.push_back(c);
 }
 

@@ -33,7 +33,7 @@ public:
     int getSizeCardsPlayer();
 
     // menambahkan kartu palyer
-    void addCard(Card c);
+    void addCard(Card &c);
 
     // menampilkan seluruh kartu yang player punya
     void printCards();

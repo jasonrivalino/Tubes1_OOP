@@ -1,4 +1,4 @@
-#include "ability_card.hpp"
+#include "AbilityCard.hpp"
 
 #include <iostream>
 using namespace std;
@@ -18,11 +18,11 @@ bool ReRoll::getReRoll(){
     return this -> getIsCardUsed();
 }
 
-void ReRoll::ReRollEffect(Player p,SetGame s){
+void ReRoll::ReRollEffect(Player &p,SetGame &s){
     p.removeBackCard();
     p.removeBackCard();
-    p.addCard(s.getCards()[s.getSizeCards()-1]);
-    p.addCard(s.getCards()[s.getSizeCards()-2]);
+    p.addCard(*s.getCards()[s.getSizeCards()-1]);
+    p.addCard(*s.getCards()[s.getSizeCards()-2]);
     s.removeBackCard();
     s.removeBackCard();
     setReRoll(true);
@@ -100,7 +100,7 @@ bool SwapCard::getSwapCard(){
     return this -> getIsCardUsed();
 }
 
-void SwapCard::SwapCardEffect(Player p1,Player p2){
+void SwapCard::SwapCardEffect(Player &p1,Player &p2){
     int rand2 = ::rand()%p2.getSizeCardsPlayer();
     Card c1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
     Card c2 = p2.getCardsPlayer()[rand2];
@@ -126,7 +126,7 @@ bool Switch::getSwitch(){
     return this -> getIsCardUsed();
 }
 
-void Switch::SwitchEffect(Player p1, Player p2){
+void Switch::SwitchEffect(Player &p1, Player &p2){
     Card c1_p1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
     Card c2_p1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-2];
     Card c1_p2 = p2.getCardsPlayer()[p2.getSizeCardsPlayer()-1];
@@ -159,7 +159,7 @@ bool Abilityless::getAbilityless(){
     return this -> getIsCardUsed();
 }
 
-void Abilityless::AbilitylessEffect(Player abilityPlayer, vector<Player> p){
+void Abilityless::AbilitylessEffect(Player &abilityPlayer, vector<Player*> p){
     int idxIsNoUsedAbility;
     vector<int> collect;
     vector<Card> nameCardRegular = {*new ReRoll,*new Switch,*new SwapCard,*new ReverseDirection,*new Quarter,*new Quadruple};

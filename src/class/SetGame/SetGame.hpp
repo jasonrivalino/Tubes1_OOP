@@ -7,7 +7,7 @@
 
 #include "../Player/Player.hpp"
 #include "../Card/Card.hpp"
-#include "../Ability/ability_card.hpp"
+#include "../Ability/AbilityCard.hpp"
 
 
 using namespace std;
@@ -17,9 +17,9 @@ using namespace std;
 
 class SetGame {
 private:
-    vector<Card> cards;
-    vector<Player> players;
-    vector<Card> ability;
+    vector<Card*> cards;
+    vector<Player*> players;
+    vector<Card*> ability;
 public:
     /*
      untuk melakukan setting awal pada kartu, kartu ability, dan player
@@ -53,17 +53,17 @@ public:
     /*
      Untuk melihat kartu ability card
     */
-    vector<Card> getAbilityCards();
+    vector<Card*> getAbilityCards();
 
     /*
      Untuk melihat kartu card
     */
-    vector<Card> getCards();
+    vector<Card*> getCards();
 
     /*
      Untuk melihat player
     */
-    vector<Player> getPlayers();
+    vector<Player*> getPlayers();
     /*
      untuk mengambil size dari card
     */
