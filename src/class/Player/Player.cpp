@@ -45,5 +45,5 @@ void Player::printCards(){
     }
     }
 }
-void Player::setPoin(int point) { this->point=point;}
+void Player::setPoint(int point) { this->point=point;}
 int Player::getPoint() {return this->point;}

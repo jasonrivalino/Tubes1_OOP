@@ -15,12 +15,39 @@ private:
     bool isUsed;
     int nomorKartu;
 public:
+    /*
+     memasukkan nama dari kartu dan apakah kartu tersebut sudah digunakan atau tidak
+     default dari isUsed adalah false yang artinya kartu belum digunakan
+     class ini dipanggil untuk class ability card agar mudah diketahui apakah kartu ability card sudah digunakan atau belum
+     */
     Card(string nama,bool isUsed);
+
+    /*
+      memasukkan nama dari kartu reguler dan angkanyanay.
+      nama yang dimkasud adalah nama warna dari kartu reguler yang dimasukkan
+     */
     Card(string nama,int number);
 
+    /*
+     mengambil nama dari kartu
+     entah nama warna maupun nama dari ability
+     */
     string getNameCard();
+
+    /*
+    untuk mengetahui apakah kartu sudah digunakan atau belum
+     fungsi ini digunakan untuk mengetahui apakah abilitycard sudah digunakan atau belum
+     */
     bool getIsCardUsed();
+
+    /*
+     digunakan untuk men-setting sudah atau belumnya kartu tersebut digunakan
+     */
     void setIsCardUsed(bool);
+
+    /*
+     untuk mengambil nomor kartu yang dipilih
+     */
     int getNumberCard();
 };
 
