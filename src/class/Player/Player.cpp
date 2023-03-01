@@ -44,7 +44,9 @@ void Player::printCards(){
     }
 }
 
-
+vector<Card> Player::getCardsPlayer() {
+    return this->cards;
+}
 
 void Player::setPoint(int point) {
     this->point = point;
