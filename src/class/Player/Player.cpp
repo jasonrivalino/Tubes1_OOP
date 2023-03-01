@@ -2,10 +2,8 @@
 
 int Player::currentTurn=0;
 
-
 Player::Player(string playerName):turn(currentTurn+1){
     this->playerName = playerName;
-    this->point=0;
     currentTurn++;
 }
 
@@ -45,5 +43,39 @@ void Player::printCards(){
     }
     }
 }
-void Player::setPoint(int point) { this->point=point;}
-int Player::getPoint() {return this->point;}
+
+void Player::pointAwal() {
+    this -> point = 64;
+}
+
+void Player::pointMasukkan(float point) {
+    this -> point *= point;
+}
+
+void Player::setPoint(int point) {
+    this->point = point;
+}
+
+int Player::getPoint() {
+    return this->point;
+}
+
+int Player::pointSystem(string nama){
+    if (nama == "DOUBLE"){
+        pointMasukkan(2);
+    }
+    if (nama == "QUADRUPLE"){
+        pointMasukkan(4);
+    }
+    if (nama == "HALF"){
+        pointMasukkan(0.5);
+    }
+    if (nama == "QUARTER"){
+        pointMasukkan(0.25);
+    }
+}
+
+int Player::addPointPerRound(int point){
+    // if (/* kondisi jika player menang */)
+        this -> pointEkspek += point;
+}
