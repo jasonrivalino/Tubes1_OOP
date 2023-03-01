@@ -86,6 +86,13 @@ public:
      untuk menampilkan seluruh kartu yang masih ada pada game
      */
     void printCards();
+    /*
+    untuk menghentikan ronde
+     dengan mereset seluruh kartu dan memberikan poin
+     kepada pemain yang menang
+     */
+    void endRound(Player &playerWin,int point);
+
 };
 
 

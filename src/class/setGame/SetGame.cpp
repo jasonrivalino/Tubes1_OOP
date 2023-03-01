@@ -69,6 +69,39 @@ void SetGame::printCards() {
         cout<< this->cards[i].getNameCard()<<" "<< this->cards[i].getNumberCard()<<endl;
     }
 }
+void SetGame::endRound(Player &playerWin, int point) {
+
+    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+
+    for(int i=0; i< this->players.size();i++){
+        this->players[i].removeBackCard();
+        this->players[i].removeBackCard();
+    }
+    this->cards.clear();
+
+    this->ability.push_back(*new ReRoll);
+    this->ability.push_back(*new Quadruple);
+    this->ability.push_back(*new Quarter);
+    this->ability.push_back(*new ReverseDirection);
+    this->ability.push_back(*new SwapCard);
+    this->ability.push_back(*new Switch);
+    this->ability.push_back(*new Abilityless);
+
+
+    random_shuffle(this->ability.begin(), this->ability.end());
+
+    for(int i=0;i<52;i++){
+        int numCard = i%13+1;
+        int numWarna = i/13;
+
+        this->cards.push_back(*new Card(warna[numWarna],numCard));
+    }
+
+    random_shuffle(this->cards.begin(), this->cards.end());
+
+
+    playerWin.setPoin(point);
+}
 vector<Card> SetGame::getCards() {
     return this->cards;
 }
@@ -78,3 +111,4 @@ vector<Card> SetGame::getAbilityCards() {
 vector<Player> SetGame::getPlayers() {
     return this->players;
 }
+
