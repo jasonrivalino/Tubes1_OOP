@@ -13,7 +13,6 @@ protected:
     static int currentTurn;
     const int turn;
     int point;
-    int pointEkspek;
     string playerName; 
     vector <Card> cards;
 public:
@@ -45,9 +44,6 @@ public:
     // menghapus kartu player dari yang terbawah
     void removeBackCard();
 
-    void pointAwal();
-
-    void pointMasukkan(float);
 
     // men-setting poin player
     void setPoint(int);
@@ -55,10 +51,7 @@ public:
     //untuk mendapatkan poin dari player yang dipilih
     int getPoint();
 
-    // Fungsi mengatur sistem point
-    int pointSystem(string);
 
-    int addPointPerRound(int);
 };
 
 #endif
