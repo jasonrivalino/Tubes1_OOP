@@ -7,6 +7,11 @@
 
 
 SetGame::SetGame(int jumPlayer) {
+
+    this->pointGame=64;
+
+
+
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
@@ -70,6 +75,10 @@ void SetGame::printCards() {
     }
 }
 void SetGame::endRound(Player &playerWin, int point) {
+
+
+    this->pointGame=64;
+
 
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
 

@@ -10,7 +10,7 @@ int main(){
 //    cout<<"=========="<<endl;
     s.shareCardToPlayer(2);
     ReRoll r;
-    r.ReRollEffect(*s.getPlayers()[1],s);
+//    r.ReRollEffect(*s.getPlayers()[1],s);
 //    cout<<"=========="<<endl;
 //    s.printCards();
     s.getPlayers()[0]->removeBackCard();
