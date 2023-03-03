@@ -118,12 +118,50 @@ bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
 
 bool Combination::isTwoPair(Player &player, Table &tableCard)
 {
-    // isi y guys
+    int count1 = 0;
+    int count2 = 0;
+    int sizeCardTable=tableCard.getCards().size();
+    for (int i = 0; i < player.getCardsPlayer().size();i++){
+        count1 = 0;
+        count1 = 0;
+        for (int j = 0; j < sizeCardTable; j++){
+            if (player.getCardsPlayer()[i].getNumberCard() == tableCard.getCards()[j]->getNumberCard()){
+                count1++;
+            }
+        }
+        if (count1 == 2){
+            for(int k=0;k<player.getCardsPlayer().size();k++){
+                if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
+                    for(int l=0;l<sizeCardTable;l++){
+                        if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
+                            count2++;
+                        }
+                    }
+                }
+            }
+            if (count2 == 2){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 bool Combination::isOnePair(Player &player, Table &tableCard)
 {
-    // isi y guys
+    int count = 0;
+    int sizeCardTable=tableCard.getCards().size();
+    for (int i = 0; i < player.getCardsPlayer().size();i++){
+        count = 0;
+        for (int j = 0; j < sizeCardTable; j++){
+            if (player.getCardsPlayer()[i].getNumberCard() == tableCard.getCards()[j]->getNumberCard()){
+                count++;
+            }
+        }
+        if (count == 2){
+            return true;
+        }
+    }
 }
 
 bool Combination::isHighCard(Player &player, Table &tableCard)

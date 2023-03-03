@@ -1,12 +1,7 @@
 
 
-<<<<<<< HEAD
 #include "class/SetGame/SetGame.hpp"
 #include "class/Ability/AbilityCard.hpp"
-=======
-#include "class/SetGame/SetGame.cpp"
-#include "class/Combination/Combination.cpp"
->>>>>>> origin/Laila
 
 using namespace std;
 
