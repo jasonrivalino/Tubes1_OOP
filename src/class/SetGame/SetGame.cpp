@@ -121,3 +121,6 @@ vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
 
+long int SetGame::getPointGame() {
+    return this->pointGame;
+}

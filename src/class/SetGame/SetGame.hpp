@@ -94,6 +94,8 @@ public:
      */
     void endRound(Player &playerWin,int point);
 
+    long int getPointGame();
+
 };
 
 

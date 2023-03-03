@@ -43,8 +43,8 @@ bool Quadruple::getQuadruple(){
     return getIsCardUsed();
 }
 
-void Quadruple::QuadrupleEffect(){
-    // Masukin efeknya
+void Quadruple::QuadrupleEffect(Player &player, SetGame pointGame, string action){
+    this -> currentPoint = pointGame.getPointGame()*4;
 }
 
 Quarter::Quarter() : Card("Quarter",false){
@@ -62,8 +62,8 @@ bool Quarter::getQuarter(){
     return this -> getIsCardUsed();
 }
 
-void Quarter::QuarterEffect(){
-    // Masukin efeknya
+void Quarter::QuarterEffect(Player &player, SetGame pointGame, string action){
+    this -> currentPoint = pointGame.getPointGame()/4;
 }
 
 ReverseDirection::ReverseDirection() : Card("ReverseDirection",false){

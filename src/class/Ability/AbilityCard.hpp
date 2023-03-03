@@ -5,6 +5,7 @@
 #include "../Card/Card.hpp"
 #include "../Player/Player.hpp"
 #include "../SetGame/SetGame.hpp"
+#include "../Player/playerAction.hpp"
 
 
 using namespace std;
@@ -34,7 +35,9 @@ class Quadruple : public Card{
         // Setter and Getter
         void setQuadruple(bool);
         bool getQuadruple();
-        void QuadrupleEffect();
+        void QuadrupleEffect(Player&, SetGame, string);
+    private:
+        int currentPoint;
 };
 
 class Quarter : public Card{
@@ -46,7 +49,9 @@ class Quarter : public Card{
         // Setter and Getter
         void setQuarter(bool);
         bool getQuarter();
-        void QuarterEffect();
+        void QuarterEffect(Player&, SetGame, string);
+    private:
+        int currentPoint;
 };
 
 class ReverseDirection : public Card{
