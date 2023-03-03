@@ -92,9 +92,10 @@ class Abilityless : public Card{
         // Destruktor
         ~Abilityless();
         // Setter and Getter
+        
         void setAbilityless(bool);
         bool getAbilityless();
-        void AbilitylessEffect(Player &abilityPlayer, vector<Player*> p);
+        void AbilitylessEffect(SetGame &s, Player &abilityPlayer);
 };
 
 #endif
