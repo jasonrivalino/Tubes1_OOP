@@ -120,6 +120,9 @@ vector<Card*> SetGame::getAbilityCards() {
 vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
+vector<Player*> SetGame::getPlayerTurn() {
+    return this->playerTurn;
+}
 
 long int SetGame::getPointGame() {
     return this->pointGame;
