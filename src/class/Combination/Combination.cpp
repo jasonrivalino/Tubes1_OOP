@@ -8,14 +8,7 @@ Combination::Combination(/* args */)
     //
 }
 
-Combination::~Combination()
-{
-    //
-}
 
-Combination::Combination(/* args */)
-{
-}
 
 Combination::~Combination()
 {
@@ -72,11 +65,11 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
     }
     return true;
 }
-
-bool Combination::isFourOfAKind(Player &player, Table &tableCard)
-{
-    //
-}
+//
+//bool Combination::isFourOfAKind(Player &player, Table &tableCard)
+//{
+//    //
+//}
 
 bool Combination::isFullHouse(Player &player, Table &tableCard)
 {
@@ -91,8 +84,9 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
                 count++;
             }
         }
-        if(count==3){
+        if(count==2){
             for(int k=0;k<player.getCardsPlayer().size();k++){
+                count2=0;
                 if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
                     for(int l=0;l<sizeCardTable;l++){
                         if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
@@ -100,10 +94,12 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
                         }
                     }
                 }
+                if(count2==1){
+                    return true;
+                }
             }
-            if(count2==2){
-                return true;
-            }
+
+
         }
     }
     return false;
@@ -124,35 +120,36 @@ bool Combination::isFlush(Player &player, Table &tableCard)
             return true;
         }
     }
+    return false;
 }
 
-bool Combination::isStraight(Player &player, Table &tableCard)
-{
-    // isi y guys
-}
-
-bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
-{
-    int count=0;
-        
-}
-
-bool Combination::isTwoPair(Player &player, Table &tableCard)
-{
-    // isi y guys
-}
-
-bool Combination::isOnePair(Player &player, Table &tableCard)
-{
-    // isi y guys
-}
-
-bool Combination::isHighCard(Player &player, Table &tableCard)
-{
-    // isi y guys
-}
-
-void Combination::checkCombination(Player &player, Table &tableCard)
-{
-    //
-}
+//bool Combination::isStraight(Player &player, Table &tableCard)
+//{
+//    // isi y guys
+//}
+//
+//bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
+//{
+//    int count=0;
+//
+//}
+//
+//bool Combination::isTwoPair(Player &player, Table &tableCard)
+//{
+//    // isi y guys
+//}
+//
+//bool Combination::isOnePair(Player &player, Table &tableCard)
+//{
+//    // isi y guys
+//}
+//
+//bool Combination::isHighCard(Player &player, Table &tableCard)
+//{
+//    // isi y guys
+//}
+//
+//void Combination::checkCombination(Player &player, Table &tableCard)
+//{
+//    //
+//}

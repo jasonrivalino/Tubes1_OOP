@@ -25,7 +25,7 @@ int main(){
     Card c2("B",3);
     Card c3("K",2);
     Card c4("M",3);
-    Card c5("K",6);
+    Card c5("K",8);
     Card c6("H",3);
     Card c7("K",6);
 
