@@ -3,14 +3,14 @@
 //
 
 #include "SetGame.hpp"
-#include <algorithm>
 
 
-SetGame::SetGame(int jumPlayer) {
+
+SetGame::SetGame(int jumPlayer, string path) {
 
     this->pointGame=64;
 
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+    string warna[4] = {"H","B","K","M"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
     }
@@ -22,17 +22,63 @@ SetGame::SetGame(int jumPlayer) {
     this->ability.push_back(new Switch);
     this->ability.push_back(new Abilityless);
 
-
     random_shuffle(this->ability.begin(), this->ability.end());
+    if(path == "") {
+        for(int i=0;i<52;i++){
+            int numCard = i%13+1;
+            int numWarna = i/13;
 
-    for(int i=0;i<52;i++){
-        int numCard = i%13+1;
-        int numWarna = i/13;
+            this->cards.push_back(new Card(warna[numWarna],numCard));
+        }
 
-        this->cards.push_back(new Card(warna[numWarna],numCard));
+        random_shuffle(this->cards.begin(), this->cards.end());
     }
+    else {
+        // cout << "fdfdfd";
+        ifstream inFile(path);
+        int numCard, numWarna;
+        char ch;
+        bool angka = false;
+        
+        cout << path << endl;
+        if (!inFile) {
+            std::cerr << "Unable to open file";
+            exit(1);
+        }
 
-    random_shuffle(this->cards.begin(), this->cards.end());
+        while (inFile >> noskipws >> ch) {
+            if(ch >= 'A' && ch <= 'Z'){
+                if (ch == 'H'){
+                    numWarna = 0;
+                }
+                else if (ch == 'B') {
+                    numWarna = 1;
+                }
+                else if (ch == 'K') {
+                    numWarna = 2;
+                }
+                else if (ch == 'M') {
+                    numWarna = 3;
+                }
+            }
+            else if(ch >= '0' &&  ch <= '9'){
+                if(!angka) {
+                    angka = true;
+                    numCard = ch - '0';
+                }
+                else {
+                    numCard = numCard*10 + ch - '0';
+                }
+            }
+            else if(ch == '\n') {
+                angka = false;
+                this->cards.push_back(new Card(warna[numWarna],numCard));
+            }
+            // cout<<"warna : " << warna[numWarna]<<" angka : "<<numCard<<endl;
+        }
+
+        inFile.close();
+    }
 }
 SetGame::~SetGame() {
     this->ability.clear();

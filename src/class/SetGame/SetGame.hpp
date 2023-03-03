@@ -13,6 +13,8 @@
 using namespace std;
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <fstream>
 
 
 class SetGame {
@@ -26,7 +28,7 @@ public:
      untuk melakukan setting awal pada kartu, kartu ability, dan player
      yang dimana mengacak kartu, kartu ability agar mudah dibagi ke pada para pemain
      */
-    SetGame(int jumPlayer);
+    SetGame(int jumPlayer, string path);
 
     /*
      ddc
