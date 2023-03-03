@@ -21,6 +21,7 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
             break;
         }
     }
+    // KURANG KALO 2 KARTU WARNA SAMA
     if(idx!=99){
         vector <Card*> temp;
         vector <Card*> allCard;
@@ -29,7 +30,10 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
                 temp.push_back(tableCard.getCards()[i]);
             }
         }
-        allCard.insert(temp.end(), player.getCardsPlayer().begin(), player.getCardsPlayer().end());
+
+        for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
+        allCard.push_back(&player.getCardsPlayer()[idx]);
+        // allCard.insert(temp.end(), player.getCardsPlayer().begin(), player.getCardsPlayer().end());
         sort(allCard.begin(), allCard.end());
         for (int i = 0; i < allCard.size(); i++){
             if (allCard[i+1]->getNumberCard() - allCard[i]->getNumberCard() != 1){
