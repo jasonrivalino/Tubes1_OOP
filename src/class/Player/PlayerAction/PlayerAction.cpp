@@ -52,7 +52,7 @@ void PlayerAction::quadrupleCard(Player &player, SetGame &pointGame){
 
 void PlayerAction::quarterCard(Player &player, SetGame &pointGame){
     // Kondisi jika pemain tidak punya kartu quarter
-    if (player.getCardsPlayer()[2].getNameCard() != "QUARTER" || player.getCardsPlayer()[3].getIsCardUsed()){
+    if (player.getCardsPlayer()[2].getNameCard() != "QUARTER" || player.getCardsPlayer()[2].getIsCardUsed()){
         cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability QUARTER." << endl;
     }
     else{
