@@ -3,6 +3,7 @@
 
 #include "../Player/Player.hpp"
 #include "../SetGame/SetGame.hpp"
+#include "../Ability/AbilityCard.hpp"
 
 using namespace std;
 #include <iostream>
@@ -18,6 +19,8 @@ public:
     void halfCard(Player &player, SetGame pointGame, string action);
     void doubleCard( Player &player, SetGame pointGame, string action);
     void nextCard(Player &player, SetGame pointGame, string action);
+    void quadrupleCard(Player &player, SetGame pointGame, string action);
+    void quarterCard(Player &player, SetGame pointGame, string action);
 };
 
 

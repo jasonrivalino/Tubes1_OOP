@@ -22,3 +22,20 @@ void playerAction::nextCard(Player &player, SetGame pointGame, string action){
         cout << "Giliran dilanjut ke pemain berikutnya" << endl;
     }
 }
+
+// Command untuk efek kartu
+void playerAction::quadrupleCard(Player &player, SetGame pointGame, string action){
+    if (action == "QUADRUPLE"){
+        Quadruple quad;
+        quad.QuadrupleEffect(player, pointGame, action);
+        this -> currentPoint = quad.getQuadruple();
+    }
+}
+
+void playerAction::quarterCard(Player &player, SetGame pointGame, string action){
+    if (action == "QUARTER"){
+        Quarter quarter;
+        quarter.QuarterEffect(player, pointGame, action);
+        this -> currentPoint = quarter.getQuarter();
+    }
+}
