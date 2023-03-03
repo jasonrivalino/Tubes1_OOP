@@ -42,3 +42,34 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
     }
     return true;
 }
+
+bool Combination::isFullHouse(Player &player, Table &tableCard)
+{
+    int count=0;
+    int count2=0;
+    int sizeCardTable=tableCard.getCards().size();
+    for(int i=0;i<player.getCardsPlayer().size();i++){
+        count=0;
+        count2=0;
+        for(int j=0;j<sizeCardTable;j++){
+            if(player.getCardsPlayer()[i].getNumberCard()==tableCard.getCards()[j]->getNumberCard()){
+                count++;
+            }
+        }
+        if(count==3){
+            for(int k=0;k<player.getCardsPlayer().size();k++){
+                if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
+                    for(int l=0;l<sizeCardTable;l++){
+                        if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
+                            count2++;
+                        }
+                    }
+                }
+            }
+            if(count2==2){
+                return true;
+            }
+        }
+    }
+    return false;
+}
