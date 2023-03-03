@@ -1,14 +1,13 @@
 
-
-#include "class/SetGame/SetGame.cpp"
-#include "class/Combination/Combination.cpp"
+#include "class/SetGame/SetGame.hpp"
+#include "class/Combination/Combination.hpp"
 
 using namespace std;
 
 int main(){
     SetGame s(7);
 //    s.printCards();
-//    cout<<"=========="<<endl;
+// //    cout<<"=========="<<endl;
 //     s.shareCardToPlayer(2);
 //     ReRoll r;
 // //    r.ReRollEffect(*s.getPlayers()[1],s);
@@ -20,13 +19,36 @@ int main(){
 //         s.getPlayers()[i]->printCards();
 //         cout<<"=================="<<endl;
 //     }
-    for(int i=0;i<s.getPlayers().size();i++){
-        cout<<s.getPlayers()[i]->getTurn()<<endl;
-    }
-    ReverseDirection r;
-    r.ReverseDirectionEffect(s);
-    for(int i=0;i<s.getPlayers().size();i++){
-        cout<<s.getPlayers()[i]->getTurn()<<endl;
-    }
+
+    Table t;
+    Card c1("K",1);
+    Card c2("B",3);
+    Card c3("K",2);
+    Card c4("M",3);
+    Card c5("K",6);
+    Card c6("H",3);
+    Card c7("K",6);
+
+    t.addCard(c1);
+    t.addCard(c2);
+    t.addCard(c3);
+    t.addCard(c4);
+    t.addCard(c5);
+    Player p("cek");
+    p.addCard( c7);
+    p.addCard( c6);
+
+    Combination c;
+    cout<<c.isFullHouse(p,t)<<endl;
+
+
+    // for(int i=0;i<s.getPlayers().size();i++){
+    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
+    // }
+    // ReverseDirection r;
+    // r.ReverseDirectionEffect(s);
+    // for(int i=0;i<s.getPlayers().size();i++){
+    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
+    // }
     return 0;
 }

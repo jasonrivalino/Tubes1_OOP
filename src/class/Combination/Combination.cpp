@@ -13,14 +13,26 @@ Combination::~Combination()
     //
 }
 
+Combination::Combination(/* args */)
+{
+}
+
+Combination::~Combination()
+{
+    this->allCard.clear();
+}
+
 bool Combination::isStraightFlush(Player &player, Table &tableCard)
 {
     int count=0;
     int idx=99;
+
     int sizeCardTable=tableCard.getCards().size();
     for(int i=0;i<player.getCardsPlayer().size();i++){
         count=0;
         for(int j=0;j<sizeCardTable;j++){
+
+
             if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
                 count++;
             }
@@ -31,18 +43,26 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
             break;
         }
     }
+
+
+    // KURANG KALO 2 KARTU WARNA SAMA
     if(idx!=99){
         vector <Card*> temp;
-        vector <Card*> allCard;
+        vector<int> forSort;
+
         for(int i = 0; i < tableCard.getCards().size(); i++){
             if (player.getCardsPlayer()[idx].getNameCard() == tableCard.getCards()[i]->getNameCard()){
                 temp.push_back(tableCard.getCards()[i]);
             }
         }
-        allCard.insert(temp.end(), player.getCardsPlayer().begin(), player.getCardsPlayer().end());
-        sort(allCard.begin(), allCard.end());
-        for (int i = 0; i < allCard.size(); i++){
-            if (allCard[i+1]->getNumberCard() - allCard[i]->getNumberCard() != 1){
+
+        for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
+        allCard.push_back(&player.getCardsPlayer()[idx]);
+
+        for(int i=0;i<allCard.size();i++) forSort.push_back(allCard[i]->getNumberCard());
+        sort(forSort.begin(),forSort.end());
+        for (int i = 0; i < allCard.size()-1; i++){
+            if (forSort[i+1] - forSort[i] != 1){
                 return false;
             }
         }
@@ -113,7 +133,8 @@ bool Combination::isStraight(Player &player, Table &tableCard)
 
 bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
 {
-    // isi y guys
+    int count=0;
+        
 }
 
 bool Combination::isTwoPair(Player &player, Table &tableCard)
