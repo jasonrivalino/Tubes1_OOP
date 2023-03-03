@@ -45,7 +45,7 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
         allCard.push_back(&player.getCardsPlayer()[idx]);
         // allCard.insert(temp.end(), player.getCardsPlayer().begin(), player.getCardsPlayer().end());
         sort(allCard.begin(), allCard.end());
-        for (int i = 0; i < allCard.size(); i++){
+        for (int i = 0; i < allCard.size()-1; i++){
             if (allCard[i+1]->getNumberCard() - allCard[i]->getNumberCard() != 1){
                 return false;
             }
