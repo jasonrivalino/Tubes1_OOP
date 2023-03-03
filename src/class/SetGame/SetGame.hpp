@@ -20,7 +20,7 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Card*> ability;
-    int pointGame;
+    long int pointGame;
 public:
     /*
      untuk melakukan setting awal pada kartu, kartu ability, dan player
@@ -50,6 +50,30 @@ public:
      setelah dibagi ability card akan terhabus semua karena seluruh ability card sudah ada pada pemain
      */
     void removeAbilityCards();
+    /*
+     share kartu ke pada player
+     shareCard merupakan jumlah card yang akan dibagi ke pada player
+     */
+    void shareCardToPlayer(int shareCard);
+    /*
+    share kartu ability kepada seluruh player
+     */
+    void shareAbilityCard();
+    /*
+    untuk menghentikan ronde
+     dengan mereset seluruh kartu dan memberikan poin
+     kepada pemain yang menang
+     */
+    void endRound(Player &playerWin,int point);
+
+    // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
+    void setPoint(long);
+
+
+
+
+
+
 
     /*
      Untuk melihat kartu ability card
@@ -75,24 +99,14 @@ public:
     */
     void showAllPoint();
     /*
-     share kartu ke pada player
-     shareCard merupakan jumlah card yang akan dibagi ke pada player
-     */
-    void shareCardToPlayer(int shareCard);
-    /*
-    share kartu ability kepada seluruh player
-     */
-    void shareAbilityCard();
-    /*
      untuk menampilkan seluruh kartu yang masih ada pada game
      */
     void printCards();
+
     /*
-    untuk menghentikan ronde
-     dengan mereset seluruh kartu dan memberikan poin
-     kepada pemain yang menang
+     untuk mengambil point pada game
      */
-    void endRound(Player &playerWin,int point);
+    long int getPointGame();
 
 };
 
