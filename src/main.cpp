@@ -1,6 +1,7 @@
 
 
-#include "class/setGame/SetGame.hpp"
+#include "class/SetGame/SetGame.hpp"
+#include "class/Ability/AbilityCard.hpp"
 
 using namespace std;
 
