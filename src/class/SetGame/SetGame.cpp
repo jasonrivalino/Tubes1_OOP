@@ -53,6 +53,9 @@ void  SetGame::removeBackCard() {
 void SetGame::removeAbilityCards() {
     this->ability.clear();
 }
+void SetGame::setPoint(long point) {
+    this->pointGame = point;
+}
 void SetGame::showAllPoint() {
     for(int i=0;i< this->players.size();i++) cout<<"Player "<< this->players[i]->getTurn()<<endl;
 }
