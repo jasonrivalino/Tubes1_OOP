@@ -64,7 +64,7 @@ public:
      dengan mereset seluruh kartu dan memberikan poin
      kepada pemain yang menang
      */
-    void endRound(Player &playerWin,int point);
+    void endRound(Player &playerWin);
 
     // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
     void setPoint(long);
