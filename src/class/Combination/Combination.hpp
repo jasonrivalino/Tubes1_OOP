@@ -1,5 +1,5 @@
-#include "../Player.hpp"
-// #include "../Table/Table.hpp"
+#include "../Player/Player.hpp"
+#include "../Table/Table.hpp"
 #include "../Card/Card.hpp"
 #include <iostream>
 
