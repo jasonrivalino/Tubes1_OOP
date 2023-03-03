@@ -3,6 +3,16 @@
 
 using namespace std;
 
+Combination::Combination(/* args */)
+{
+    //
+}
+
+Combination::~Combination()
+{
+    //
+}
+
 bool Combination::isStraightFlush(Player &player, Table &tableCard)
 {
     int count=0;
@@ -43,6 +53,11 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
     return true;
 }
 
+bool Combination::isFourOfAKind(Player &player, Table &tableCard)
+{
+    //
+}
+
 bool Combination::isFullHouse(Player &player, Table &tableCard)
 {
     int count=0;
@@ -72,4 +87,51 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
         }
     }
     return false;
+}
+
+bool Combination::isFlush(Player &player, Table &tableCard)
+{
+    int count=0;
+    int sizeCardTable=tableCard.getCards().size();
+    for(int i=0;i<player.getCardsPlayer().size();i++){
+        count=0;
+        for(int j=0;j<sizeCardTable;j++){
+            if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
+                count++;
+            }
+        }
+        if(count==5){
+            return true;
+        }
+    }
+}
+
+bool Combination::isStraight(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+bool Combination::isTwoPair(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+bool Combination::isOnePair(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+bool Combination::isHighCard(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+void Combination::checkCombination(Player &player, Table &tableCard)
+{
+    //
 }
