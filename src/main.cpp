@@ -1,7 +1,7 @@
 
 
-#include "class/SetGame/SetGame.cpp"
-#include "class/Combination/Combination.cpp"
+#include "class/SetGame/SetGame.hpp"
+#include "class/Combination/Combination.hpp"
 
 using namespace std;
 
@@ -22,13 +22,22 @@ int main(){
 //     }
 
     Table t;
-    t.addCard( *new Card("K",1));
-    t.addCard( *new Card("K",3));
-    t.addCard( *new Card("K",2));
-    t.addCard( *new Card("K",4));
+    Card c1("K",1);
+    Card c2("K",3);
+    Card c3("K",2);
+    Card c4("K",4);
+    Card c5("K",5);
+    Card c6("M",6);
+    Card c7("K",6);
+
+    t.addCard(c1);
+    t.addCard(c2);
+    t.addCard(c3);
+    t.addCard(c4);
+    t.addCard(c5);
     Player p("cek");
-    p.addCard( *new Card("K",5));
-    p.addCard( *new Card("M",6));
+    p.addCard( c7);
+    p.addCard( c6);
 
     Combination c;
     cout<<c.isStraightFlush(p,t)<<endl;

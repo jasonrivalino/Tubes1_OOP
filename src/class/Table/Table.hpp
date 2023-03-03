@@ -19,7 +19,7 @@ public:
     ~Table();
 
     //add card
-    void addCard(Card);
+    void addCard(Card&);
     void showTable();
     void removeBackCard();
     void endRound();

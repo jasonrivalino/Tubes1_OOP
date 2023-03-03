@@ -10,7 +10,7 @@ Table::~Table() {
     this->cards.clear();
 }
 
-void Table::addCard(Card c) {
+void Table::addCard(Card &c) {
     this->cards.push_back(&c);
 }
 
