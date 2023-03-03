@@ -10,8 +10,6 @@ SetGame::SetGame(int jumPlayer) {
 
     this->pointGame=64;
 
-
-
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
@@ -77,11 +75,9 @@ void SetGame::printCards() {
         cout<< this->cards[i]->getNameCard()<<" "<< this->cards[i]->getNumberCard()<<endl;
     }
 }
-void SetGame::endRound(Player &playerWin, int point) {
-
+void SetGame::endRound(Player &playerWin) {
 
     this->pointGame=64;
-
 
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
 
@@ -89,6 +85,8 @@ void SetGame::endRound(Player &playerWin, int point) {
         this->players[i]->removeBackCard();
         this->players[i]->removeBackCard();
     }
+
+
     this->cards.clear();
 
     this->ability.push_back(new ReRoll);
@@ -98,8 +96,6 @@ void SetGame::endRound(Player &playerWin, int point) {
     this->ability.push_back(new SwapCard);
     this->ability.push_back(new Switch);
     this->ability.push_back(new Abilityless);
-
-
     random_shuffle(this->ability.begin(), this->ability.end());
 
     for(int i=0;i<52;i++){
@@ -108,11 +104,12 @@ void SetGame::endRound(Player &playerWin, int point) {
 
         this->cards.push_back(new Card(warna[numWarna],numCard));
     }
-
     random_shuffle(this->cards.begin(), this->cards.end());
 
 
-    playerWin.setPoint(point);
+
+    playerWin.setPoint(this->pointGame);
+    this->pointGame=64;
 }
 vector<Card*> SetGame::getCards() {
     return this->cards;

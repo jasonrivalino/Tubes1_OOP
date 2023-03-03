@@ -8,6 +8,7 @@
 #include "../Player/Player.hpp"
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
+#include "../Table/Table.hpp"
 
 
 using namespace std;
@@ -64,7 +65,7 @@ public:
      dengan mereset seluruh kartu dan memberikan poin
      kepada pemain yang menang
      */
-    void endRound(Player &playerWin,int point);
+    void endRound(Player &playerWin);
 
     // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
     void setPoint(long);
