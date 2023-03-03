@@ -8,6 +8,7 @@
 #include "../Player/Player.hpp"
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
+#include "../Table/Table.hpp"
 
 
 using namespace std;
@@ -20,6 +21,7 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Card*> ability;
+    vector<Player*> playerTurn;
     long int pointGame;
 public:
     /*
@@ -96,6 +98,8 @@ public:
      untuk menampilkan seluruh kartu yang masih ada pada game
      */
     void printCards();
+
+    vector<Player*> getPlayerTurn();
 
     /*
      untuk mengambil point pada game

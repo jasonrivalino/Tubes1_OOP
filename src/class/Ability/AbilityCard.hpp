@@ -2,6 +2,7 @@
 #define __ABILITY__CARD__HPP__
 
 #include <iostream>
+#include <algorithm>
 #include "../Card/Card.hpp"
 #include "../Player/Player.hpp"
 #include "../SetGame/SetGame.hpp"
@@ -63,7 +64,7 @@ class ReverseDirection : public Card{
         // Setter and Getter
         void setReverseDirection(bool);
         bool getReverseDirection();
-        void ReverseDirectionEffect();
+        void ReverseDirectionEffect(SetGame &playerTurn);
 };
 
 class SwapCard : public Card{
