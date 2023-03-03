@@ -20,7 +20,7 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Card*> ability;
-    int pointGame;
+    long int pointGame;
 public:
     /*
      untuk melakukan setting awal pada kartu, kartu ability, dan player
@@ -93,6 +93,11 @@ public:
      kepada pemain yang menang
      */
     void endRound(Player &playerWin,int point);
+
+    /*
+     untuk mengambil point pada game
+     */
+    long int getPointGame();
 
 };
 
