@@ -20,5 +20,6 @@ int main(){
         s.getPlayers()[i]->printCards();
         cout<<"=================="<<endl;
     }
+
     return 0;
 }
