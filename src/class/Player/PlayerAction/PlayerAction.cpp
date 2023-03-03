@@ -7,8 +7,11 @@ PlayerAction::~PlayerAction() {}
 
 void PlayerAction::halfCard(Player &player, SetGame &pointGame){
     long pointBeforeAction = pointGame.getPointGame();
+    if (pointBeforeAction != 1) {
     pointGame.setPoint(pointGame.getPointGame()/2);
     cout << &player << "melakukan HALF!" << "Poin hadiah turun dari " << pointBeforeAction << " menjadi " << pointGame.getPointGame() << endl;
+    
+    }
 }
 
 void PlayerAction::doubleCard(Player &player, SetGame &pointGame){
