@@ -3,6 +3,14 @@
 
 using namespace std;
 
+Combination::Combination(/* args */)
+{
+}
+
+Combination::~Combination()
+{
+}
+
 bool Combination::isStraightFlush(Player &player, Table &tableCard)
 {
     int count=0;
