@@ -81,9 +81,11 @@ bool ReverseDirection::getReverseDirection(){
     return this -> getIsCardUsed();
 }
 
-void ReverseDirection::ReverseDirectionEffect(){
-    // Masukin efeknya
+void ReverseDirection::ReverseDirectionEffect(SetGame &PlayerTurn){
+    // reversing player turn
+    reverse(PlayerTurn.getPlayers().begin(), PlayerTurn.getPlayers().end());
 }
+
 
 SwapCard::SwapCard() : Card("swap_card", false){
 }

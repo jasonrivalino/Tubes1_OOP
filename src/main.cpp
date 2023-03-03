@@ -8,7 +8,7 @@ using namespace std;
 int main(){
     SetGame s(7);
 //    s.printCards();
-// //    cout<<"=========="<<endl;
+//    cout<<"=========="<<endl;
 //     s.shareCardToPlayer(2);
 //     ReRoll r;
 // //    r.ReRollEffect(*s.getPlayers()[1],s);
@@ -20,19 +20,13 @@ int main(){
 //         s.getPlayers()[i]->printCards();
 //         cout<<"=================="<<endl;
 //     }
-
-    Table t;
-    t.addCard( *new Card("K",1));
-    t.addCard( *new Card("K",3));
-    t.addCard( *new Card("K",2));
-    t.addCard( *new Card("K",4));
-    Player p("cek");
-    p.addCard( *new Card("K",5));
-    p.addCard( *new Card("M",6));
-
-    Combination c;
-    cout<<c.isStraightFlush(p,t)<<endl;
-
-
+    for(int i=0;i<s.getPlayers().size();i++){
+        cout<<s.getPlayers()[i]->getTurn()<<endl;
+    }
+    ReverseDirection r;
+    r.ReverseDirectionEffect(s);
+    for(int i=0;i<s.getPlayers().size();i++){
+        cout<<s.getPlayers()[i]->getTurn()<<endl;
+    }
     return 0;
 }
