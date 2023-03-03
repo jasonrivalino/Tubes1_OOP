@@ -71,8 +71,9 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
                 count++;
             }
         }
-        if(count==3){
+        if(count==2){
             for(int k=0;k<player.getCardsPlayer().size();k++){
+                count2=0;
                 if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
                     for(int l=0;l<sizeCardTable;l++){
                         if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
@@ -80,10 +81,12 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
                         }
                     }
                 }
+                if(count2==1){
+                    return true;
+                }
             }
-            if(count2==2){
-                return true;
-            }
+
+
         }
     }
     return false;
@@ -118,29 +121,30 @@ bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
 
 bool Combination::isTwoPair(Player &player, Table &tableCard)
 {
-    int count1 = 0;
+    int count = 0;
     int count2 = 0;
     int sizeCardTable=tableCard.getCards().size();
     for (int i = 0; i < player.getCardsPlayer().size();i++){
-        count1 = 0;
-        count1 = 0;
+        count = 0;
+        count2 = 0;
         for (int j = 0; j < sizeCardTable; j++){
             if (player.getCardsPlayer()[i].getNumberCard() == tableCard.getCards()[j]->getNumberCard()){
-                count1++;
+                count++;
             }
         }
-        if (count1 == 2){
-            for(int k=0;k<player.getCardsPlayer().size();k++){
-                if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
-                    for(int l=0;l<sizeCardTable;l++){
-                        if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
+        if (count == 1){
+            for (int k = 0; k < player.getCardsPlayer().size(); k++){
+                count2 = 0;
+                if (player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
+                    for (int l = 0; l < sizeCardTable; l++){
+                        if (player.getCardsPlayer()[k].getNumberCard() == tableCard.getCards()[l]->getNumberCard()){
                             count2++;
                         }
                     }
                 }
-            }
-            if (count2 == 2){
-                return true;
+                if (count2 == 1){
+                    return true;
+                }
             }
         }
     }
@@ -158,10 +162,11 @@ bool Combination::isOnePair(Player &player, Table &tableCard)
                 count++;
             }
         }
-        if (count == 2){
+        if (count == 1){
             return true;
         }
     }
+    return false;
 }
 
 bool Combination::isHighCard(Player &player, Table &tableCard)
