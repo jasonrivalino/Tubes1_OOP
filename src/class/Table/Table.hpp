@@ -21,6 +21,8 @@ public:
     //add card
     void addCard(Card);
     void showTable();
+    void removeBackCard();
+    void endRound();
 
 
     //get card

@@ -8,6 +8,7 @@
 #include "../Player/Player.hpp"
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
+#include "../Table/Table.hpp"
 
 
 using namespace std;
