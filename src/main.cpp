@@ -1,6 +1,7 @@
 
 
-#include "class/setGame/SetGame.hpp"
+#include "class/SetGame/SetGame.cpp"
+#include "class/Combination/Combination.cpp"
 
 using namespace std;
 
