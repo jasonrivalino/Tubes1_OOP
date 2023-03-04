@@ -43,9 +43,11 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
     if(idx!=99){
         bool ans = false;
 
-
+        vector <Card*> ret;
         vector <Card*> temp;
         vector<int> forSort;
+
+        int countpcard = 1;
 
         for(int i = 0; i < tableCard.getCards().size(); i++){
             if (player.getCardsPlayer()[idx].getNameCard() == tableCard.getCards()[i]->getNameCard()){
@@ -58,6 +60,7 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
 
         if(idx == 0 && player.getCardsPlayer()[idx].getNameCard() == player.getCardsPlayer()[idx+1].getNameCard()) {
             allCard.push_back(&player.getCardsPlayer()[idx+1]);
+            countpcard ++;
         }
         
         // cout << allCard.size() <<endl;
@@ -69,13 +72,41 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
         //     cout << x << endl;
         // }
         int cek;
+        // int a = 0;
+        bool pcard;
+
+        cout << "countpcard : " << countpcard << endl;
+
         for (int i = 0; i < allCard.size()- 4; i++){
+            cout << "i : " << i << endl;
+            // cout << "allcardsize : " << allCard.size()<<endl;
             cek = 0;
-            for(int j = allCard.size()-1 - i; j >= allCard.size()-5-i; j-- ){
-                if (forSort[i+1] - forSort[i] != 1) continue;
-                else cek ++ ;
+            pcard = false;
+            // cout << "batas atas : "<< allCard.size() -1 -i<<endl;
+            // cout <<"batas bawah : "<< allCard.size() -4  -i<<endl;
+            // cout << "fdfdfddf\n";
+            // cout << "pcard : " << player.getCardsPlayer()[i].getNumberCard() << endl << endl;
+            for(int j = allCard.size()-1 - i; j >= allCard.size()-4-i; j-- ){
+                cout << forSort[j] << "   " << forSort[j-1] << endl;
+                if (forSort[j] - forSort[j-1] != 1) continue;
+                else {
+                    cek ++ ;
+                    if  (countpcard == 1 &&
+                        (forSort[j] == player.getCardsPlayer()[idx].getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[idx].getNumberCard() )){
+                            pcard = true;
+                    }
+                    else if (countpcard == 2 &&
+                        (forSort[j] == player.getCardsPlayer()[0].getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[0].getNumberCard() ||
+                        forSort[j] == player.getCardsPlayer()[1].getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[1].getNumberCard()) ){
+                            pcard = true;
+                    }
+                }
+                cout << "cek : " << cek << endl;
             }
-            if(cek == 5){
+            if(cek == 4 && pcard){
                 ans = true;
                 return true;
             }
@@ -121,56 +152,57 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
 // }
 
 
-// bool Combination::isFullHouse(Player &player, Table &tableCard)
-// {
-//     int count=0;
-//     int count2=0;
-//     int sizeCardTable=tableCard.getCards().size();
-//     for(int i=0;i<player.getCardsPlayer().size();i++){
-//         count=0;
-//         count2=0;
-//         for(int j=0;j<sizeCardTable;j++){
-//             if(player.getCardsPlayer()[i].getNumberCard()==tableCard.getCards()[j]->getNumberCard()){
-//                 count++;
-//             }
-//         }
-//         if(count==2){
-//             for(int k=0;k<player.getCardsPlayer().size();k++){
-//                 count2=0;
-//                 if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
-//                     for(int l=0;l<sizeCardTable;l++){
-//                         if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
-//                             count2++;
-//                         }
-//                     }
-//                 }
-//                 if(count2==1){
-//                     return true;
-//                 }
-//             }
+bool Combination::isFullHouse(Player &player, Table &tableCard)
+{
+    int count=0;
+    int count2=0;
+    int sizeCardTable=tableCard.getCards().size();
+    for(int i=0;i<player.getCardsPlayer().size();i++){
+        count=0;
+        count2=0;
+        for(int j=0;j<sizeCardTable;j++){
+            if(player.getCardsPlayer()[i].getNumberCard()==tableCard.getCards()[j]->getNumberCard()){
+                count++;
+            }
+        }
+        if(count==2){
+            for(int k=0;k<player.getCardsPlayer().size();k++){
+                count2=0;
+                if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
+                    for(int l=0;l<sizeCardTable;l++){
+                        if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
+                            count2++;
+                        }
+                    }
+                }
+                if(count2==1){
+                    return true;
+                }
+            }
 
 
-//         }
-//     }
-//     return false;
-// }
+        }
+    }
+    return false;
+}
 
-// bool Combination::isFlush(Player &player, Table &tableCard)
-// {
-//     int count=0;
-//     int sizeCardTable=tableCard.getCards().size();
-//     for(int i=0;i<player.getCardsPlayer().size();i++){
-//         count=0;
-//         for(int j=0;j<sizeCardTable;j++){
-//             if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
-//                 count++;
-//             }
-//         }
-//         if(count==5){
-//             return true;
-//         }
-//     }
-// }
+bool Combination::isFlush(Player &player, Table &tableCard)
+{
+    int count=0;
+    int sizeCardTable=tableCard.getCards().size();
+    for(int i=0;i<player.getCardsPlayer().size();i++){
+        count=0;
+        for(int j=0;j<sizeCardTable;j++){
+            if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
+                count++;
+            }
+        }
+        if(count==5){
+            return true;
+        }
+    }
+    return false;
+}
 
 // bool Combination::isStraight(Player &player, Table &tableCard)
 // {

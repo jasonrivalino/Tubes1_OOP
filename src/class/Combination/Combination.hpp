@@ -14,8 +14,8 @@ public:
     ~Combination();
     bool isStraightFlush(Player &player, Table &tableCard);
     // bool isFourOfAKind(Player &player, Table &tableCard);
-    // bool isFullHouse(Player &player, Table &tableCard);
-    // bool isFlush(Player &player, Table &tableCard);
+    bool isFullHouse(Player &player, Table &tableCard);
+    bool isFlush(Player &player, Table &tableCard);
     // bool isStraight(Player &player, Table &tableCard);
     // bool isThreeOfAKind(Player &player, Table &tableCard);
     // bool isTwoPair(Player &player, Table &tableCard);

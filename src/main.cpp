@@ -9,13 +9,13 @@ int main(){
     SetGame s(7);
 
     Table t;
-    Card c1("K",1);
+    Card c1("B",6);
     Card c2("B",3);
-    Card c3("K",2);
-    Card c4("M",3);
-    Card c5("K",8);
-    Card c6("H",3);
-    Card c7("K",8);
+    Card c3("B",2);
+    Card c4("B",4);
+    Card c5("B",5);
+    Card c6("B",7);
+    Card c7("B",1);
 
     t.addCard(c1);
     t.addCard(c2);
@@ -27,7 +27,7 @@ int main(){
     p.addCard( c6);
 
     Combination c;
-    cout<<c.isStraightFlush(p,t)<<endl;
+    cout<<c.isStraightFlush(p,t)<<" pppppp"<<endl;
 
     return 0;
 }
