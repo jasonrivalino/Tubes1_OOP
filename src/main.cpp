@@ -1,6 +1,7 @@
 
 #include "class/SetGame/SetGame.hpp"
 #include "class/Combination/Combination.hpp"
+#include "class/Ability/AbilityCard.hpp"
 
 using namespace std;
 
@@ -19,7 +20,6 @@ int main(){
 //         s.getPlayers()[i]->printCards();
 //         cout<<"=================="<<endl;
 //     }
-
     Table t;
     Card c1("K",1);
     Card c2("B",3);
@@ -39,16 +39,7 @@ int main(){
     p.addCard( c6);
 
     Combination c;
-    cout<<c.isFullHouse(p,t)<<endl;
+    cout<<c.isTwoPair(p,t)<<endl;
 
-
-    // for(int i=0;i<s.getPlayers().size();i++){
-    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
-    // }
-    // ReverseDirection r;
-    // r.ReverseDirectionEffect(s);
-    // for(int i=0;i<s.getPlayers().size();i++){
-    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
-    // }
     return 0;
 }

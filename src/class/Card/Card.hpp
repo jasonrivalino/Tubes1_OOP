@@ -14,6 +14,9 @@ private:
     string nama;
     bool isUsed;
     int nomorKartu;
+    int nilaiWarna;
+    float value;
+    float konstanta;
 public:
     /*
      memasukkan nama dari kartu dan apakah kartu tersebut sudah digunakan atau tidak
@@ -49,6 +52,8 @@ public:
      untuk mengambil nomor kartu yang dipilih
      */
     int getNumberCard();
+
+    float valueCard();
 };
 
 

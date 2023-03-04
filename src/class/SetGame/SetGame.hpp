@@ -71,12 +71,6 @@ public:
     // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
     void setPoint(long);
 
-
-
-
-
-
-
     /*
      Untuk melihat kartu ability card
     */
@@ -111,6 +105,7 @@ public:
      untuk mengambil point pada game
      */
     long int getPointGame();
+
 
 };
 

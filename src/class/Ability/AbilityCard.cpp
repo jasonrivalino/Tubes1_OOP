@@ -23,6 +23,12 @@ void ReRoll::ReRollEffect(Player &p,SetGame &s){
     p.removeBackCard();
     p.addCard(*s.getCards()[s.getSizeCards()-1]);
     p.addCard(*s.getCards()[s.getSizeCards()-2]);
+
+    cout << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
+    cout << "Kamu mendapatkan 2 kartu baru yaitu:" << endl;
+    cout << "1." << s.getCards()[s.getSizeCards()-1]->getNameCard() <<" "<< s.getCards()[s.getSizeCards()-1]->getNumberCard() << endl;
+    cout << "2." << s.getCards()[s.getSizeCards()-2]->getNameCard() <<" "<< s.getCards()[s.getSizeCards()-2]->getNumberCard() << endl;
+
     s.removeBackCard();
     s.removeBackCard();
     setReRoll(true);
@@ -43,8 +49,8 @@ bool Quadruple::getQuadruple(){
     return getIsCardUsed();
 }
 
-void Quadruple::QuadrupleEffect(){
-    // Masukin efeknya
+void Quadruple::QuadrupleEffect(Player &player, SetGame pointGame, string action){
+    this -> currentPoint = pointGame.getPointGame()*4;
 }
 
 Quarter::Quarter() : Card("Quarter",false){
@@ -62,8 +68,8 @@ bool Quarter::getQuarter(){
     return this -> getIsCardUsed();
 }
 
-void Quarter::QuarterEffect(){
-    // Masukin efeknya
+void Quarter::QuarterEffect(Player &player, SetGame pointGame, string action){
+    this -> currentPoint = pointGame.getPointGame()/4;
 }
 
 ReverseDirection::ReverseDirection() : Card("ReverseDirection",false){
