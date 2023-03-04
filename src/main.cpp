@@ -1,5 +1,4 @@
 
-
 #include "class/SetGame/SetGame.hpp"
 #include "class/Combination/Combination.hpp"
 
@@ -23,12 +22,12 @@ int main(){
 
     Table t;
     Card c1("K",1);
-    Card c2("K",3);
+    Card c2("B",3);
     Card c3("K",2);
-    Card c4("K",4);
-    Card c5("K",5);
-    Card c6("K",7);
-    Card c7("B",6);
+    Card c4("M",3);
+    Card c5("K",8);
+    Card c6("H",3);
+    Card c7("K",6);
 
     t.addCard(c1);
     t.addCard(c2);
@@ -40,9 +39,16 @@ int main(){
     p.addCard( c6);
 
     Combination c;
-    vector <Card*> ccd;
-    cout<<c.isStraightFlush(p,t)<<endl;
+    cout<<c.isFullHouse(p,t)<<endl;
 
 
+    // for(int i=0;i<s.getPlayers().size();i++){
+    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
+    // }
+    // ReverseDirection r;
+    // r.ReverseDirectionEffect(s);
+    // for(int i=0;i<s.getPlayers().size();i++){
+    //     cout<<s.getPlayers()[i]->getTurn()<<endl;
+    // }
     return 0;
 }
