@@ -27,8 +27,8 @@ int main(){
     Card c3("K",2);
     Card c4("K",4);
     Card c5("K",5);
-    Card c6("M",6);
-    Card c7("K",6);
+    Card c6("K",7);
+    Card c7("B",6);
 
     t.addCard(c1);
     t.addCard(c2);
@@ -40,6 +40,7 @@ int main(){
     p.addCard( c6);
 
     Combination c;
+    vector <Card*> ccd;
     cout<<c.isStraightFlush(p,t)<<endl;
 
 
