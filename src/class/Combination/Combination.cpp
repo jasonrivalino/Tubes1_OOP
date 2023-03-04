@@ -13,6 +13,7 @@ Combination::Combination(/* args */)
 Combination::~Combination()
 {
     this->allCard.clear();
+    //
 }
 
 bool Combination::isStraightFlush(Player &player, Table &tableCard)
@@ -84,6 +85,42 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
     return true;
 }
 
+bool Combination::isFourOfAKind(Player& player, Table& tableCard) {
+    vector<Card*> allcards;
+    vector<Card*> combination;
+
+    for (int i = 0; i < tableCard.getCards().size(); i++) {
+        allcards.push_back(tableCard.getCards()[i]);
+    }
+    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
+        allcards.push_back(&player.getCardsPlayer()[i]);
+    }
+
+    sort(allcards.begin(), allcards.end(), [](Card& card1, Card& card2) {
+        return card1.getNumberCard() < card2.getNumberCard();
+    });
+
+    int counter = 1;
+    for (int i = 0; i < allcards.size() - 1; i++) {
+        if (allcards[i]->getNumberCard() == allcards[i + 1]->getNumberCard()) {
+            counter++;
+            if (counter == 4) {
+                combination.push_back(allcards[i]);
+                break;
+            }
+        } else {
+            counter = 1;
+        }
+    }
+
+    if (combination.size() == 1) {
+        return true;
+    }
+
+    return false;
+}
+
+
 bool Combination::isFullHouse(Player &player, Table &tableCard)
 {
     int count=0;
@@ -133,6 +170,46 @@ bool Combination::isFlush(Player &player, Table &tableCard)
             return true;
         }
     }
+}
+
+bool Combination::isStraight(Player &player, Table &tableCard)
+{
+    // isi y guys
+}
+
+bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
+{
+    vector<Card*> allcards;
+    vector<Card*> combination;
+
+    for (int i = 0; i < tableCard.getCards().size(); i++) {
+        allcards.push_back(tableCard.getCards()[i]);
+    }
+    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
+        allcards.push_back(&player.getCardsPlayer()[i]);
+    }
+
+    sort(allcards.begin(), allcards.end(), [](Card& card1, Card& card2) {
+        return card1.getNumberCard() < card2.getNumberCard();
+    });
+
+    int counter = 1;
+    for (int i = 0; i < allcards.size() - 1; i++) {
+        if (allcards[i]->getNumberCard() == allcards[i + 1]->getNumberCard()) {
+            counter++;
+            if (counter == 3) {
+                combination.push_back(allcards[i]);
+                break;
+            }
+        } else {
+            counter = 1;
+        }
+    }
+
+    if (combination.size() == 1) {
+        return true;
+    }
+
     return false;
 }
 
