@@ -27,7 +27,7 @@ int main(){
     Card c4("M",3);
     Card c5("K",8);
     Card c6("H",3);
-    Card c7("K",6);
+    Card c7("K",8);
 
     t.addCard(c1);
     t.addCard(c2);
