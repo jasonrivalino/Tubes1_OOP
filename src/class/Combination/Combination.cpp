@@ -16,10 +16,11 @@ Combination::~Combination()
     //
 }
 
-bool Combination::isStraightFlush(Player &player, Table &tableCard)
+vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
 {
     int count=0;
     int idx=99;
+    vector <Card*> ret;
 
     int sizeCardTable=tableCard.getCards().size();
     for(int i=0;i<player.getCardsPlayer().size();i++){
@@ -41,9 +42,7 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
 
     // KURANG KALO 2 KARTU WARNA SAMA
     if(idx!=99){
-        bool ans = false;
 
-        vector <Card*> ret;
         vector <Card*> temp;
         vector<int> forSort;
 
@@ -55,8 +54,22 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
             }
         }
 
+        cout << "tes a\n";
+        cout <<"fahrian " << player.getCardsPlayer()[0].getNameCard() << endl;
+        cout << "tes b\n";
+
+        // ======================== batas error atas ==================================
+
         for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
         allCard.push_back(&player.getCardsPlayer()[idx]);
+
+        // ======================== batas error bawah ==================================
+
+        cout << "tes x\n";
+        cout <<"fahrian " << player.getCardsPlayer()[0].getNameCard() << endl;
+        cout << "fahrian " << allCard[5]->getNameCard() << endl;
+        cout << "tes y\n";
+
 
         if(idx == 0 && player.getCardsPlayer()[idx].getNameCard() == player.getCardsPlayer()[idx+1].getNameCard()) {
             allCard.push_back(&player.getCardsPlayer()[idx+1]);
@@ -75,10 +88,12 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
         // int a = 0;
         bool pcard;
 
-        cout << "countpcard : " << countpcard << endl;
+        // cout << "countpcard : " << countpcard << endl;
 
         for (int i = 0; i < allCard.size()- 4; i++){
-            cout << "i : " << i << endl;
+
+            ret.clear();
+            // cout << "\ni : " << i << endl;
             // cout << "allcardsize : " << allCard.size()<<endl;
             cek = 0;
             pcard = false;
@@ -87,10 +102,30 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
             // cout << "fdfdfddf\n";
             // cout << "pcard : " << player.getCardsPlayer()[i].getNumberCard() << endl << endl;
             for(int j = allCard.size()-1 - i; j >= allCard.size()-4-i; j-- ){
-                cout << forSort[j] << "   " << forSort[j-1] << endl;
+                // cout << forSort[j] << "   " << forSort[j-1] << endl;
                 if (forSort[j] - forSort[j-1] != 1) continue;
                 else {
+                    
+                    for(int k = 0; k < allCard.size(); k++) {
+                        if(forSort[j] == allCard[k]->getNumberCard()){
+                            // cout << forSort[j] << endl;
+                            ret.push_back(allCard[k]);
+                            continue;
+                        }
+                    }
+                    // cout << "j - 1 :" << j-1 << endl << endl;
+                    if(j == allCard.size()-4-i){
+                        for(int k = 0; k < allCard.size(); k++){
+                            if(forSort[j-1] == allCard[k]->getNumberCard()){
+                                // cout << "allcardterakhir : "<< allCard[k]->getNameCard() << endl;
+                                ret.push_back(allCard[k]);
+                                continue;
+                            }
+                        }
+                    }
+                    // cout << "retsize :" << ret.size() << endl;
                     cek ++ ;
+                    // ngecek apakah ada kartu player diantara kartu yang dipilih
                     if  (countpcard == 1 &&
                         (forSort[j] == player.getCardsPlayer()[idx].getNumberCard() ||
                         forSort[j-1] == player.getCardsPlayer()[idx].getNumberCard() )){
@@ -104,16 +139,15 @@ bool Combination::isStraightFlush(Player &player, Table &tableCard)
                             pcard = true;
                     }
                 }
-                cout << "cek : " << cek << endl;
+                // cout << "cek : " << cek << endl;
             }
             if(cek == 4 && pcard){
-                ans = true;
-                return true;
+                return ret;
             }
         }
-        return false;
+        return ret;
     }
-    else return false;
+    else return ret;
 }
 
 // bool Combination::isFourOfAKind(Player& player, Table& tableCard) {
