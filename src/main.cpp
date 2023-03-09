@@ -27,8 +27,8 @@ int main(){
     p.addCard(c6);
 
     cout << "tes c\n";
-    cout << p.getCardsPlayer()[0].getNameCard() << endl;
-    cout << p.getCardsPlayer()[1].getNameCard() << endl;
+    cout << p.getCardsPlayer()[0]->getNameCard() << endl;
+    cout << p.getCardsPlayer()[1]->getNameCard() << endl;
 
     Combination c;
     vector <Card*> v = c.isStraightFlush(p,t);

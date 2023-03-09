@@ -110,8 +110,8 @@ bool SwapCard::getSwapCard(){
 
 void SwapCard::SwapCardEffect(Player &p1,Player &p2){
     int rand2 = ::rand()%p2.getSizeCardsPlayer();
-    Card c1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
-    Card c2 = p2.getCardsPlayer()[rand2];
+    Card c1 = *p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
+    Card c2 = *p2.getCardsPlayer()[rand2];
     p1.removeBackCard();
     p2.removeBackCard();
     p1.addCard(c2);
@@ -135,10 +135,10 @@ bool Switch::getSwitch(){
 }
 
 void Switch::SwitchEffect(Player &p1, Player &p2){
-    Card c1_p1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
-    Card c2_p1 = p1.getCardsPlayer()[p1.getSizeCardsPlayer()-2];
-    Card c1_p2 = p2.getCardsPlayer()[p2.getSizeCardsPlayer()-1];
-    Card c2_p2 = p2.getCardsPlayer()[p2.getSizeCardsPlayer()-2];
+    Card c1_p1 = *p1.getCardsPlayer()[p1.getSizeCardsPlayer()-1];
+    Card c2_p1 = *p1.getCardsPlayer()[p1.getSizeCardsPlayer()-2];
+    Card c1_p2 = *p2.getCardsPlayer()[p2.getSizeCardsPlayer()-1];
+    Card c2_p2 = *p2.getCardsPlayer()[p2.getSizeCardsPlayer()-2];
 
     p1.removeBackCard();
     p1.removeBackCard();
@@ -187,7 +187,7 @@ void Abilityless::AbilitylessEffect(SetGame &s, Player &abilityPlayer){
     bool isAllAbilityUsed = true;
 
     for(int i=0; i<s.getPlayers().size(); i++){
-        if(s.getPlayers()[i]->getCardsPlayer()[2].getIsCardUsed()==false){
+        if(s.getPlayers()[i]->getCardsPlayer()[2]->getIsCardUsed()==false){
             isAllAbilityUsed = false;
         }      
     }
@@ -209,12 +209,12 @@ void Abilityless::AbilitylessEffect(SetGame &s, Player &abilityPlayer){
         }
 
         else{
-            if(s.getPlayers()[choose-1]->getCardsPlayer()[2].getIsCardUsed()==true){
+            if(s.getPlayers()[choose-1]->getCardsPlayer()[2]->getIsCardUsed()==true){
                 cout << "Kartu ability " << s.getPlayers()[choose-1]->getTurn() << " telah dipakai sebelumnya. Yah, sayang penggunaan kartu ini sia-sia 🙁" << endl;
             }
 
             else{
-                s.getPlayers()[choose-1]->getCardsPlayer()[2].setIsCardUsed(true);
+                s.getPlayers()[choose-1]->getCardsPlayer()[2]->setIsCardUsed(true);
                 cout << "Kartu ability " << s.getPlayers()[choose-1]->getTurn() << " telah dimatikan." << endl;
             }
         }

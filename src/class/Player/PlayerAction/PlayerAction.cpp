@@ -25,7 +25,7 @@ void PlayerAction::nextCard(){
 }
 
 void PlayerAction::reRoll(Player &p,SetGame &s){
-    if (p.getCardsPlayer()[2].getNameCard() != "REROLL" || p.getCardsPlayer()[2].getIsCardUsed()){
+    if (p.getCardsPlayer()[2]->getNameCard() != "REROLL" || p.getCardsPlayer()[2]->getIsCardUsed()){
         cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability REROLL." << endl;
     }
     else{
@@ -38,7 +38,7 @@ void PlayerAction::reRoll(Player &p,SetGame &s){
 
 void PlayerAction::quadrupleCard(Player &player, SetGame &pointGame){
     // Kondisi jika pemain tidak punya kartu quadruple
-    if (player.getCardsPlayer()[2].getNameCard() != "QUADRUPLE" || player.getCardsPlayer()[2].getIsCardUsed()){
+    if (player.getCardsPlayer()[2]->getNameCard() != "QUADRUPLE" || player.getCardsPlayer()[2]->getIsCardUsed()){
         cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability QUADRUPLE." << endl;
     }
     // Kondisi jika pemain punya kartu quadruple
@@ -52,7 +52,7 @@ void PlayerAction::quadrupleCard(Player &player, SetGame &pointGame){
 
 void PlayerAction::quarterCard(Player &player, SetGame &pointGame){
     // Kondisi jika pemain tidak punya kartu quarter
-    if (player.getCardsPlayer()[2].getNameCard() != "QUARTER" || player.getCardsPlayer()[2].getIsCardUsed()){
+    if (player.getCardsPlayer()[2]->getNameCard() != "QUARTER" || player.getCardsPlayer()[2]->getIsCardUsed()){
         cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability QUARTER." << endl;
     }
     else{

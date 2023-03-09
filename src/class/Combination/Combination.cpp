@@ -28,7 +28,7 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
         for(int j=0;j<sizeCardTable;j++){
 
 
-            if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
+            if(player.getCardsPlayer()[i]->getNameCard()==tableCard.getCards()[j]->getNameCard()){
                 count++;
             }
         }
@@ -49,30 +49,30 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
         int countpcard = 1;
 
         for(int i = 0; i < tableCard.getCards().size(); i++){
-            if (player.getCardsPlayer()[idx].getNameCard() == tableCard.getCards()[i]->getNameCard()){
+            if (player.getCardsPlayer()[idx]->getNameCard() == tableCard.getCards()[i]->getNameCard()){
                 temp.push_back(tableCard.getCards()[i]);
             }
         }
 
         cout << "tes a\n";
-        cout <<"fahrian " << player.getCardsPlayer()[0].getNameCard() << endl;
+        cout <<"fahrian " << player.getCardsPlayer()[0]->getNameCard() << endl;
         cout << "tes b\n";
 
         // ======================== batas error atas ==================================
 
         for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
-        allCard.push_back(&player.getCardsPlayer()[idx]);
+        allCard.push_back(player.getCardsPlayer()[idx]);
 
         // ======================== batas error bawah ==================================
 
         cout << "tes x\n";
-        cout <<"fahrian " << player.getCardsPlayer()[0].getNameCard() << endl;
+        cout <<"fahrian " << player.getCardsPlayer()[0]->getNameCard() << endl;
         cout << "fahrian " << allCard[5]->getNameCard() << endl;
         cout << "tes y\n";
 
 
-        if(idx == 0 && player.getCardsPlayer()[idx].getNameCard() == player.getCardsPlayer()[idx+1].getNameCard()) {
-            allCard.push_back(&player.getCardsPlayer()[idx+1]);
+        if(idx == 0 && player.getCardsPlayer()[idx]->getNameCard() == player.getCardsPlayer()[idx+1]->getNameCard()) {
+            allCard.push_back(player.getCardsPlayer()[idx+1]);
             countpcard ++;
         }
         
@@ -127,15 +127,15 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
                     cek ++ ;
                     // ngecek apakah ada kartu player diantara kartu yang dipilih
                     if  (countpcard == 1 &&
-                        (forSort[j] == player.getCardsPlayer()[idx].getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[idx].getNumberCard() )){
+                        (forSort[j] == player.getCardsPlayer()[idx]->getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[idx]->getNumberCard() )){
                             pcard = true;
                     }
                     else if (countpcard == 2 &&
-                        (forSort[j] == player.getCardsPlayer()[0].getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[0].getNumberCard() ||
-                        forSort[j] == player.getCardsPlayer()[1].getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[1].getNumberCard()) ){
+                        (forSort[j] == player.getCardsPlayer()[0]->getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[0]->getNumberCard() ||
+                        forSort[j] == player.getCardsPlayer()[1]->getNumberCard() ||
+                        forSort[j-1] == player.getCardsPlayer()[1]->getNumberCard()) ){
                             pcard = true;
                     }
                 }
@@ -195,16 +195,16 @@ bool Combination::isFullHouse(Player &player, Table &tableCard)
         count=0;
         count2=0;
         for(int j=0;j<sizeCardTable;j++){
-            if(player.getCardsPlayer()[i].getNumberCard()==tableCard.getCards()[j]->getNumberCard()){
+            if(player.getCardsPlayer()[i]->getNumberCard()==tableCard.getCards()[j]->getNumberCard()){
                 count++;
             }
         }
         if(count==2){
             for(int k=0;k<player.getCardsPlayer().size();k++){
                 count2=0;
-                if(player.getCardsPlayer()[k].getNumberCard() != player.getCardsPlayer()[i].getNumberCard()){
+                if(player.getCardsPlayer()[k]->getNumberCard() != player.getCardsPlayer()[i]->getNumberCard()){
                     for(int l=0;l<sizeCardTable;l++){
-                        if(player.getCardsPlayer()[k].getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
+                        if(player.getCardsPlayer()[k]->getNumberCard()==tableCard.getCards()[l]->getNumberCard()){
                             count2++;
                         }
                     }
@@ -227,7 +227,7 @@ bool Combination::isFlush(Player &player, Table &tableCard)
     for(int i=0;i<player.getCardsPlayer().size();i++){
         count=0;
         for(int j=0;j<sizeCardTable;j++){
-            if(player.getCardsPlayer()[i].getNameCard()==tableCard.getCards()[j]->getNameCard()){
+            if(player.getCardsPlayer()[i]->getNameCard()==tableCard.getCards()[j]->getNameCard()){
                 count++;
             }
         }
