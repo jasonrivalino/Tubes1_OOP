@@ -54,78 +54,45 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
             }
         }
 
-        cout << "tes a\n";
-        cout <<"fahrian " << player.getCardsPlayer()[0]->getNameCard() << endl;
-        cout << "tes b\n";
-
-        // ======================== batas error atas ==================================
-
         for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
         allCard.push_back(player.getCardsPlayer()[idx]);
-
-        // ======================== batas error bawah ==================================
-
-        cout << "tes x\n";
-        cout <<"fahrian " << player.getCardsPlayer()[0]->getNameCard() << endl;
-        cout << "fahrian " << allCard[5]->getNameCard() << endl;
-        cout << "tes y\n";
-
 
         if(idx == 0 && player.getCardsPlayer()[idx]->getNameCard() == player.getCardsPlayer()[idx+1]->getNameCard()) {
             allCard.push_back(player.getCardsPlayer()[idx+1]);
             countpcard ++;
         }
-        
-        // cout << allCard.size() <<endl;
 
         for(int i=0;i<allCard.size();i++) forSort.push_back(allCard[i]->getNumberCard());
         sort(forSort.begin(),forSort.end());
 
-        // for (auto x : forSort) {
-        //     cout << x << endl;
-        // }
         int cek;
-        // int a = 0;
         bool pcard;
 
-        // cout << "countpcard : " << countpcard << endl;
 
         for (int i = 0; i < allCard.size()- 4; i++){
 
             ret.clear();
-            // cout << "\ni : " << i << endl;
-            // cout << "allcardsize : " << allCard.size()<<endl;
             cek = 0;
             pcard = false;
-            // cout << "batas atas : "<< allCard.size() -1 -i<<endl;
-            // cout <<"batas bawah : "<< allCard.size() -4  -i<<endl;
-            // cout << "fdfdfddf\n";
-            // cout << "pcard : " << player.getCardsPlayer()[i].getNumberCard() << endl << endl;
             for(int j = allCard.size()-1 - i; j >= allCard.size()-4-i; j-- ){
-                // cout << forSort[j] << "   " << forSort[j-1] << endl;
                 if (forSort[j] - forSort[j-1] != 1) continue;
                 else {
                     
                     for(int k = 0; k < allCard.size(); k++) {
                         if(forSort[j] == allCard[k]->getNumberCard()){
-                            // cout << forSort[j] << endl;
                             ret.push_back(allCard[k]);
                             continue;
                         }
                     }
-                    // cout << "j - 1 :" << j-1 << endl << endl;
                     if(j == allCard.size()-4-i){
                         for(int k = 0; k < allCard.size(); k++){
                             if(forSort[j-1] == allCard[k]->getNumberCard()){
-                                // cout << "allcardterakhir : "<< allCard[k]->getNameCard() << endl;
                                 ret.push_back(allCard[k]);
                                 continue;
                             }
                         }
                     }
-                    // cout << "retsize :" << ret.size() << endl;
                     cek ++ ;
-                    // ngecek apakah ada kartu player diantara kartu yang dipilih
                     if  (countpcard == 1 &&
                         (forSort[j] == player.getCardsPlayer()[idx]->getNumberCard() ||
                         forSort[j-1] == player.getCardsPlayer()[idx]->getNumberCard() )){
@@ -139,7 +106,6 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
                             pcard = true;
                     }
                 }
-                // cout << "cek : " << cek << endl;
             }
             if(cek == 4 && pcard){
                 return ret;
@@ -150,44 +116,47 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
     else return ret;
 }
 
-// bool Combination::isFourOfAKind(Player& player, Table& tableCard) {
-//     vector<Card*> allcards;
-//     vector<Card*> combination;
+int Combination::isFourOfAKind(Player &player, Table &tableCard) {
+    int ret;
+    vector<int> forSort;
 
-//     for (int i = 0; i < tableCard.getCards().size(); i++) {
-//         allcards.push_back(tableCard.getCards()[i]);
-//     }
-//     for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-//         allcards.push_back(&player.getCardsPlayer()[i]);
-//     }
+    bool pcard = false;
 
-//     sort(allcards.begin(), allcards.end(), [](Card& card1, Card& card2) {
-//         return card1.getNumberCard() < card2.getNumberCard();
-//     });
+    for (int i = 0; i < tableCard.getCards().size(); i++) {
+        allCard.push_back(tableCard.getCards()[i]);
+    }
+    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
+        allCard.push_back(player.getCardsPlayer()[i]);
+    }
 
-//     int counter = 1;
-//     for (int i = 0; i < allcards.size() - 1; i++) {
-//         if (allcards[i]->getNumberCard() == allcards[i + 1]->getNumberCard()) {
-//             counter++;
-//             if (counter == 4) {
-//                 combination.push_back(allcards[i]);
-//                 break;
-//             }
-//         } else {
-//             counter = 1;
-//         }
-//     }
+    for (int i = 0; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
+    sort(forSort.begin(), forSort.end());
 
-//     if (combination.size() == 1) {
-//         return true;
-//     }
-
-//     return false;
-// }
+    int counter = 1;
+    for (int i = 0; i < allCard.size() - 1; i++) {
+        if (forSort[i] == forSort[i + 1]) {
+            counter++;
+            if (counter == 4) {
+                ret = forSort[i];
+                for (int i=0; i < player.getCardsPlayer().size(); i++) {
+                    if(player.getCardsPlayer()[i]->getNumberCard() == ret) return ret;
+                }
+                return -99;
+            }
+        } 
+        else {
+            counter = 1;
+        }
+    }
+    return -99;
+}
 
 
 bool Combination::isFullHouse(Player &player, Table &tableCard)
 {
+    vector <Card*> ret;
+    bool pcard = false;
+
     int count=0;
     int count2=0;
     int sizeCardTable=tableCard.getCards().size();
@@ -245,26 +214,26 @@ bool Combination::isFlush(Player &player, Table &tableCard)
 
 // bool Combination::isThreeOfAKind(Player &player, Table &tableCard)
 // {
-//     vector<Card*> allcards;
+//     vector<Card*> allCard;
 //     vector<Card*> combination;
 
 //     for (int i = 0; i < tableCard.getCards().size(); i++) {
-//         allcards.push_back(tableCard.getCards()[i]);
+//         allCard.push_back(tableCard.getCards()[i]);
 //     }
 //     for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-//         allcards.push_back(&player.getCardsPlayer()[i]);
+//         allCard.push_back(&player.getCardsPlayer()[i]);
 //     }
 
-//     sort(allcards.begin(), allcards.end(), [](Card& card1, Card& card2) {
+//     sort(allCard.begin(), allCard.end(), [](Card& card1, Card& card2) {
 //         return card1.getNumberCard() < card2.getNumberCard();
 //     });
 
 //     int counter = 1;
-//     for (int i = 0; i < allcards.size() - 1; i++) {
-//         if (allcards[i]->getNumberCard() == allcards[i + 1]->getNumberCard()) {
+//     for (int i = 0; i < allCard.size() - 1; i++) {
+//         if (allCard[i]->getNumberCard() == allCard[i + 1]->getNumberCard()) {
 //             counter++;
 //             if (counter == 3) {
-//                 combination.push_back(allcards[i]);
+//                 combination.push_back(allCard[i]);
 //                 break;
 //             }
 //         } else {

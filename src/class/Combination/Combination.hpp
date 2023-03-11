@@ -13,7 +13,7 @@ public:
     Combination(/* args */);
     ~Combination();
     vector<Card*> isStraightFlush(Player &player, Table &tableCard);
-    // bool isFourOfAKind(Player &player, Table &tableCard);
+    int isFourOfAKind(Player &player, Table &tableCard);
     bool isFullHouse(Player &player, Table &tableCard);
     bool isFlush(Player &player, Table &tableCard);
     // bool isStraight(Player &player, Table &tableCard);
