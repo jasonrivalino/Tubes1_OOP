@@ -36,9 +36,7 @@ class Quadruple : public Card{
         // Setter and Getter
         void setQuadruple(bool);
         bool getQuadruple();
-        void QuadrupleEffect(Player&, SetGame, string);
-    private:
-        int currentPoint;
+        void QuadrupleEffect(Player&, SetGame&);
 };
 
 class Quarter : public Card{
@@ -50,7 +48,7 @@ class Quarter : public Card{
         // Setter and Getter
         void setQuarter(bool);
         bool getQuarter();
-        void QuarterEffect(Player&, SetGame, string);
+        void QuarterEffect(Player&, SetGame&);
     private:
         int currentPoint;
 };
@@ -76,7 +74,7 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
-        void SwapCardEffect(Player &p1, Player &p2);
+        void SwapCardEffect(Player&,Player&,Player&,int,int,SetGame&);
 };
 
 class Switch : public Card{
@@ -88,7 +86,7 @@ class Switch : public Card{
         // Setter and Getter
         void setSwitch(bool);
         bool getSwitch();
-        void SwitchEffect(Player &p1,Player &p2);
+        void SwitchEffect(Player&,Player&, SetGame&);
 };
 
 class Abilityless : public Card{
@@ -101,7 +99,7 @@ class Abilityless : public Card{
         
         void setAbilityless(bool);
         bool getAbilityless();
-        void AbilitylessEffect(SetGame &s, Player &abilityPlayer);
+        void AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target);
 };
 
 #endif
