@@ -9,12 +9,12 @@ int main(){
     SetGame s(7);
 
     Table t;
-    Card c1("M",5);
-    Card c2("B",5);
-    Card c3("H",5);
-    Card c4("K",6);
-    Card c5("H",6);
-    Card c6("K",3);
+    Card c1("M",9);
+    Card c2("K",9);
+    Card c3("H",9);
+    Card c4("B",6);
+    Card c5("M",5);
+    Card c6("M",10);
     Card c7("B",1);
 
     t.addCard(c1);
@@ -31,9 +31,9 @@ int main(){
     // cout << p.getCardsPlayer()[1]->getNameCard() << endl;
 
     Combination c;
-    // vector <Card*> v = c.isStraightFlush(p,t);
-    // cout << c.isFourOfAKind(p,t)<<endl;
-    cout << c.isFullHouse(p,t) << endl;
+    // vector <Card*> v = c.isStraight(p,t);
+    cout << c.isFourOfAKind(p,t)<<endl;
+    // cout << c.isFullHouse(p,t) << endl;
     // cout << c.isFlush(p,t) << endl;
     // cout << "v size : " << v.size() << endl;
     // cout << v[4]->getNumberCard() << endl;
