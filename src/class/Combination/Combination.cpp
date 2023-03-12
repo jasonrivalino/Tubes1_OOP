@@ -246,6 +246,20 @@ vector<Card*> Combination::isStraight(Player &player, Table &tableCard)
     for(int i=0; i < player.getCardsPlayer().size(); i++) allCard.push_back(player.getCardsPlayer()[i]);
     for(int i=0; i < tableCard.getCards().size(); i++) allCard.push_back(tableCard.getCards()[i]);
 
+    //yang gw benerin
+    //nanti panggil iStraight pas terakhir biar pas ke erase ga ngefek ke kombinasi lebih lanjut
+    for(int i=0;i<allCard.size();i++){
+        for(int j=0;j<allCard.size();j++){
+            if(i!=j){
+                if(allCard[i]->getNumberCard()==allCard[j]->getNumberCard()){
+                    allCard.erase(allCard.begin()+j);
+                }
+            }
+        }
+    }
+    //yang gw benerin
+
+
     for(int i=0; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
     sort(forSort.begin(), forSort.end());
 
@@ -354,6 +368,8 @@ vector<Card*> Combination::isTwoPair(Player &player, Table &tableCard)
         }
     }
     else return ret;
+    ret.clear();
+    return ret;
 }
 
 vector<Card*> Combination::isOnePair(Player &player, Table &tableCard)
