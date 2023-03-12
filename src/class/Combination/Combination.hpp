@@ -12,14 +12,17 @@ private:
 public:
     Combination(/* args */);
     ~Combination();
-    vector<Card*> isStraightFlush(Player &player, Table &tableCard);
-    int isFourOfAKind(Player &player, Table &tableCard);
-    int isFullHouse(Player &player, Table &tableCard);
-    vector<Card*> isFlush(Player &player, Table &tableCard);
-    vector<Card*> isStraight(Player &player, Table &tableCard);
-    vector<Card*> isThreeOfAKind(Player &player, Table &tableCard);
-    vector<Card*> isTwoPair(Player &player, Table &tableCard);
-    vector<Card*> isOnePair(Player &player, Table &tableCard);
-    vector<Card*> isHighCard(Player &player, Table &tableCard);
-    // void checkCombination(Player &player, Table &tableCard);
+    vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard);
+    int Combination::isFourOfAKind(Player &player, Table &tableCard);
+    int Combination::isFullHouse(Player &player, Table &tableCard);
+    vector<Card*> Combination::isFlush(Player &player, Table &tableCard);
+    vector<Card*> Combination::isStraight(Player &player, Table &tableCard);
+    vector<Card*> Combination::isThreeOfAKind(Player &player, Table &tableCard);
+    vector<Card*> Combination::isTwoPair(Player &player, Table &tableCard);
+    vector<Card*> Combination::isOnePair(Player &player, Table &tableCard);
+    vector<Card*> Combination::isHighCard(Player &player, Table &tableCard);
+    
+
+
+
 };
