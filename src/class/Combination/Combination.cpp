@@ -209,114 +209,139 @@ bool Combination::isFlush(Player &player, Table &tableCard)
 
 bool Combination::isStraight(Player &player, Table &tableCard)
 {
-    vector<int> allPlayerCards;
-    vector<int> allTableCards;
-    for(int i=0;i<player.getCardsPlayer().size();i++) allPlayerCards.push_back(player.getCardsPlayer()[i]->getNumberCard());
-    for(int i=0;i<tableCard.getCards().size();i++) allTableCards.push_back(tableCard.getCards()[i]->getNumberCard());
+    vector<int> allCards;
+    for(int i=0;i<player.getCardsPlayer().size();i++) allCards.push_back(player.getCardsPlayer()[i]->getNumberCard());
+    for(int i=0;i<tableCard.getCards().size();i++) allCards.push_back(tableCard.getCards()[i]->getNumberCard());
 
-    sort(allPlayerCards.begin(),allPlayerCards.end());
-    sort(allTableCards.begin(),allTableCards.end());
-
-    int countDistancePlusOne=0;
-    int distance=1;
-
-    int idxPlusOne=0;
-    bool isOneTrue= false;
-    bool isTwoTrue= false;
-
-    vector<int> cardOne;
-    vector<int> cardTwo;
-    cardOne.push_back(player.getCardsPlayer()[0]->getNumberCard());
-    cardTwo.push_back(player.getCardsPlayer()[1]->getNumberCard());
-
-
-    for(int i=0;i<allTableCards.size();i++){ if(abs(allTableCards[i]-allPlayerCards[0])==1){
-        idxPlusOne=i;
-        isOneTrue= true;
-        break;
-        }
-        }
-    if(isOneTrue) {
-        for (int i = idxPlusOne; i < allTableCards.size(); i++) {
-            if(abs(allTableCards[i]-allPlayerCards[0])==distance){
-                cardOne.push_back(allTableCards[i]);
-                distance++;
-                countDistancePlusOne++;
-            }
-            if(countDistancePlusOne==4) return true;
-        }
-
-        distance=2;
-        if(idxPlusOne>0) {
-            for (int i = idxPlusOne-1; i >= 0; i--) {
-                if (abs(allTableCards[i] - allPlayerCards[0]) == distance) {
-                    cardOne.push_back(allTableCards[i]);
-                    distance++;
-                    countDistancePlusOne++;
-
+    for(int i=0;i<allCards.size();i++){
+        for(int j=0;j<allCards.size();j++){
+            if(i!=j){
+                if(allCards[i]==allCards[j]){
+                    allCards.erase(allCards.begin()+j);
                 }
-                if (countDistancePlusOne == 4) return true;
             }
-            distance=1;
-            countDistancePlusOne=0;
         }
     }
 
 
 
-
-    for(int i=0;i<allTableCards.size();i++) if(abs(allTableCards[i]-allPlayerCards[1])==1){
-            idxPlusOne=i;
-            isTwoTrue= true;
-            break;
-        }
-    if(isTwoTrue){
-        for (int i = idxPlusOne; i < allTableCards.size(); i++) {
-            if(abs(allTableCards[i]-allPlayerCards[1])==distance){
-                cardTwo.push_back(allTableCards[i]);
-                distance++;
-                countDistancePlusOne++;
-            }
-            if(countDistancePlusOne==4) return true;
-        }
-
-        distance=2;
-
-        if(idxPlusOne>0) {
-            for (int i = idxPlusOne-1; i >= 0; i--) {
-                if (abs(allTableCards[i] - allPlayerCards[1]) == distance) {
-                    cardTwo.push_back(allTableCards[i]);
-                    distance++;
-                    countDistancePlusOne++;
-                }
-                if (countDistancePlusOne == 4) return true;
-            }
-            distance=1;
-            countDistancePlusOne=0;
-        }
-    }
+    int countCardStraight = 4;
+    int countIsStraight=0;
 
 
-    if(isOneTrue&&isTwoTrue){
-        vector<int> allCard;
-
-        for(int i=0;i<cardOne.size();i++) allCard.push_back(cardOne[i]);
-        for(int i=0;i<cardTwo.size();i++) allCard.push_back(cardTwo[i]);
-
-
-        sort(allCard.begin(),allCard.end());
-
-
-        int countCardStraight = 4;
-        int countIsStraight=0;
-        for(int i=0;i<allCard.size()-1;i++){
-            if(allCard[i+1]-allCard[i]==1){
-                countIsStraight++;
-            }
-        }
-
+    for(int i=0;i<allCards.size()-1;i++){
+        if(allCards[i+1]-allCards[i]==1) countIsStraight++;
         if(countIsStraight==countCardStraight) return true;
     }
+    return false;
+//    vector<int> allPlayerCards;
+//    vector<int> allTableCards;
+//    for(int i=0;i<player.getCardsPlayer().size();i++) allPlayerCards.push_back(player.getCardsPlayer()[i]->getNumberCard());
+//    for(int i=0;i<tableCard.getCards().size();i++) allTableCards.push_back(tableCard.getCards()[i]->getNumberCard());
+
+//    sort(allPlayerCards.begin(),allPlayerCards.end());
+//    sort(allTableCards.begin(),allTableCards.end());
+//
+//    int countDistancePlusOne=0;
+//    int distance=1;
+//
+//    int idxPlusOne=0;
+//    bool isOneTrue= false;
+//    bool isTwoTrue= false;
+//
+//    vector<int> cardOne;
+//    vector<int> cardTwo;
+//    cardOne.push_back(player.getCardsPlayer()[0]->getNumberCard());
+//    cardTwo.push_back(player.getCardsPlayer()[1]->getNumberCard());
+//
+//
+//    for(int i=0;i<allTableCards.size();i++){ if(abs(allTableCards[i]-allPlayerCards[0])==1){
+//        idxPlusOne=i;
+//        isOneTrue= true;
+//        break;
+//        }
+//        }
+//    if(isOneTrue) {
+//        for (int i = idxPlusOne; i < allTableCards.size(); i++) {
+//            if(abs(allTableCards[i]-allPlayerCards[0])==distance){
+//                cardOne.push_back(allTableCards[i]);
+//                distance++;
+//                countDistancePlusOne++;
+//            }
+//            if(countDistancePlusOne==4) return true;
+//        }
+//
+//        distance=2;
+//        if(idxPlusOne>0) {
+//            for (int i = idxPlusOne-1; i >= 0; i--) {
+//                if (abs(allTableCards[i] - allPlayerCards[0]) == distance) {
+//                    cardOne.push_back(allTableCards[i]);
+//                    distance++;
+//                    countDistancePlusOne++;
+//
+//                }
+//                if (countDistancePlusOne == 4) return true;
+//            }
+//            distance=1;
+//            countDistancePlusOne=0;
+//        }
+//    }
+//
+//
+//
+//
+//    for(int i=0;i<allTableCards.size();i++) if(abs(allTableCards[i]-allPlayerCards[1])==1){
+//            idxPlusOne=i;
+//            isTwoTrue= true;
+//            break;
+//        }
+//    if(isTwoTrue){
+//        for (int i = idxPlusOne; i < allTableCards.size(); i++) {
+//            if(abs(allTableCards[i]-allPlayerCards[1])==distance){
+//                cardTwo.push_back(allTableCards[i]);
+//                distance++;
+//                countDistancePlusOne++;
+//            }
+//            if(countDistancePlusOne==4) return true;
+//        }
+//
+//        distance=2;
+//
+//        if(idxPlusOne>0) {
+//            for (int i = idxPlusOne-1; i >= 0; i--) {
+//                if (abs(allTableCards[i] - allPlayerCards[1]) == distance) {
+//                    cardTwo.push_back(allTableCards[i]);
+//                    distance++;
+//                    countDistancePlusOne++;
+//                }
+//                if (countDistancePlusOne == 4) return true;
+//            }
+//            distance=1;
+//            countDistancePlusOne=0;
+//        }
+//    }
+//
+//
+//    if(isOneTrue&&isTwoTrue){
+//        vector<int> allCard;
+//
+//        for(int i=0;i<cardOne.size();i++) allCard.push_back(cardOne[i]);
+//        for(int i=0;i<cardTwo.size();i++) allCard.push_back(cardTwo[i]);
+//
+//
+//        sort(allCard.begin(),allCard.end());
+//
+//
+//        int countCardStraight = 4;
+//        int countIsStraight=0;
+//        for(int i=0;i<allCard.size()-1;i++){
+//            if(allCard[i+1]-allCard[i]==1){
+//                countIsStraight++;
+//            }
+//        }
+//
+//        if(countIsStraight==countCardStraight) return true;
+//    }
 
 
 return false;
