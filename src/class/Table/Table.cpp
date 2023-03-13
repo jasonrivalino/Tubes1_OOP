@@ -22,6 +22,20 @@ void Table::endRound() {
     for(int i=0;i< this->cards.size();i++) removeBackCard();
 }
 
-void Table::showTable() {}
+void Table::showTable() {
+
+
+    cout<<"Table\n"<<endl;
+    if(this->cards.size()==0){
+        cout<<"kartu masih kosong"<<endl;
+    }else {
+
+        for (int i = 0; i < this->cards.size(); i++)
+            cout << this->cards[i]->getNameCard() << this->cards[i]->getNumberCard() << " ";
+
+        cout << endl;
+    }
+
+}
 
 vector<Card*> Table::getCards() {return this->cards;}
