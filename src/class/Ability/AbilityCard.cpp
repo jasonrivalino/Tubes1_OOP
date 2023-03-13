@@ -211,7 +211,7 @@ bool SwapCard::getSwapCard(){
     return this -> getIsCardUsed();
 }
 
-void SwapCard::SwapCardEffect(Player &pHaveCard,Player &p1,Player &p2,int cardChoose1,int cardChoose2,SetGame &s){
+Player SwapCard::SwapCardEffect(Player &pHaveCard, Player &p1, Player &p2, int cardChoose1, int cardChoose2, SetGame &s){
     int idxP1=0;
     int idxP2=0;
     int idxPHave=0;
@@ -252,7 +252,7 @@ void SwapCard::SwapCardEffect(Player &pHaveCard,Player &p1,Player &p2,int cardCh
     }
 }
 
-Switch::Switch() : Card("switch",false){
+Switch::Switch() : Card("SwitchCard",false){
 }
 
 Switch::~Switch(){

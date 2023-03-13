@@ -51,7 +51,11 @@ public:
     //untuk mendapatkan poin dari player yang dipilih
     int getPoint();
 
+    //apakah player sama
+    bool operator==(const Player&);
 
+    //apakah player tidak sama
+    bool operator!=(const Player&);
 };
 
 #endif

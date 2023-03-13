@@ -127,11 +127,6 @@ void SetGame::endRound(Player &playerWin) {
 
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
 
-    for(int i=0; i< this->players.size();i++){
-        this->players[i]->removeBackCard();
-        this->players[i]->removeBackCard();
-    }
-
 
     this->cards.clear();
 
@@ -156,9 +151,13 @@ void SetGame::endRound(Player &playerWin) {
         reverseTurn();
     }
 
+    int idxPlayer=0;
+    for(int i=0;i< this->players.size();i++){
+        if(*this->players[i]==playerWin) idxPlayer=i;
+    }
 
 
-    playerWin.setPoint(this->pointGame);
+    this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+this->pointGame);
     this->pointGame=64;
 }
 void SetGame::reverseTurn() {

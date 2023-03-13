@@ -14,13 +14,15 @@ class PlayerAction
 public:
     PlayerAction();
     ~PlayerAction();
-    void halfAct(Player &player, SetGame &pointGame);
-    void doubleAct( Player &player, SetGame &pointGame);
+    void halfAct(Player&,SetGame&);
+    void doubleAct(Player&,SetGame&);
     void nextCard();
-    void reRoll(Player &p,SetGame &s);
-    void quadrupleCard(Player &player, SetGame &pointGame);
-    void quarterCard(Player &player, SetGame &pointGame);
+    void reRoll(Player&,SetGame&);
+    void quadrupleCard(Player&, SetGame&);
+    void quarterCard(Player&, SetGame&);
     void reverseCard(Player&,SetGame&);
+    void swapCard(Player&,SetGame&);
+    void switchCard(Player&,SetGame&)
 };
 
 

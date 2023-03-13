@@ -5,24 +5,30 @@ Card::Card(string nama,bool isUsed) {
 
     this->nama=nama;
     this->isUsed=isUsed;
+    this->isDeath= false;
 }
 Card::Card(string nama, int number) {
     this->nama=nama;
     this->nomorKartu=number;
 }
-string Card::getNameCard() {
+string Card::getNameCard() const {
     return this->nama;
 }
-bool Card::getIsCardUsed() {
+bool Card::getIsCardUsed() const {
     return this->isUsed;
 }
 void Card::setIsCardUsed(bool isUsed) {
     this->isUsed=isUsed;
 }
-int Card::getNumberCard() {
+int Card::getNumberCard() const {
     return this->nomorKartu;
 }
-
+void Card::setIsCardDeath(bool D) {
+    this->isDeath=D;
+}
+bool Card::getIsCardDeath() const {
+    return this->isDeath;
+}
 // float Card::valueCard() {
 //     if (this -> nama == "Hijau"){
 //         this -> nilaiWarna = 0;

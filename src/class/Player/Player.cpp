@@ -48,6 +48,13 @@ vector<Card*> Player::getCardsPlayer() {
     return this->cards;
 }
 
+bool Player::operator==(const Player &p) {
+    return this->getTurn()==p.getTurn();
+}
+bool Player::operator!=(const Player &p) {
+    return this->getTurn()!=p.getTurn();
+}
+
 void Player::setPoint(int point) {
     this->point = point;
 }
