@@ -44,4 +44,37 @@ struct notHaveAbilityCard: public exception{
     }
 };
 
+
+
+struct reRollIsDeath: public exception{
+    const char* const what() throw(){
+        return "ReRollCard kamu dimatikan oleh seseorang";
+    }
+};
+struct quadrupleIsDeath: public exception{
+    const char* const what() throw(){
+        return "QuadrupleCard kamu dimatikan oleh seseorang";
+    }
+};
+struct quarterIsDeath: public exception{
+    const char* const what() throw(){
+        return "QuarterCard kamu dimatikan oleh seseorang";
+    }
+};
+struct reverseIsDeath: public exception{
+    const char* const what() throw(){
+        return "ReverseCard kamu dimatikan oleh seseorang";
+    }
+};
+struct swapIsDeath: public exception{
+    const char* const what() throw(){
+        return "SwapCard kamu dimatikan oleh seseorang";
+    }
+};
+struct switchIsDeath: public exception{
+    const char* const what() throw(){
+        return "SwitchCard kamu dimatikan oleh seseorang";
+    }
+};
+
 #endif //TUBES1_OOP_EXCEPTION_H

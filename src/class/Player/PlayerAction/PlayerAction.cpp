@@ -28,7 +28,7 @@ void PlayerAction::reRoll(Player &p,SetGame &s){
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -44,9 +44,8 @@ void PlayerAction::reRoll(Player &p,SetGame &s){
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="ReRoll")){
-        throw notHaveReRoll();
-    }
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="ReRoll")) throw notHaveReRoll();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reRollIsDeath();
 
     ReRoll r;
 
@@ -58,7 +57,7 @@ void PlayerAction::quadrupleCard(Player &p, SetGame &s){
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -74,9 +73,8 @@ void PlayerAction::quadrupleCard(Player &p, SetGame &s){
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quadruple")){
-        throw notHaveQuadrupleCard();
-    }
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quadruple")) throw notHaveQuadrupleCard();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quadrupleIsDeath();
 
     Quadruple q;
 
@@ -88,7 +86,7 @@ void PlayerAction::quarterCard(Player &p, SetGame &s){
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -104,9 +102,8 @@ void PlayerAction::quarterCard(Player &p, SetGame &s){
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quarter")){
-        throw notHaveQuarterCard();
-    }
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quarter")) throw notHaveQuarterCard();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quarterIsDeath();
 
     Quarter q;
 
@@ -118,7 +115,7 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -134,10 +131,8 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Reverse")){
-        throw notHaveReverseCard();
-    }
-
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Reverse")) throw notHaveReverseCard();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reverseIsDeath();
 
 
     ReverseDirection r;
@@ -146,12 +141,14 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
     r.ReverseDirectionEffect(p,s);
 }
 
+
+//print akhirnya blm
 void PlayerAction::swapCard(Player &p, SetGame &s) {
     int idxPlayer=0;
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -167,16 +164,14 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwapCard")){
-        throw notHaveSwapCard();
-    }
-
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwapCard")) throw notHaveSwapCard();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw swapIsDeath();
 
     vector<Player*> allPlayers;
     int idxFirstPlayer,idxSecondPlayer;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()!=p.getTurn()){
+        if(*s.getPlayers()[i]!=p){
             allPlayers.push_back(s.getPlayers()[i]);
         }
     }
@@ -202,7 +197,7 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
 
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()!=p.getTurn()){
+        if(*s.getPlayers()[i]!=p||s.getPlayers()[i]!=p1){
             allPlayers.push_back(s.getPlayers()[i]);
         }
     }
@@ -226,12 +221,14 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
 
 }
 
+
+//print akhirnya belum
 void PlayerAction::switchCard(Player &p, SetGame &s) {
     int idxPlayer=0;
     int idxCard=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+        if(*s.getPlayers()[i]==p) idxPlayer=i;
     }
 
 
@@ -247,15 +244,15 @@ void PlayerAction::switchCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwitchCard")){
-        throw notHaveSwitchCard();
-    }
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwitchCard")) throw notHaveSwitchCard();
+    if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw switchIsDeath();
+
 
     vector<Player*> allPlayers;
     int idxFirstPlayer;
 
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()!=p.getTurn()){
+        if(*s.getPlayers()[i]!=p){
             allPlayers.push_back(s.getPlayers()[i]);
         }
     }
