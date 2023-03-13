@@ -3,7 +3,7 @@
 #include "class/Card/Card.cpp"
 #include "class/Player/Player.cpp"
 #include "class/Player/PlayerAction/PlayerAction.cpp"
-#include "class/setGame/SetGame.cpp"
+#include "class/SetGame/SetGame.cpp"
 
 using namespace std;
 
