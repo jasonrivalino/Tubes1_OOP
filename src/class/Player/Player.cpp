@@ -12,7 +12,7 @@ int Player::getTurn() const{
 }
 
 void Player::addCard(Card &c){
-    cards.push_back(c);
+    cards.push_back(&c);
 }
 
 Player::~Player(){
@@ -21,7 +21,7 @@ Player::~Player(){
 
 void Player::removeSpecificCard(Card c){
     for(int i = 0; i < cards.size();i++){
-        if(cards[i].getNumberCard() == c.getNumberCard()){
+        if(cards[i]->getNumberCard() == c.getNumberCard()){
             cards.erase(cards.begin() + i);
         }
     }
@@ -39,12 +39,12 @@ void Player::printCards(){
     }
     else{
         for(int i = 0; i < cards.size();i++){
-        cout << cards[i].getNameCard() << " " << cards[i].getNumberCard() << endl;
+        cout << cards[i]->getNameCard() << " " << cards[i]->getNumberCard() << endl;
     }
     }
 }
 
-vector<Card> Player::getCardsPlayer() {
+vector<Card*> Player::getCardsPlayer() {
     return this->cards;
 }
 

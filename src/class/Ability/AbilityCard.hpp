@@ -2,9 +2,11 @@
 #define __ABILITY__CARD__HPP__
 
 #include <iostream>
+#include <algorithm>
 #include "../Card/Card.hpp"
 #include "../Player/Player.hpp"
 #include "../SetGame/SetGame.hpp"
+
 
 
 using namespace std;
@@ -34,7 +36,7 @@ class Quadruple : public Card{
         // Setter and Getter
         void setQuadruple(bool);
         bool getQuadruple();
-        void QuadrupleEffect();
+        void QuadrupleEffect(Player&, SetGame&);
 };
 
 class Quarter : public Card{
@@ -46,7 +48,9 @@ class Quarter : public Card{
         // Setter and Getter
         void setQuarter(bool);
         bool getQuarter();
-        void QuarterEffect();
+        void QuarterEffect(Player&, SetGame&);
+    private:
+        int currentPoint;
 };
 
 class ReverseDirection : public Card{
@@ -58,7 +62,7 @@ class ReverseDirection : public Card{
         // Setter and Getter
         void setReverseDirection(bool);
         bool getReverseDirection();
-        void ReverseDirectionEffect();
+        void ReverseDirectionEffect(Player&,SetGame&);
 };
 
 class SwapCard : public Card{
@@ -70,7 +74,7 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
-        void SwapCardEffect(Player &p1, Player &p2);
+        void SwapCardEffect(Player&,Player&,Player&,int,int,SetGame&);
 };
 
 class Switch : public Card{
@@ -82,7 +86,7 @@ class Switch : public Card{
         // Setter and Getter
         void setSwitch(bool);
         bool getSwitch();
-        void SwitchEffect(Player &p1,Player &p2);
+        void SwitchEffect(Player&,Player&, SetGame&);
 };
 
 class Abilityless : public Card{
@@ -92,9 +96,10 @@ class Abilityless : public Card{
         // Destruktor
         ~Abilityless();
         // Setter and Getter
+        
         void setAbilityless(bool);
         bool getAbilityless();
-        void AbilitylessEffect(Player &abilityPlayer, vector<Player*> p);
+        void AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target);
 };
 
 #endif

@@ -8,6 +8,7 @@
 #include "../Player/Player.hpp"
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
+#include "../Table/Table.hpp"
 
 
 using namespace std;
@@ -22,6 +23,7 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Card*> ability;
+    vector<Player*> playerTurn;
     long int pointGame;
 public:
     /*
@@ -71,11 +73,8 @@ public:
     // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
     void setPoint(long);
 
-
-
-
-
-
+    // untuk mereverse turn
+    void reverseTurn();
 
     /*
      Untuk melihat kartu ability card
@@ -105,10 +104,13 @@ public:
      */
     void printCards();
 
+    vector<Player*> getPlayerTurn();
+
     /*
      untuk mengambil point pada game
      */
     long int getPointGame();
+
 
 };
 

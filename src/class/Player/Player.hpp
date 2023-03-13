@@ -14,7 +14,7 @@ protected:
     const int turn;
     int point;
     string playerName; 
-    vector <Card> cards;
+    vector <Card*> cards;
 public:
     /*
      memanggil class dengan mengatur nama dari sang player dan giliran player
@@ -27,7 +27,7 @@ public:
     int getTurn() const;
 
     //untuk mendapatkan seluruh kartu yang dimiliki oleh player
-    vector<Card> getCardsPlayer();
+    vector<Card*> getCardsPlayer();
 
     // mendapatkan banyaknya kartu yang player punya
     int getSizeCardsPlayer();
