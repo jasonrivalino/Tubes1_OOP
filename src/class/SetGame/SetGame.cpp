@@ -40,7 +40,7 @@ SetGame::SetGame(int jumPlayer, string path) {
         char ch;
         bool angka = false;
         
-        cout << path << endl;
+        // cout << path << endl;
         if (!inFile) {
             std::cerr << "Unable to open file";
             exit(1);
@@ -125,7 +125,7 @@ void SetGame::endRound(Player &playerWin) {
 
     this->pointGame=64;
 
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+    string warna[4] = {"H", "B", "K", "M"};
 
 
     this->cards.clear();

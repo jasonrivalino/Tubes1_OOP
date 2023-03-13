@@ -12,7 +12,7 @@ int main(){
     cout << "Apakah ingin menggunakan file kartu dari txt ?(Y/N) ";
     char c;
     cin >> c;
-    while(c == 'Y' or c == 'y' or c == 'N' or c == 'n'){
+    while(c != 'Y' and c != 'y' and c != 'N' and c != 'n'){
         cout << "Inputan tidak valid\nApakah ingin menggunakan file kartu dari txt ?(Y/N) ";
         cin >> c;
     }
@@ -20,7 +20,6 @@ int main(){
     else if(c == 'N' or c == 'n') path = "";
 
     // buat pathnya belom
-    if(path.size() != 0) cout << "masuk bbro\n";
     SetGame s(7,path);
 
 //     Table t;

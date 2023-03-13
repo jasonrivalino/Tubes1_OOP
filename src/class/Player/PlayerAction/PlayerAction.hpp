@@ -23,6 +23,7 @@ public:
     void reverseCard(Player&,SetGame&);
     void swapCard(Player&,SetGame&);
     void switchCard(Player&,SetGame&);
+    void abilityLessCard(Player&,SetGame&);
 };
 
 

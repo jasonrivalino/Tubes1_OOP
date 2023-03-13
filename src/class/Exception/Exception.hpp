@@ -77,4 +77,10 @@ struct switchIsDeath: public exception{
     }
 };
 
+struct allCardUsed: public exception{
+    const char* const what() throw(){
+        return "Semua kartu ability pemain sudah digunakan";
+    }
+};
+
 #endif //TUBES1_OOP_EXCEPTION_H
