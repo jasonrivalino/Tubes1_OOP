@@ -12,7 +12,10 @@ class DeckCard : public Card
     private:
         string nameDeckCard;
         bool deckCardUsed;
+        int numberDeckCard;
     public:
+        DeckCard();
+        DeckCard(string, int);
         virtual void setNameDeckCard(string);
         virtual string getNameDeckCard();
         virtual void setDeckCardUsed(bool);
