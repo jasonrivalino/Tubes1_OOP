@@ -303,7 +303,7 @@ void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
     }
 }
 
-Abilityless::Abilityless() : Card("abilityless", false){
+Abilityless::Abilityless() : Card("AbilityLessCard", false){
 }
 
 Abilityless::~Abilityless(){
@@ -418,5 +418,15 @@ void Abilityless::AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &T
 
 
 
-    setAbilityless(true);
+    for(int i=0;i<s.getPlayers()[idxAbPlayer]->getCardsPlayer().size();i++){
+        bool abilityP1 =
+                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
+                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
+                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
+                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
+
+        if(abilityP1){
+            s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
+        }
+    }
 }
