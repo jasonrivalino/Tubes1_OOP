@@ -22,7 +22,7 @@ public:
     void quarterCard(Player&, SetGame&);
     void reverseCard(Player&,SetGame&);
     void swapCard(Player&,SetGame&);
-    void switchCard(Player&,SetGame&)
+    void switchCard(Player&,SetGame&);
 };
 
 
