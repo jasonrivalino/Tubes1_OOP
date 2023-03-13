@@ -74,7 +74,7 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
-        void SwapCardEffect(Player&,Player&,Player&,int,int,SetGame&);
+        Player SwapCardEffect(Player&, Player&, Player&, int, int, SetGame&);
 };
 
 class Switch : public Card{
