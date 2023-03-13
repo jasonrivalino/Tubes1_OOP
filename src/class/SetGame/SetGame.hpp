@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 
 class SetGame {
@@ -70,6 +71,9 @@ public:
 
     // Untuk men-setting poin game yang dijalankan, biasanya digunakan untuk PlayerAction
     void setPoint(long);
+
+    // untuk mereverse turn
+    void reverseTurn();
 
     /*
      Untuk melihat kartu ability card

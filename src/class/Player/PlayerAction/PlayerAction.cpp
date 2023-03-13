@@ -113,3 +113,36 @@ void PlayerAction::quarterCard(Player &p, SetGame &s){
     q.QuarterEffect(p,s);
 }
 
+void PlayerAction::reverseCard(Player &p, SetGame &s) {
+    int idxPlayer=0;
+    int idxCard=0;
+
+    for(int i=0;i<s.getPlayers().size();i++){
+        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+    }
+
+
+    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
+        bool abilityP1 =
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
+
+        if(abilityP1){
+            idxCard=i;
+        }
+    }
+
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Reverse")){
+        throw notHaveReverseCard();
+    }
+
+
+
+    ReverseDirection r;
+
+
+    r.ReverseDirectionEffect(p,s);
+}
+

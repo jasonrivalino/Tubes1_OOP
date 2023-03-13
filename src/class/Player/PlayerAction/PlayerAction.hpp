@@ -20,6 +20,7 @@ public:
     void reRoll(Player &p,SetGame &s);
     void quadrupleCard(Player &player, SetGame &pointGame);
     void quarterCard(Player &player, SetGame &pointGame);
+    void reverseCard(Player&,SetGame&);
 };
 
 

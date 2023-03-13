@@ -137,15 +137,15 @@ void Quarter::QuarterEffect(Player &player, SetGame &s){
     }
 }
 
-ReverseDirection::ReverseDirection() : Card("ReverseDirection",false){
+ReverseDirection::ReverseDirection() : Card("Reverse",false){
 }
 
 ReverseDirection::~ReverseDirection(){
     //dtor
 }
 
-void ReverseDirection::setReverseDirection(bool adaCard){
-    this ->setIsCardUsed(adaCard);
+void ReverseDirection::setReverseDirection(bool isUsed){
+    this ->setIsCardUsed(isUsed);
 }
 
 bool ReverseDirection::getReverseDirection(){
@@ -153,13 +153,50 @@ bool ReverseDirection::getReverseDirection(){
 }
 
 
-void ReverseDirection::ReverseDirectionEffect(SetGame &PlayerTurn){
+void ReverseDirection::ReverseDirectionEffect(Player &p,SetGame &s){
     // reversing player turn
-    reverse(PlayerTurn.getPlayers().begin(), PlayerTurn.getPlayers().end());
+
+    cout<<"Kartu ability reverse tidak dimatikan. Player-"<<p.getTurn()<<endl;
+    cout<<"urutan eksekusi giliran ini : ";
+    for(int i=0;i<s.getPlayers().size();i++) {
+        if(s.getPlayers()[i]->getTurn()!=p.getTurn()) {
+            cout << "<p" << s.getPlayers()[i]->getTurn() << "> ";
+        }
+    }
+    cout<<endl;
+
+    s.reverseTurn();
+
+    cout<<"urutan eksekusi giliran selanjutnya : ";
+    for(int i=0;i<s.getPlayers().size();i++) {
+        if(s.getPlayers()[i]->getTurn()!=p.getTurn()) {
+            cout << "<p" << s.getPlayers()[i]->getTurn() << "> ";
+        }
+    }
+    cout<<endl;
+
+
+    int idxPlayer=0;
+
+    for(int i=0;i<s.getPlayers().size();i++){
+        if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
+    }
+
+    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
+        bool abilityP1 =
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
+                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
+
+        if(abilityP1){
+            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
+        }
+    }
 }
 
 
-SwapCard::SwapCard() : Card("swap_card", false){
+SwapCard::SwapCard() : Card("SwapCard", false){
 }
 
 SwapCard::~SwapCard(){

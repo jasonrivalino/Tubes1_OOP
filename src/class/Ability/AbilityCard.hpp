@@ -62,7 +62,7 @@ class ReverseDirection : public Card{
         // Setter and Getter
         void setReverseDirection(bool);
         bool getReverseDirection();
-        void ReverseDirectionEffect(SetGame &playerTurn);
+        void ReverseDirectionEffect(Player&,SetGame&);
 };
 
 class SwapCard : public Card{

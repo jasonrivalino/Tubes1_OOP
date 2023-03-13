@@ -106,11 +106,19 @@ void SetGame::endRound(Player &playerWin) {
     }
     random_shuffle(this->cards.begin(), this->cards.end());
 
+    if(this->players[1]->getTurn()-this->players[0]->getTurn()==-1){
+        reverseTurn();
+    }
+
 
 
     playerWin.setPoint(this->pointGame);
     this->pointGame=64;
 }
+void SetGame::reverseTurn() {
+    reverse(this->players.begin(), this->players.end());
+}
+
 vector<Card*> SetGame::getCards() {
     return this->cards;
 }
