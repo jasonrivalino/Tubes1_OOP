@@ -47,6 +47,8 @@ public:
     //apkah suda mati
     bool getIsCardDeath() const;
 
+
+
     /*
      digunakan untuk men-setting sudah atau belumnya kartu tersebut digunakan
      */

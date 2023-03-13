@@ -146,6 +146,7 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
 void PlayerAction::swapCard(Player &p, SetGame &s) {
     int idxPlayer=0;
     int idxCard=0;
+    int rightOrLeft1,rightOrLeft2=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
         if(*s.getPlayers()[i]==p) idxPlayer=i;
@@ -190,17 +191,21 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         cin>>idxFirstPlayer;
     }
 
+    cout<<"Pilih kartu: \n1.kiri\n2.kanan"<<endl;
+    cout<<">>";
+    cin>>rightOrLeft1;
+    while (rightOrLeft1>2||rightOrLeft1<1){
+        cout<<"input salah"<<endl;
+        cout<<">>";
+        cin>>rightOrLeft1;
+    }
+
     Player *p1 = allPlayers[idxFirstPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxFirstPlayer-1));
 
 
 
 
-    for(int i=0;i<s.getPlayers().size();i++){
-        if(*s.getPlayers()[i]!=p||s.getPlayers()[i]!=p1){
-            allPlayers.push_back(s.getPlayers()[i]);
-        }
-    }
 
     cout<<"Silahkan pilih pemain yang kartunya ingin anda tukar:"<<endl;
     for(int i=0;i<allPlayers.size();i++) cout<<i+1<<" Player "<<allPlayers[i]->getTurn()<<endl;
@@ -213,11 +218,20 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         cin>>idxSecondPlayer;
     }
 
+    cout<<"Pilih kartu: \n1.kiri\n2.kanan"<<endl;
+    cout<<">>";
+    cin>>rightOrLeft2;
+    while (rightOrLeft2>2||rightOrLeft2<1){
+        cout<<"input salah"<<endl;
+        cout<<">>";
+        cin>>rightOrLeft2;
+    }
+
     Player *p2 = allPlayers[idxSecondPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxSecondPlayer-1));
 
     SwapCard sW;
-    sW.SwapCardEffect(p,*p1,*p2,idxFirstPlayer-1,idxSecondPlayer-1,s);
+    sW.SwapCardEffect(p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,s);
 
 }
 
@@ -299,22 +313,23 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLessCard")) throw notHaveSwitchCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLessCard")) throw notHaveAbilityCard();
 
 
-    bool isAllUsed= false;
+    bool isAllUsed= true;
     for(int j=0;j< s.getPlayers().size();j++) {
         if(*s.getPlayers()[j]!=p) {
-            for (int i = 0; i < s.getPlayers()[idxPlayer]->getCardsPlayer().size(); i++) {
+            for (int i = 0; i < s.getPlayers()[j]->getCardsPlayer().size(); i++) {
                 bool abilityP1 =
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "M" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "B" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "K" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "H";
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "M" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "B" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "K" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "H";
 
-                if (abilityP1&&s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getIsCardUsed()) {
-                    isAllUsed= true;
-                    break;
+                if (abilityP1) {
+                    if((!s.getPlayers()[j]->getCardsPlayer()[i]->getIsCardUsed())) {
+                        isAllUsed = false;
+                    }
                 }
             }
         }
@@ -349,7 +364,11 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
         Player *p1 = allPlayers[idxFirstPlayer-1];
 
         Abilityless aB;
-        aB.AbilitylessEffect(s,p,*p1);
+        try {
+            aB.AbilitylessEffect(s, p, *p1);
+        }catch (playerCardUsed e){
+            cout<<e.what()<<endl;
+        }
     }
 }
 

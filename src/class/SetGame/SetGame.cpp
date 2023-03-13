@@ -10,7 +10,7 @@ SetGame::SetGame(int jumPlayer) {
 
     this->pointGame=64;
 
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+    string warna[4] = {"K","H","M","B"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
     }
@@ -48,6 +48,9 @@ void SetGame::addCard(Card card) {
 void  SetGame::removeBackCard() {
     this->cards.pop_back();
 }
+void SetGame::removeFirstCard() {
+    this->cards.erase(this->cards.begin());
+}
 void SetGame::removeAbilityCards() {
     this->ability.clear();
 }
@@ -79,7 +82,7 @@ void SetGame::endRound(Player &playerWin) {
 
     this->pointGame=64;
 
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+    string warna[4] = {"K","H","M","B"};
 
 
     this->cards.clear();

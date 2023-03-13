@@ -6,6 +6,7 @@
 #include "../Card/Card.hpp"
 #include "../Player/Player.hpp"
 #include "../SetGame/SetGame.hpp"
+#include "../Exception/Exception.hpp"
 
 
 
@@ -74,7 +75,7 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
-        Player SwapCardEffect(Player&, Player&, Player&, int, int, SetGame&);
+        void SwapCardEffect(Player&, Player&, Player&, int, int, SetGame&);
 };
 
 class Switch : public Card{

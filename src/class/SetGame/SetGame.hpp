@@ -47,6 +47,9 @@ public:
     */
     void removeBackCard();
 
+    //melakukan penghapusan kartu terdepan
+    void removeFirstCard();
+
     /*
      Untuk menghapus seluruh ability card
      digunakan pada ronde ke 2 setelah ability card dibagi bagi

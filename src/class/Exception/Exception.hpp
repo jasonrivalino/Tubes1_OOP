@@ -82,5 +82,10 @@ struct allCardUsed: public exception{
         return "Semua kartu ability pemain sudah digunakan";
     }
 };
+struct playerCardUsed: public exception{
+    const char* const what() throw(){
+        return "kartu ability pemain sudah digunakan";
+    }
+};
 
 #endif //TUBES1_OOP_EXCEPTION_H
