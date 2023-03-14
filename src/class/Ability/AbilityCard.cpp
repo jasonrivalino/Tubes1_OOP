@@ -3,26 +3,28 @@
 #include <iostream>
 using namespace std;
 
-ReRoll::ReRoll() : Card("ReRoll",false){
+ReRoll::ReRoll(): Ability("ReRoll", false, false){
     this->name= "ReRoll";
+    this->isUsed= false;
+    this->isDeath= false;
+
 }
 
 ReRoll::~ReRoll(){
     //dtor
 }
 
-void ReRoll::setReRoll(bool adaCard){
-    this ->setIsCardUsed(adaCard);
-}
+void ReRoll::setIsCardDeath(bool d) {this->isDeath=d;}
+void ReRoll::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool ReRoll::getReRoll(){
-    return this -> getIsCardUsed();
-}
+bool ReRoll::getIsCardDeath() const {return this->isDeath;}
+bool ReRoll::getIsCardUsed() const {return this->isUsed;}
+
 string ReRoll::getNameCard() const {
     return this->name;
 }
 
-void ReRoll::ReRollEffect(Player &p,SetGame &s){
+void ReRoll::effect(Player &p,SetGame &s){
     p.removeFirstCard();
     p.removeFirstCard();
     p.addCardSpesPos(*s.getCards()[s.getSizeCards()-1],0);
@@ -45,40 +47,33 @@ void ReRoll::ReRollEffect(Player &p,SetGame &s){
     }
 
 
-    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
+    s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
 
-        if(abilityP1){
-            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
+
 }
 
-Quadruple::Quadruple() : Card("Quadruple",false){
+Quadruple::Quadruple(): Ability("Quadruple", false, false){
     this->name="Quadruple";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 Quadruple::~Quadruple(){
     //dtor
 }
 
-void Quadruple::setQuadruple(bool isUsed){
-    this ->setIsCardUsed(isUsed);
-}
+void Quadruple::setIsCardDeath(bool d) {this->isDeath=d;}
+void Quadruple::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool Quadruple::getQuadruple(){
-    return getIsCardUsed();
-}
+bool Quadruple::getIsCardDeath() const {return this->isDeath;}
+bool Quadruple::getIsCardUsed() const {return this->isUsed;}
+
 
 string Quadruple::getNameCard() const {
     return this->name;
 }
 
-void Quadruple::QuadrupleEffect(Player &p, SetGame &s){
+void Quadruple::effect(Player &p, SetGame &s){
     cout<<"Player P-"<<p.getTurn()<<" melakukan QUADRUPLE!"<<endl;
     cout<<"poin hadiah naik dari "<<s.getPointGame();
     s.setPoint(s.getPointGame()*4);
@@ -92,39 +87,33 @@ void Quadruple::QuadrupleEffect(Player &p, SetGame &s){
     }
 
 
-    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
+    s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
 
-        if(abilityP1){
-            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
+
 }
 
-Quarter::Quarter() : Card("Quarter",false){
+Quarter::Quarter(): Ability("Quarter", false, false){
     this->name= "Quarter";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 Quarter::~Quarter(){
     //dtor
 }
 
-void Quarter::setQuarter(bool isUsed){
-    this ->setIsCardUsed(isUsed);
-}
+void Quarter::setIsCardDeath(bool d) {this->isDeath=d;}
+void Quarter::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool Quarter::getQuarter(){
-    return this -> getIsCardUsed();
-}
+bool Quarter::getIsCardDeath() const {return this->isDeath;}
+bool Quarter::getIsCardUsed() const {return this->isUsed;}
+
+
 string Quarter::getNameCard()const {
     return this->name;
 }
 
-void Quarter::QuarterEffect(Player &player, SetGame &s){
+void Quarter::effect(Player &player, SetGame &s){
     if(!(s.getPointGame()/4<1)) {
         cout << "Player P-" << player.getTurn() << " melakukan QUARTER!" << endl;
         cout << "poin hadiah turun dari " << s.getPointGame();
@@ -138,41 +127,30 @@ void Quarter::QuarterEffect(Player &player, SetGame &s){
         if(s.getPlayers()[i]->getTurn()==player.getTurn()) idxPlayer=i;
     }
 
-
-    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
-
-        if(abilityP1){
-            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
+    s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
 }
 
-ReverseDirection::ReverseDirection() : Card("Reverse",false){
+ReverseDirection::ReverseDirection(): Ability("Reverse", false, false){
     this->name="Reverse";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 ReverseDirection::~ReverseDirection(){
     //dtor
 }
 
-void ReverseDirection::setReverseDirection(bool isUsed){
-    this ->setIsCardUsed(isUsed);
-}
+void ReverseDirection::setIsCardDeath(bool d) {this->isDeath=d;}
+void ReverseDirection::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool ReverseDirection::getReverseDirection(){
-    return this -> getIsCardUsed();
-}
+bool ReverseDirection::getIsCardDeath() const {return this->isDeath;}
+bool ReverseDirection::getIsCardUsed() const {return this->isUsed;}
 
 string ReverseDirection::getNameCard() const {
     return this->name;
 }
 
-void ReverseDirection::ReverseDirectionEffect(Player &p,SetGame &s){
+void ReverseDirection::effect(Player &p,SetGame &s){
     // reversing player turn
 
     cout<<"Player-"<<p.getTurn()<<" melakukan reverse turn"<<endl;
@@ -201,41 +179,34 @@ void ReverseDirection::ReverseDirectionEffect(Player &p,SetGame &s){
         if(s.getPlayers()[i]->getTurn()==p.getTurn()) idxPlayer=i;
     }
 
-    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
 
-        if(abilityP1){
-            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
+    s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
+
+
 }
 
 
-SwapCard::SwapCard() : Card("Swap", false){
+SwapCard::SwapCard(): Ability("Swap", false, false){
     this->name="Swap";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 SwapCard::~SwapCard(){
     // dtor
 }
 
-void SwapCard::setSwapCard(bool adaCard){
-    setIsCardUsed(adaCard);
-}
+void SwapCard::setIsCardDeath(bool d) {this->isDeath=d;}
+void SwapCard::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool SwapCard::getSwapCard(){
-    return this -> getIsCardUsed();
-}
+bool SwapCard::getIsCardDeath() const {return this->isDeath;}
+bool SwapCard::getIsCardUsed() const {return this->isUsed;}
 
 string SwapCard::getNameCard() const {
     return this->name;
 }
 
-void SwapCard::SwapCardEffect(Player &pHaveCard, Player &p1, Player &p2, int cardChoose1, int cardChoose2, SetGame &s){
+void SwapCard::effect(Player &pHaveCard, Player &p1, Player &p2, int cardChoose1, int cardChoose2, SetGame &s){
     int idxP1=0;
     int idxP2=0;
     int idxPHave=0;
@@ -268,40 +239,31 @@ void SwapCard::SwapCardEffect(Player &pHaveCard, Player &p1, Player &p2, int car
     s.getPlayers()[idxP2]->addCardSpesPos(*pHaveCard2,cardChoose2);
 
 
-    for(int i=0;i<s.getPlayers()[idxPHave]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPHave]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPHave]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPHave]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPHave]->getCardsPlayer()[i]->getNameCard()!="H";
+    s.getPlayers()[idxPHave]->getAbility()[0]->setIsCardUsed(true);
 
-        if(abilityP1){
-            s.getPlayers()[idxPHave]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
 }
 
-Switch::Switch() : Card("Switch",false){
+Switch::Switch(): Ability("Switch", false, false){
     this->name="Switch";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 Switch::~Switch(){
     // dtor
 }
 
-void Switch::setSwitch(bool adaCard){
-    setIsCardUsed(adaCard);
-}
+void Switch::setIsCardDeath(bool d) {this->isDeath=d;}
+void Switch::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool Switch::getSwitch(){
-    return this -> getIsCardUsed();
-}
+bool Switch::getIsCardDeath() const {return this->isDeath;}
+bool Switch::getIsCardUsed() const {return this->isUsed;}
 
 string Switch::getNameCard() const {
     return this->name;
 }
 
-void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
+void Switch::effect(Player &p1, Player &Target, SetGame &s){
     int idxPlayer=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
@@ -323,75 +285,45 @@ void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
     cout<<"Kedua kartu pemain-"<<p1.getTurn()<<" telah ditukar dengan pemain-"<<Target.getTurn()<<endl;
     cout<<"Kartumu sekarang adalah "<<Target.getCardsPlayer()[0]->getNameCard()<<""<<Target.getCardsPlayer()[0]->getNumberCard()<<" "<<Target.getCardsPlayer()[1]->getNameCard()<<""<<Target.getCardsPlayer()[1]->getNumberCard()<<endl;
 
+    s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
 
-    for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
-
-        if(abilityP1){
-            s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-    }
 }
 
-Abilityless::Abilityless() : Card("AbilityLess", false){
+Abilityless::Abilityless(): Ability("AbilityLess", false, false){
     this->name="AbilityLess";
+    this->isUsed= false;
+    this->isDeath= false;
 }
 
 Abilityless::~Abilityless(){
     // dtor
 }
 
-void Abilityless::setAbilityless(bool adaCard){
-    this ->setIsCardUsed(adaCard);
-}
+void Abilityless::setIsCardDeath(bool d) {this->isDeath=d;}
+void Abilityless::setIsCardUsed(bool u) { this->isUsed=u;}
 
-bool Abilityless::getAbilityless(){
-    return this -> getIsCardUsed();
-}
+bool Abilityless::getIsCardDeath() const {return this->isDeath;}
+bool Abilityless::getIsCardUsed() const {return this->isUsed;}
 
 string Abilityless::getNameCard() const {
     return this->name;
 }
 
-void Abilityless::AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target){
-
+void Abilityless::effect(SetGame &s, Player &abilityPlayer, Player &Target){
 
     int idxAbPlayer=0;
     int idxTarget=0;
     for(int i=0;i<s.getPlayers().size();i++){
-        if(s.getPlayers()[i]->getTurn()==abilityPlayer.getTurn()){
-            idxAbPlayer=i;
-        }
-        if(s.getPlayers()[i]->getTurn()==Target.getTurn()){
-            idxTarget=i;
-        }
+        if(*s.getPlayers()[i]==abilityPlayer) idxAbPlayer=i;
+        if(*s.getPlayers()[i]==Target) idxTarget=i;
     }
 
-    for(int i=0;i<s.getPlayers()[idxAbPlayer]->getSizeCardsPlayer();i++){
-        bool abilityP1 =
-                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->getNameCard()!="H";
-        bool abilityP2 =
-                s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getNameCard()!="M"&&
-                s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getNameCard()!="B"&&
-                s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getNameCard()!="K"&&
-                s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getNameCard()!="H";
+    s.getPlayers()[idxAbPlayer]->getAbility()[0]->setIsCardUsed(true);
 
-        if(abilityP1){
-            s.getPlayers()[idxAbPlayer]->getCardsPlayer()[i]->setIsCardUsed(true);
-        }
-        if(abilityP2&&!(s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getIsCardUsed())){
-            s.getPlayers()[idxTarget]->getCardsPlayer()[i]->setIsCardDeath(true);
-        }if(abilityP2&&(s.getPlayers()[idxTarget]->getCardsPlayer()[i]->getIsCardUsed())){
-            throw playerCardUsed();
-        }
-
+    if(!(s.getPlayers()[idxTarget]->getAbility()[0]->getIsCardUsed())){
+        s.getPlayers()[idxTarget]->getAbility()->setIsCardDeath(true);
+    }if((s.getPlayers()[idxTarget]->getAbility()[0]->getIsCardUsed())){
+        throw playerCardUsed();
     }
 
 }
