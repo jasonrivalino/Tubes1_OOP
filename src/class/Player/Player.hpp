@@ -6,8 +6,10 @@
 #include <vector>
 
 #include "../Card/Card.hpp"
+#include "../Card/Calculable/Calculable.hpp"
 
 using namespace std;
+
 class Player{
 protected:
     static int currentTurn;
@@ -15,6 +17,9 @@ protected:
     int point;
     string playerName; 
     vector <Card*> cards;
+    vector <vector<Card, int>> allCombo;
+    vector <Card> highestCombo;
+    
 public:
     /*
      memanggil class dengan mengatur nama dari sang player dan giliran player
@@ -62,6 +67,10 @@ public:
 
     //apakah player tidak sama
     bool operator!=(const Player&);
+
+    //untuk mendapatkan combo tertinggi dari player yang dipilih
+    vector<Card> findCombo(vector<vector<Card, int>> allCombo);
+
 };
 
 #endif

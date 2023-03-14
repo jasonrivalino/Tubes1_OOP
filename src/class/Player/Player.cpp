@@ -69,3 +69,13 @@ int Player::getPoint() {
     return this->point;
 }
 
+vector<Card> Player::findCombo(vector<vector<Card, int>> allCombo){
+    int combo = -999;
+    for (int i = 0; i < allCombo.size(); i++){
+        if (allCombo[i][1] > combo){
+            combo = allCombo[i][1];
+            highestCombo = allCombo[i][i];
+        }
+    }
+    return highestCombo;
+}
