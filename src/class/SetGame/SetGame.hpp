@@ -111,6 +111,9 @@ public:
     //untuk next giliran
     void nextTurn();
 
+    //setting turn
+    void setTurn(int);
+
 
     /*
      untuk mengambil point pada game

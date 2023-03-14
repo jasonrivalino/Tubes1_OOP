@@ -132,6 +132,12 @@ void SetGame::endRound(Player &playerWin) {
 void SetGame::reverseTurn() {
     reverse(this->players.begin(), this->players.end());
 }
+void SetGame::nextTurn() {
+    turn++;
+}
+void SetGame::setTurn(int t) {
+    turn=t-1;
+}
 
 vector<Card*> SetGame::getCards() {
     return this->cards;
