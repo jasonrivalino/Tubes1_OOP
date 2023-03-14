@@ -2,7 +2,16 @@
 
 using namespace std;
 
-PlayerAction::PlayerAction() {}
+PlayerAction::PlayerAction():
+ReRoll(),
+Quadruple(),
+Quarter(),
+ReverseDirection(),
+SwapCard(),
+Switch(),
+Abilityless() {
+
+}
 PlayerAction::~PlayerAction() {}
 
 void PlayerAction::halfAct(Player &player, SetGame &pointGame){
@@ -47,9 +56,8 @@ void PlayerAction::reRoll(Player &p,SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="ReRoll")) throw notHaveReRoll();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reRollIsDeath();
 
-    ReRoll r;
+    this->ReRollEffect(p,s);
 
-    r.ReRollEffect(p,s);
 }
 
 void PlayerAction::quadrupleCard(Player &p, SetGame &s){
@@ -76,9 +84,8 @@ void PlayerAction::quadrupleCard(Player &p, SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quadruple")) throw notHaveQuadrupleCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quadrupleIsDeath();
 
-    Quadruple q;
 
-    q.QuadrupleEffect(p,s);
+    this->QuadrupleEffect(p,s);
 }
 
 void PlayerAction::quarterCard(Player &p, SetGame &s){
@@ -105,9 +112,8 @@ void PlayerAction::quarterCard(Player &p, SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quarter")) throw notHaveQuarterCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quarterIsDeath();
 
-    Quarter q;
 
-    q.QuarterEffect(p,s);
+    this->QuarterEffect(p,s);
 }
 
 void PlayerAction::reverseCard(Player &p, SetGame &s) {
@@ -135,10 +141,8 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reverseIsDeath();
 
 
-    ReverseDirection r;
 
-
-    r.ReverseDirectionEffect(p,s);
+    this->ReverseDirectionEffect(p,s);
 }
 
 
@@ -146,6 +150,7 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
 void PlayerAction::swapCard(Player &p, SetGame &s) {
     int idxPlayer=0;
     int idxCard=0;
+    int rightOrLeft1,rightOrLeft2=0;
 
     for(int i=0;i<s.getPlayers().size();i++){
         if(*s.getPlayers()[i]==p) idxPlayer=i;
@@ -164,7 +169,7 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwapCard")) throw notHaveSwapCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Swap")) throw notHaveSwapCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw swapIsDeath();
 
     vector<Player*> allPlayers;
@@ -190,17 +195,21 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         cin>>idxFirstPlayer;
     }
 
+    cout<<"Pilih kartu: \n1.kiri\n2.kanan"<<endl;
+    cout<<">>";
+    cin>>rightOrLeft1;
+    while (rightOrLeft1>2||rightOrLeft1<1){
+        cout<<"input salah"<<endl;
+        cout<<">>";
+        cin>>rightOrLeft1;
+    }
+
     Player *p1 = allPlayers[idxFirstPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxFirstPlayer-1));
 
 
 
 
-    for(int i=0;i<s.getPlayers().size();i++){
-        if(*s.getPlayers()[i]!=p||s.getPlayers()[i]!=p1){
-            allPlayers.push_back(s.getPlayers()[i]);
-        }
-    }
 
     cout<<"Silahkan pilih pemain yang kartunya ingin anda tukar:"<<endl;
     for(int i=0;i<allPlayers.size();i++) cout<<i+1<<" Player "<<allPlayers[i]->getTurn()<<endl;
@@ -213,12 +222,19 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         cin>>idxSecondPlayer;
     }
 
+    cout<<"Pilih kartu: \n1.kiri\n2.kanan"<<endl;
+    cout<<">>";
+    cin>>rightOrLeft2;
+    while (rightOrLeft2>2||rightOrLeft2<1){
+        cout<<"input salah"<<endl;
+        cout<<">>";
+        cin>>rightOrLeft2;
+    }
+
     Player *p2 = allPlayers[idxSecondPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxSecondPlayer-1));
 
-    SwapCard sW;
-    sW.SwapCardEffect(p,*p1,*p2,idxFirstPlayer-1,idxSecondPlayer-1,s);
-
+    this->SwapCardEffect(p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,s);
 }
 
 
@@ -244,7 +260,7 @@ void PlayerAction::switchCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwitchCard")) throw notHaveSwitchCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Switch")) throw notHaveSwitchCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw switchIsDeath();
 
 
@@ -274,8 +290,8 @@ void PlayerAction::switchCard(Player &p, SetGame &s) {
     Player *p1 = allPlayers[idxFirstPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxFirstPlayer-1));
 
-    Switch sW;
-    sW.SwitchEffect(p,*p1,s);
+
+    this->SwitchEffect(p,*p1,s);
 }
 
 void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
@@ -299,22 +315,23 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLessCard")) throw notHaveSwitchCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
 
 
-    bool isAllUsed= false;
+    bool isAllUsed= true;
     for(int j=0;j< s.getPlayers().size();j++) {
         if(*s.getPlayers()[j]!=p) {
-            for (int i = 0; i < s.getPlayers()[idxPlayer]->getCardsPlayer().size(); i++) {
+            for (int i = 0; i < s.getPlayers()[j]->getCardsPlayer().size(); i++) {
                 bool abilityP1 =
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "M" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "B" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "K" &&
-                        s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getNameCard() != "H";
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "M" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "B" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "K" &&
+                        s.getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "H";
 
-                if (abilityP1&&s.getPlayers()[idxPlayer]->getCardsPlayer()[i]->getIsCardUsed()) {
-                    isAllUsed= true;
-                    break;
+                if (abilityP1) {
+                    if((!s.getPlayers()[j]->getCardsPlayer()[i]->getIsCardUsed())) {
+                        isAllUsed = false;
+                    }
                 }
             }
         }
@@ -348,8 +365,11 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
 
         Player *p1 = allPlayers[idxFirstPlayer-1];
 
-        Abilityless aB;
-        aB.AbilitylessEffect(s,p,*p1);
+        try {
+            this->AbilitylessEffect(s, p, *p1);
+        }catch (playerCardUsed e){
+            cout<<e.what()<<endl;
+        }
     }
 }
 

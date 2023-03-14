@@ -36,7 +36,7 @@ public:
      mengambil nama dari kartu
      entah nama warna maupun nama dari ability
      */
-    string getNameCard() const;
+    virtual string getNameCard() const;
 
     /*
     untuk mengetahui apakah kartu sudah digunakan atau belum
@@ -46,6 +46,8 @@ public:
 
     //apkah suda mati
     bool getIsCardDeath() const;
+
+
 
     /*
      digunakan untuk men-setting sudah atau belumnya kartu tersebut digunakan

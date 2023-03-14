@@ -35,6 +35,9 @@ public:
     // menambahkan kartu palyer
     void addCard(Card &c);
 
+    //menambahkan kartu di posisi spesifik
+    void addCardSpesPos(Card&,int);
+
     // menampilkan seluruh kartu yang player punya
     void printCards();
 
@@ -43,6 +46,9 @@ public:
 
     // menghapus kartu player dari yang terbawah
     void removeBackCard();
+
+    //penghapusan kartu pertama player
+    void removeFirstCard();
 
 
     // men-setting poin player

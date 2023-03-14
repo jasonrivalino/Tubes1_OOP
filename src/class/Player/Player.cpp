@@ -14,6 +14,9 @@ int Player::getTurn() const{
 void Player::addCard(Card &c){
     cards.push_back(&c);
 }
+void Player::addCardSpesPos(Card &c, int idx) {
+    this->cards.insert(this->cards.begin()+idx,&c);
+}
 
 Player::~Player(){
     cards.clear();
@@ -29,6 +32,9 @@ void Player::removeSpecificCard(Card c){
 
 void Player::removeBackCard(){
     cards.pop_back();
+}
+void Player::removeFirstCard() {
+    this->cards.erase(this->cards.begin());
 }
 int Player::getSizeCardsPlayer() {
     return this->cards.size();

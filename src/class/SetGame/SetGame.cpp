@@ -5,12 +5,13 @@
 #include "SetGame.hpp"
 
 
+int SetGame::turn=1;
 
 SetGame::SetGame(int jumPlayer, string path) {
 
     this->pointGame=64;
 
-    string warna[4] = {"H","B","K","M"};
+    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
     }
@@ -94,6 +95,9 @@ void SetGame::addCard(Card card) {
 void  SetGame::removeBackCard() {
     this->cards.pop_back();
 }
+void SetGame::removeFirstCard() {
+    this->cards.erase(this->cards.begin());
+}
 void SetGame::removeAbilityCards() {
     this->ability.clear();
 }
@@ -123,9 +127,20 @@ void SetGame::printCards() {
 }
 void SetGame::endRound(Player &playerWin) {
 
+
+
+
+
+
+
+
+
+
+
+
     this->pointGame=64;
 
-    string warna[4] = {"H", "B", "K", "M"};
+    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
 
 
     this->cards.clear();
@@ -163,6 +178,12 @@ void SetGame::endRound(Player &playerWin) {
 void SetGame::reverseTurn() {
     reverse(this->players.begin(), this->players.end());
 }
+void SetGame::nextTurn() {
+    turn++;
+}
+void SetGame::setTurn(int t) {
+    turn=t-1;
+}
 
 vector<Card*> SetGame::getCards() {
     return this->cards;
@@ -173,8 +194,8 @@ vector<Card*> SetGame::getAbilityCards() {
 vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
-vector<Player*> SetGame::getPlayerTurn() {
-    return this->playerTurn;
+Player& SetGame::playerTurn() const {
+    return *this->players[(this->turn)%7 -1];
 }
 
 long int SetGame::getPointGame() {

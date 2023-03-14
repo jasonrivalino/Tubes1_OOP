@@ -23,7 +23,7 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Card*> ability;
-    vector<Player*> playerTurn;
+    static int turn;
     long int pointGame;
 public:
     /*
@@ -47,6 +47,9 @@ public:
       dibuat untuk pemain yang melakukan swap
     */
     void removeBackCard();
+
+    //melakukan penghapusan kartu terdepan
+    void removeFirstCard();
 
     /*
      Untuk menghapus seluruh ability card
@@ -90,21 +93,28 @@ public:
      Untuk melihat player
     */
     vector<Player*> getPlayers();
+
+    // giliran player
+    Player& playerTurn() const;
     /*
      untuk mengambil size dari card
     */
     int getSizeCards();
 
-    /*
-    untuk menampilkan point seluruh player
-    */
+
+    //untuk menampilkan point seluruh player
     void showAllPoint();
     /*
      untuk menampilkan seluruh kartu yang masih ada pada game
      */
     void printCards();
 
-    vector<Player*> getPlayerTurn();
+    //untuk next giliran
+    void nextTurn();
+
+    //setting turn
+    void setTurn(int);
+
 
     /*
      untuk mengambil point pada game
