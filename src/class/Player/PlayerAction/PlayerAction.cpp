@@ -84,9 +84,8 @@ void PlayerAction::quadrupleCard(Player &p, SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quadruple")) throw notHaveQuadrupleCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quadrupleIsDeath();
 
-    Quadruple q;
 
-    q.QuadrupleEffect(p,s);
+    this->QuadrupleEffect(p,s);
 }
 
 void PlayerAction::quarterCard(Player &p, SetGame &s){
@@ -113,9 +112,8 @@ void PlayerAction::quarterCard(Player &p, SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Quarter")) throw notHaveQuarterCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw quarterIsDeath();
 
-    Quarter q;
 
-    q.QuarterEffect(p,s);
+    this->QuarterEffect(p,s);
 }
 
 void PlayerAction::reverseCard(Player &p, SetGame &s) {
@@ -143,10 +141,8 @@ void PlayerAction::reverseCard(Player &p, SetGame &s) {
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reverseIsDeath();
 
 
-    ReverseDirection r;
 
-
-    r.ReverseDirectionEffect(p,s);
+    this->ReverseDirectionEffect(p,s);
 }
 
 
@@ -238,9 +234,7 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
     Player *p2 = allPlayers[idxSecondPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxSecondPlayer-1));
 
-    SwapCard sW;
-    sW.SwapCardEffect(p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,s);
-
+    this->SwapCardEffect(p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,s);
 }
 
 
@@ -296,8 +290,8 @@ void PlayerAction::switchCard(Player &p, SetGame &s) {
     Player *p1 = allPlayers[idxFirstPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxFirstPlayer-1));
 
-    Switch sW;
-    sW.SwitchEffect(p,*p1,s);
+
+    this->SwitchEffect(p,*p1,s);
 }
 
 void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
@@ -371,9 +365,8 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
 
         Player *p1 = allPlayers[idxFirstPlayer-1];
 
-        Abilityless aB;
         try {
-            aB.AbilitylessEffect(s, p, *p1);
+            this->AbilitylessEffect(s, p, *p1);
         }catch (playerCardUsed e){
             cout<<e.what()<<endl;
         }

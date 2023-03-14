@@ -321,7 +321,7 @@ void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
     }
 
     cout<<"Kedua kartu pemain-"<<p1.getTurn()<<" telah ditukar dengan pemain-"<<Target.getTurn()<<endl;
-    cout<<"Kartumu sekarang adalah"<<Target.getCardsPlayer()[0]->getNameCard()<<""<<Target.getCardsPlayer()[0]->getNumberCard()<<" "<<Target.getCardsPlayer()[1]->getNameCard()<<""<<Target.getCardsPlayer()[1]->getNumberCard()<<endl;
+    cout<<"Kartumu sekarang adalah "<<Target.getCardsPlayer()[0]->getNameCard()<<""<<Target.getCardsPlayer()[0]->getNumberCard()<<" "<<Target.getCardsPlayer()[1]->getNameCard()<<""<<Target.getCardsPlayer()[1]->getNumberCard()<<endl;
 
 
     for(int i=0;i<s.getPlayers()[idxPlayer]->getCardsPlayer().size();i++){

@@ -5,6 +5,7 @@
 #include "SetGame.hpp"
 #include <algorithm>
 
+int SetGame::turn=1;
 
 SetGame::SetGame(int jumPlayer) {
 
@@ -80,6 +81,17 @@ void SetGame::printCards() {
 }
 void SetGame::endRound(Player &playerWin) {
 
+
+
+
+
+
+
+
+
+
+
+
     this->pointGame=64;
 
     string warna[4] = {"K","H","M","B"};
@@ -130,8 +142,8 @@ vector<Card*> SetGame::getAbilityCards() {
 vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
-vector<Player*> SetGame::getPlayerTurn() {
-    return this->playerTurn;
+Player& SetGame::playerTurn() const {
+    return *this->players[(this->turn)%7 -1];
 }
 
 long int SetGame::getPointGame() {
