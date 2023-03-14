@@ -71,7 +71,7 @@ void SetGame::shareCardToPlayer(int shareCard) {
     }
 }
 void SetGame::shareAbilityCard() {
-    for(int i=0;i< this->players.size();i++) this->players[i]->addCard(*this->ability[i]);
+    for(int i=0;i< this->players.size();i++) this->players[i]->addAbilityCard(*this->ability[i]);
     this->removeBackCard();
 }
 void SetGame::printCards() {
@@ -142,7 +142,7 @@ void SetGame::setTurn(int t) {
 vector<Card*> SetGame::getCards() {
     return this->cards;
 }
-vector<Card*> SetGame::getAbilityCards() {
+vector<Ability*> SetGame::getAbilityCards() {
     return this->ability;
 }
 vector<Player*> SetGame::getPlayers() {

@@ -21,7 +21,7 @@ class SetGame {
 private:
     vector<Card*> cards;
     vector<Player*> players;
-    vector<Card*> ability;
+    vector<Ability*> ability;
     static int turn;
     long int pointGame;
 public:
@@ -81,7 +81,7 @@ public:
     /*
      Untuk melihat kartu ability card
     */
-    vector<Card*> getAbilityCards();
+    vector<Ability*> getAbilityCards();
 
     /*
      Untuk melihat kartu card
