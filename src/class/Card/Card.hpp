@@ -13,6 +13,7 @@ class Card{
 private:
     string nama;
     bool isUsed;
+    bool isDeath;
     int nomorKartu;
     int nilaiWarna;
     float value;
@@ -35,25 +36,33 @@ public:
      mengambil nama dari kartu
      entah nama warna maupun nama dari ability
      */
-    string getNameCard();
+    string getNameCard() const;
 
     /*
     untuk mengetahui apakah kartu sudah digunakan atau belum
      fungsi ini digunakan untuk mengetahui apakah abilitycard sudah digunakan atau belum
      */
-    bool getIsCardUsed();
+    bool getIsCardUsed() const;
+
+    //apkah suda mati
+    bool getIsCardDeath() const;
 
     /*
      digunakan untuk men-setting sudah atau belumnya kartu tersebut digunakan
      */
     void setIsCardUsed(bool);
 
+    // set card mati atau tidak
+    void setIsCardDeath(bool);
+
     /*
      untuk mengambil nomor kartu yang dipilih
      */
-    int getNumberCard();
+    int getNumberCard() const;
 
     float valueCard();
+
+    bool operator>(const Card);
 };
 
 
