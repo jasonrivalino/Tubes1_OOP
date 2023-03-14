@@ -4,6 +4,7 @@
 using namespace std;
 
 ReRoll::ReRoll() : Card("ReRoll",false){
+    this->name= "ReRoll";
 }
 
 ReRoll::~ReRoll(){
@@ -16,6 +17,9 @@ void ReRoll::setReRoll(bool adaCard){
 
 bool ReRoll::getReRoll(){
     return this -> getIsCardUsed();
+}
+string ReRoll::getNameCard() const {
+    return this->name;
 }
 
 void ReRoll::ReRollEffect(Player &p,SetGame &s){
@@ -55,6 +59,7 @@ void ReRoll::ReRollEffect(Player &p,SetGame &s){
 }
 
 Quadruple::Quadruple() : Card("Quadruple",false){
+    this->name="Quadruple";
 }
 
 Quadruple::~Quadruple(){
@@ -67,6 +72,10 @@ void Quadruple::setQuadruple(bool isUsed){
 
 bool Quadruple::getQuadruple(){
     return getIsCardUsed();
+}
+
+string Quadruple::getNameCard() const {
+    return this->name;
 }
 
 void Quadruple::QuadrupleEffect(Player &p, SetGame &s){
@@ -97,6 +106,7 @@ void Quadruple::QuadrupleEffect(Player &p, SetGame &s){
 }
 
 Quarter::Quarter() : Card("Quarter",false){
+    this->name= "Quarter";
 }
 
 Quarter::~Quarter(){
@@ -109,6 +119,9 @@ void Quarter::setQuarter(bool isUsed){
 
 bool Quarter::getQuarter(){
     return this -> getIsCardUsed();
+}
+string Quarter::getNameCard()const {
+    return this->name;
 }
 
 void Quarter::QuarterEffect(Player &player, SetGame &s){
@@ -140,6 +153,7 @@ void Quarter::QuarterEffect(Player &player, SetGame &s){
 }
 
 ReverseDirection::ReverseDirection() : Card("Reverse",false){
+    this->name="Reverse";
 }
 
 ReverseDirection::~ReverseDirection(){
@@ -154,6 +168,9 @@ bool ReverseDirection::getReverseDirection(){
     return this -> getIsCardUsed();
 }
 
+string ReverseDirection::getNameCard() const {
+    return this->name;
+}
 
 void ReverseDirection::ReverseDirectionEffect(Player &p,SetGame &s){
     // reversing player turn
@@ -198,7 +215,8 @@ void ReverseDirection::ReverseDirectionEffect(Player &p,SetGame &s){
 }
 
 
-SwapCard::SwapCard() : Card("SwapCard", false){
+SwapCard::SwapCard() : Card("Swap", false){
+    this->name="Swap";
 }
 
 SwapCard::~SwapCard(){
@@ -211,6 +229,10 @@ void SwapCard::setSwapCard(bool adaCard){
 
 bool SwapCard::getSwapCard(){
     return this -> getIsCardUsed();
+}
+
+string SwapCard::getNameCard() const {
+    return this->name;
 }
 
 void SwapCard::SwapCardEffect(Player &pHaveCard, Player &p1, Player &p2, int cardChoose1, int cardChoose2, SetGame &s){
@@ -259,7 +281,8 @@ void SwapCard::SwapCardEffect(Player &pHaveCard, Player &p1, Player &p2, int car
     }
 }
 
-Switch::Switch() : Card("SwitchCard",false){
+Switch::Switch() : Card("Switch",false){
+    this->name="Switch";
 }
 
 Switch::~Switch(){
@@ -272,6 +295,10 @@ void Switch::setSwitch(bool adaCard){
 
 bool Switch::getSwitch(){
     return this -> getIsCardUsed();
+}
+
+string Switch::getNameCard() const {
+    return this->name;
 }
 
 void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
@@ -310,7 +337,8 @@ void Switch::SwitchEffect(Player &p1, Player &Target, SetGame &s){
     }
 }
 
-Abilityless::Abilityless() : Card("AbilityLessCard", false){
+Abilityless::Abilityless() : Card("AbilityLess", false){
+    this->name="AbilityLess";
 }
 
 Abilityless::~Abilityless(){
@@ -325,6 +353,9 @@ bool Abilityless::getAbilityless(){
     return this -> getIsCardUsed();
 }
 
+string Abilityless::getNameCard() const {
+    return this->name;
+}
 
 void Abilityless::AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target){
 

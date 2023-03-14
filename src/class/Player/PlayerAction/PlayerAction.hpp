@@ -9,7 +9,14 @@
 using namespace std;
 #include <iostream>
 
-class PlayerAction
+class PlayerAction:
+        public ReRoll,
+        public Quadruple,
+        public Quarter,
+        public ReverseDirection,
+        public SwapCard,
+        public Switch,
+        public Abilityless
 {
 public:
     PlayerAction();

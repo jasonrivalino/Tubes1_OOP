@@ -25,7 +25,10 @@ class ReRoll : public Card{
         // Setter and Getter
         void setReRoll(bool);
         bool getReRoll();
+        string getNameCard() const;
         void ReRollEffect(Player &p,SetGame &s);
+protected:
+    string name;
 };
 
 class Quadruple : public Card{
@@ -37,7 +40,10 @@ class Quadruple : public Card{
         // Setter and Getter
         void setQuadruple(bool);
         bool getQuadruple();
+        string getNameCard() const;
         void QuadrupleEffect(Player&, SetGame&);
+protected:
+    string name;
 };
 
 class Quarter : public Card{
@@ -49,9 +55,10 @@ class Quarter : public Card{
         // Setter and Getter
         void setQuarter(bool);
         bool getQuarter();
+        string getNameCard() const;
         void QuarterEffect(Player&, SetGame&);
-    private:
-        int currentPoint;
+protected:
+    string name;
 };
 
 class ReverseDirection : public Card{
@@ -63,7 +70,10 @@ class ReverseDirection : public Card{
         // Setter and Getter
         void setReverseDirection(bool);
         bool getReverseDirection();
+        string getNameCard() const;
         void ReverseDirectionEffect(Player&,SetGame&);
+protected:
+    string name;
 };
 
 class SwapCard : public Card{
@@ -75,7 +85,10 @@ class SwapCard : public Card{
         // Setter and Getter
         void setSwapCard(bool);
         bool getSwapCard();
+        string getNameCard() const;
         void SwapCardEffect(Player&, Player&, Player&, int, int, SetGame&);
+protected:
+    string name;
 };
 
 class Switch : public Card{
@@ -87,7 +100,10 @@ class Switch : public Card{
         // Setter and Getter
         void setSwitch(bool);
         bool getSwitch();
+        string getNameCard() const;
         void SwitchEffect(Player&,Player&, SetGame&);
+protected:
+    string name;
 };
 
 class Abilityless : public Card{
@@ -100,7 +116,10 @@ class Abilityless : public Card{
         
         void setAbilityless(bool);
         bool getAbilityless();
+        string getNameCard() const;
         void AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target);
+protected:
+    string name;
 };
 
 #endif

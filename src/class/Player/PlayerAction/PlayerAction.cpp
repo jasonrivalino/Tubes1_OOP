@@ -2,7 +2,16 @@
 
 using namespace std;
 
-PlayerAction::PlayerAction() {}
+PlayerAction::PlayerAction():
+ReRoll(),
+Quadruple(),
+Quarter(),
+ReverseDirection(),
+SwapCard(),
+Switch(),
+Abilityless() {
+
+}
 PlayerAction::~PlayerAction() {}
 
 void PlayerAction::halfAct(Player &player, SetGame &pointGame){
@@ -47,9 +56,8 @@ void PlayerAction::reRoll(Player &p,SetGame &s){
     if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="ReRoll")) throw notHaveReRoll();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw reRollIsDeath();
 
-    ReRoll r;
+    this->ReRollEffect(p,s);
 
-    r.ReRollEffect(p,s);
 }
 
 void PlayerAction::quadrupleCard(Player &p, SetGame &s){
@@ -165,7 +173,7 @@ void PlayerAction::swapCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwapCard")) throw notHaveSwapCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Swap")) throw notHaveSwapCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw swapIsDeath();
 
     vector<Player*> allPlayers;
@@ -258,7 +266,7 @@ void PlayerAction::switchCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="SwitchCard")) throw notHaveSwitchCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="Switch")) throw notHaveSwitchCard();
     if(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getIsCardDeath()) throw switchIsDeath();
 
 
@@ -313,7 +321,7 @@ void PlayerAction::abilityLessCard(Player &p, SetGame &s) {
         }
     }
 
-    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLessCard")) throw notHaveAbilityCard();
+    if(!(s.getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
 
 
     bool isAllUsed= true;
