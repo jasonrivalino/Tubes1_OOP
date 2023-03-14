@@ -3,6 +3,31 @@
 #include <iostream>
 using namespace std;
 
+Ability::Ability(string name, bool isUsed, bool isDeath) {
+    this->name=name;
+    this->isUsed=isUsed;
+    this->isDeath=isDeath;
+}
+
+Ability::~Ability() {}
+
+void Ability::setIsCardDeath(bool d) {this->isDeath=d;}
+void Ability::setIsCardUsed(bool u) { this->isUsed=u;}
+
+bool Ability::getIsCardDeath() const {return this->isDeath;}
+bool Ability::getIsCardUsed() const {return this->isUsed;}
+
+string Ability::getNameCard() const {return this->name;}
+
+void Ability::effect(Player &p, SetGame &s) {
+
+}
+
+string ReRoll::getNameCard() const {
+    return this->name;
+}
+
+
 ReRoll::ReRoll(): Ability("ReRoll", false, false){
     this->name= "ReRoll";
     this->isUsed= false;
@@ -20,9 +45,6 @@ void ReRoll::setIsCardUsed(bool u) { this->isUsed=u;}
 bool ReRoll::getIsCardDeath() const {return this->isDeath;}
 bool ReRoll::getIsCardUsed() const {return this->isUsed;}
 
-string ReRoll::getNameCard() const {
-    return this->name;
-}
 
 void ReRoll::effect(Player &p,SetGame &s){
     p.removeFirstCard();
@@ -204,6 +226,7 @@ bool SwapCard::getIsCardUsed() const {return this->isUsed;}
 
 string SwapCard::getNameCard() const {
     return this->name;
+
 }
 
 void SwapCard::effect(Player &pHaveCard, Player &p1, Player &p2, int cardChoose1, int cardChoose2, SetGame &s){
@@ -321,7 +344,7 @@ void Abilityless::effect(SetGame &s, Player &abilityPlayer, Player &Target){
     s.getPlayers()[idxAbPlayer]->getAbility()[0]->setIsCardUsed(true);
 
     if(!(s.getPlayers()[idxTarget]->getAbility()[0]->getIsCardUsed())){
-        s.getPlayers()[idxTarget]->getAbility()->setIsCardDeath(true);
+        s.getPlayers()[idxTarget]->getAbility()[0]->setIsCardDeath(true);
     }if((s.getPlayers()[idxTarget]->getAbility()[0]->getIsCardUsed())){
         throw playerCardUsed();
     }

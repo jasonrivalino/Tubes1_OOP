@@ -16,6 +16,8 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 
+class Player;
+class Ability;
 
 class SetGame {
 private:
@@ -94,7 +96,7 @@ public:
     vector<Player*> getPlayers();
 
     // giliran player
-    Player& playerTurn() const;
+    Player* playerTurn() const;
     /*
      untuk mengambil size dari card
     */

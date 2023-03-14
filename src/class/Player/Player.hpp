@@ -8,6 +8,8 @@
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
 
+class Ability;
+
 using namespace std;
 class Player{
 protected:

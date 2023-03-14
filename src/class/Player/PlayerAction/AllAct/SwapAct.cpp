@@ -82,6 +82,6 @@ void SwapAct::Act() {
     Player *p2 = allPlayers[idxSecondPlayer-1];
     allPlayers.erase(allPlayers.begin()+(idxSecondPlayer-1));
 
-    this->effect(p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,s);
+    this->effect(*p,*p1,*p2,rightOrLeft1-1,rightOrLeft2-1,*s);
 
 }

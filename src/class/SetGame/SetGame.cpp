@@ -53,7 +53,7 @@ void SetGame::removeFirstCard() {
     this->cards.erase(this->cards.begin());
 }
 void SetGame::removeAbilityCards() {
-    this->ability.clear();
+    this->ability.pop_back();
 }
 void SetGame::setPoint(long point) {
     this->pointGame = point;
@@ -72,7 +72,7 @@ void SetGame::shareCardToPlayer(int shareCard) {
 }
 void SetGame::shareAbilityCard() {
     for(int i=0;i< this->players.size();i++) this->players[i]->addAbilityCard(*this->ability[i]);
-    this->removeBackCard();
+    this->removeAbilityCards();
 }
 void SetGame::printCards() {
     for(int i=0;i< this->cards.size();i++){
@@ -148,8 +148,8 @@ vector<Ability*> SetGame::getAbilityCards() {
 vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
-Player& SetGame::playerTurn() const {
-    return *this->players[(this->turn)%7 -1];
+Player* SetGame::playerTurn() const {
+    return this->players[(this->turn)%7 -1];
 }
 
 long int SetGame::getPointGame() {

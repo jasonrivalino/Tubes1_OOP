@@ -30,24 +30,14 @@ void AbilityLessAct::Act() {
         }
     }
 
-    if(!(s->getPlayers()[idxPlayer]->getCardsPlayer()[idxCard]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
+    if(!(s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
 
 
     bool isAllUsed= true;
     for(int j=0;j< s->getPlayers().size();j++) {
         if(s->getPlayers()[j]!=p) {
-            for (int i = 0; i < s->getPlayers()[j]->getCardsPlayer().size(); i++) {
-                bool abilityP1 =
-                        s->getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "M" &&
-                        s->getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "B" &&
-                        s->getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "K" &&
-                        s->getPlayers()[j]->getCardsPlayer()[i]->getNameCard() != "H";
-
-                if (abilityP1) {
-                    if((!s->getPlayers()[j]->getCardsPlayer()[i]->getIsCardUsed())) {
-                        isAllUsed = false;
-                    }
-                }
+            if((!s->getPlayers()[j]->getAbility()[0]->getIsCardUsed())) {
+                isAllUsed = false;
             }
         }
     }
