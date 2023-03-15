@@ -8,7 +8,7 @@
 
 using namespace std;
 
-struct notHaveReRoll: public exception{
+struct notHaveReRollCard: public exception{
     const char* const what() throw(){
         return "Kamu tidak memiliki ReRollCard";
     }
@@ -40,7 +40,7 @@ struct notHaveSwitchCard: public exception{
 };
 struct notHaveAbilityCard: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki AbilityCard";
+        return "Kamu tidak memiliki AbilityLessCard";
     }
 };
 

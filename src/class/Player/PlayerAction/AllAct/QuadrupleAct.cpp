@@ -16,9 +16,15 @@ void QuadrupleAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Quadruple")) throw notHaveQuadrupleCard();
+    if(!(
+            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Quadruple"||
+            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
+            )
+    )
+        throw notHaveQuadrupleCard();
+
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw quadrupleIsDeath();
 
 
-    this->effect(p,s);
+    this->effect(*p,*s);
 }

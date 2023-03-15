@@ -99,7 +99,7 @@ void Quadruple::effect(Player &p, SetGame &s){
     cout<<"Player P-"<<p.getTurn()<<" melakukan QUADRUPLE!"<<endl;
     cout<<"poin hadiah naik dari "<<s.getPointGame();
     s.setPoint(s.getPointGame()*4);
-    cout<<"menjadi "<<s.getPointGame()<<endl;
+    cout<<" menjadi "<<s.getPointGame()<<endl;
 
 
     int idxPlayer=0;
@@ -140,7 +140,7 @@ void Quarter::effect(Player &player, SetGame &s){
         cout << "Player P-" << player.getTurn() << " melakukan QUARTER!" << endl;
         cout << "poin hadiah turun dari " << s.getPointGame();
         s.setPoint(s.getPointGame() / 4);
-        cout << "menjadi " << s.getPointGame() << endl;
+        cout << " menjadi " << s.getPointGame() << endl;
     }
 
     int idxPlayer=0;

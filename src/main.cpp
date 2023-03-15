@@ -1,13 +1,22 @@
 
 #include "class/SetGame/SetGame.hpp"
 #include "class/Combination/Combination.hpp"
-#include "class/Player/PlayerAction/PlayerAction.hpp"
+#include "class/Player/PlayerAction/Action.hpp"
+#include "class/Player/PlayerAction/AllAct/SwapAct.hpp"
+#include "class/Player/PlayerAction/AllAct/ReverseAct.hpp"
+#include "class/Player/PlayerAction/AllAct/QuadrupleAct.hpp"
+#include "class/Player/PlayerAction/AllAct/QuarterAct.hpp"
+#include "class/Player/PlayerAction/AllAct/SwitchAct.hpp"
+#include "class/Player/PlayerAction/AllAct/ReRollAct.hpp"
+#include "class/Player/PlayerAction/AllAct/AbilityLessAct.hpp"
 #include "class/Ability/AbilityCard.hpp"
 
 using namespace std;
 
 int main(){
     SetGame s(7);
+    s.shareCardToPlayer(2);
+    s.shareAbilityCard();
 
     Table t;
     Card c1("M",1);
@@ -29,11 +38,32 @@ int main(){
     p.addCard(c1);
     p.addCard(c7);
 
+    cout<<s.getPlayers()[0]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[1]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[2]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[3]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[4]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[5]->getAbility()[0]->getNameCard()<<endl;
+    cout<<s.getPlayers()[6]->getAbility()[0]->getNameCard()<<endl;
 
+    Action *action = new QuarterAct(*s.getPlayers()[6],s);
 
-    PlayerAction pA;
+    try {
 
-    pA.reverseCard(p,s);
+//        pA.switchCard(*s.getPlayers()[5], s);
+    action->Act();
+
+    }catch (notHaveQuarterCard e){
+        cout<<e.what()<<endl;
+    }
+    cout<<s.getPlayers()[0]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[1]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[2]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[3]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[4]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[5]->getAbility()[0]->getIsCardUsed()<<endl;
+    cout<<s.getPlayers()[6]->getAbility()[0]->getIsCardUsed()<<endl;
+
 
 //    for(int i=0;i<s.getPlayers().size();i++){
 //        cout<<s.getPlayers()[i]->getTurn()<<endl;

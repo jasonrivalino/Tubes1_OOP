@@ -17,10 +17,17 @@ void ReverseAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Reverse")) throw notHaveQuarterCard();
-    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw quarterIsDeath();
+    if(!(
+            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Reverse"||
+            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
+                    )
+            )
+        throw notHaveReverseCard();
 
 
-    this->effect(p,s);
+    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw reverseIsDeath();
+
+
+    this->effect(*p,*s);
 }
 

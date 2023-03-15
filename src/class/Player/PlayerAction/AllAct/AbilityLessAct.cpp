@@ -30,7 +30,11 @@ void AbilityLessAct::Act() {
         }
     }
 
-    if(!(s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
+    if(!(
+            s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="AbilityLess"||
+            s->getPlayers()[idxPlayer]->getAbility().size()==0)
+            )
+        throw notHaveAbilityCard();
 
 
     bool isAllUsed= true;

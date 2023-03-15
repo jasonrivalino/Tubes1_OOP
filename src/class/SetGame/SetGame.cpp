@@ -130,6 +130,8 @@ void SetGame::endRound(Player &playerWin) {
     this->pointGame=64;
 }
 void SetGame::reverseTurn() {
+    if(this->turn>4) this->turn-=(this->turn-4);
+    if(this->turn<4) this->turn+=(this->turn-4);
     reverse(this->players.begin(), this->players.end());
 }
 void SetGame::nextTurn() {
@@ -149,7 +151,7 @@ vector<Player*> SetGame::getPlayers() {
     return this->players;
 }
 Player* SetGame::playerTurn() const {
-    return this->players[(this->turn)%7 -1];
+    return this->players[this->turn-1];
 }
 
 long int SetGame::getPointGame() {

@@ -17,7 +17,14 @@ void SwapAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Swap")) throw notHaveQuarterCard();
+    if(!(
+            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Swap"||
+            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
+                    )
+            )
+        throw notHaveQuarterCard();
+
+
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw quarterIsDeath();
 
     vector<Player*> allPlayers;
