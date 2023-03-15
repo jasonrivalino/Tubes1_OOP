@@ -23,6 +23,10 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
     int idx=99;
     vector <Card*> ret;
 
+
+    // cout << "playercard :" << player.getCardsPlayer().size() << endl;
+    // cout << "tablecard : " << tableCard.getCards().size() << endl;
+
     int sizeCardTable=tableCard.getCards().size();
     for(int i=0;i<player.getCardsPlayer().size();i++){
         count=0;
@@ -70,44 +74,44 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
         bool pcard;
         
 
-        for(int i=0;i<allCard.size();i++){
-            for(int j=0;j<allCard.size();j++){
-                if(i!=j){
-                    if(allCard[i]->getNumberCard()==allCard[j]->getNumberCard()){
-                        if(allCard[i]->getNameCard() == "M"){
-                            allCard.erase(allCard.begin()+j);
-                        }
+        // for(int i=0;i<allCard.size();i++){
+        //     for(int j=0;j<allCard.size();j++){
+        //         if(i!=j){
+        //             if(allCard[i]->getNumberCard()==allCard[j]->getNumberCard()){
+        //                 if(allCard[i]->getNameCard() == "M"){
+        //                     allCard.erase(allCard.begin()+j);
+        //                 }
 
-                        else if(allCard[i]->getNameCard() == "K"){
-                            if(allCard[j]->getNameCard() == "M"){
-                                allCard.erase(allCard.begin() + i);
-                            }
-                            else{
-                                allCard.erase(allCard.begin() + j);
-                            }
-                        }
+        //                 else if(allCard[i]->getNameCard() == "K"){
+        //                     if(allCard[j]->getNameCard() == "M"){
+        //                         allCard.erase(allCard.begin() + i);
+        //                     }
+        //                     else{
+        //                         allCard.erase(allCard.begin() + j);
+        //                     }
+        //                 }
 
-                        else if(allCard[i]->getNameCard() == "B"){
-                            if(allCard[j]->getNameCard() == "M" or allCard[j]->getNameCard() == "K"){
-                                allCard.erase(allCard.begin() + i);
-                            }
-                            else{
-                                allCard.erase(allCard.begin() + j);
-                            }
-                        }
+        //                 else if(allCard[i]->getNameCard() == "B"){
+        //                     if(allCard[j]->getNameCard() == "M" or allCard[j]->getNameCard() == "K"){
+        //                         allCard.erase(allCard.begin() + i);
+        //                     }
+        //                     else{
+        //                         allCard.erase(allCard.begin() + j);
+        //                     }
+        //                 }
 
-                        else if(allCard[i]->getNameCard() == "H"){
-                            if(allCard[j]->getNameCard() == "M" or allCard[j]->getNameCard() == "K" or allCard[j]->getNameCard() == "H"){
-                                allCard.erase(allCard.begin() + i);
-                            }
-                            else{
-                                allCard.erase(allCard.begin() + j);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //                 else if(allCard[i]->getNameCard() == "H"){
+        //                     if(allCard[j]->getNameCard() == "M" or allCard[j]->getNameCard() == "K" or allCard[j]->getNameCard() == "H"){
+        //                         allCard.erase(allCard.begin() + i);
+        //                     }
+        //                     else{
+        //                         allCard.erase(allCard.begin() + j);
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         for (int i = 0; i < allCard.size()- 4; i++){
 
@@ -151,9 +155,13 @@ vector<Card*> Combination::isStraightFlush(Player &player, Table &tableCard)
                 return ret;
             }
         }
+        ret.clear();
         return ret;
     }
-    else return ret;
+    else{
+        ret.clear();
+        return ret;
+    } 
 }
 
 int Combination::isFourOfAKind(Player &player, Table &tableCard) {
@@ -428,6 +436,7 @@ vector<Card*> Combination::isFlush(Player &player, Table &tableCard)
     string color;
 
     for (int i=0; i < player.getCardsPlayer().size(); i++){
+        allCard.clear();
         allCard.push_back(player.getCardsPlayer()[i]);
         for(int j=0; j < tableCard.getCards().size(); j++){
             if(player.getCardsPlayer()[i]->getNameCard() == tableCard.getCards()[j]->getNameCard()){
@@ -437,6 +446,7 @@ vector<Card*> Combination::isFlush(Player &player, Table &tableCard)
         if(allCard.size() < 5) continue;
         else if (allCard.size() == 5) return allCard;
         else{
+            forSort.clear();
             for(int j=0; j < allCard.size(); j++) forSort.push_back(allCard[j]->getNumberCard());
             sort(forSort.begin(), forSort.end());
 

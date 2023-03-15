@@ -25,12 +25,12 @@ int main(){
     s.shareAbilityCard();
 
     Table t;
-    Card c1("M",6);
-    Card c2("K",8);
-    Card c3("B",8);
-    Card c4("M",8);
-    Card c5("M",10);
-    Card c6("H",8);
+    Card c1("M",13);
+    Card c2("M",12);
+    Card c3("M",11);
+    Card c4("M",10);
+    Card c5("M",9);
+    Card c6("M",3);
     Card c7("B",6);
 
     t.addCard(c2);
@@ -53,7 +53,7 @@ int main(){
 
     // cout << comb.isFourOfAKind(p,t) << endl;
 
-    vector <Card*> v = comb.isOnePair(p,t);
+    vector <Card*> v = comb.isStraightFlush(p,t);
     if(v.size() == 0) cout << "gaaada isinya\n";
     else{
         for(auto x : v) {
@@ -62,7 +62,17 @@ int main(){
             // cout << x->getNumberCard() << endl;
         }
     }
-
+    v.clear();
+    cout << endl << endl << endl;
+    v = comb.isFlush(p,t);
+    if(v.size() == 0) cout << "gaaada isinya\n";
+    else{
+        for(auto x : v) {
+            cout << x->getNameCard() << "   " << x->getNumberCard() << endl;
+            // cout << x->getNameCard() << endl;
+            // cout << x->getNumberCard() << endl;
+        }
+    }
 
 
 
