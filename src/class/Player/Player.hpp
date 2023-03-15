@@ -17,8 +17,8 @@ protected:
     int point;
     string playerName; 
     vector <Card*> cards;
-    vector <vector<Card, int>> allCombo;
-    vector <Card> highestCombo;
+//    vector <vector<Card, int>> allCombo;
+//    vector <Card> highestCombo;
     
 public:
     /*
@@ -68,8 +68,8 @@ public:
     //apakah player tidak sama
     bool operator!=(const Player&);
 
-    //untuk mendapatkan combo tertinggi dari player yang dipilih
-    vector<Card> findCombo(vector<vector<Card, int>> allCombo);
+//    //untuk mendapatkan combo tertinggi dari player yang dipilih
+//    vector<Card> findCombo(vector<vector<Card, int>> allCombo);
 
 };
 
