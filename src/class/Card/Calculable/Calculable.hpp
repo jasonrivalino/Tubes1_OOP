@@ -9,76 +9,149 @@ using namespace std;
 class Calculable {
     public:
         virtual float valueCards() = 0;
-    protected:
-        float value;
-        char suit;
-        vector<Cards> cards;
 };
 
 class Cards : public Calculable {
     public:
         Cards (int, char);
         float valueCards() override;
+    protected:
+        float value;
+        char suit;
 };
 
 class Combo : public Calculable {
     public:
         Combo(vector<Cards>);
         float valueCards() override;
+    protected:
+        vector<Cards> cards;
 };
 
-
-class OnePair : public Calculable {
+class CardAce : public Cards {
     public:
-        OnePair(vector<int>);
+        CardAce(int, char);
         float valueCards() override;
 };
 
-class StraightFlush : public Calculable {
+class CardTwo : public Cards {
     public:
-        StraightFlush(vector<int>);
+        CardTwo(int, char);
         float valueCards() override;
 };
 
-class TwoPair : public Calculable {
+class CardThree : public Cards {
     public:
-        TwoPair(vector<int>);
+        CardThree(int, char);
         float valueCards() override;
 };
 
-class FullHouse : public Calculable {
+class CardFour : public Cards {
     public:
-        FullHouse(vector<int>);
+        CardFour(int, char);
         float valueCards() override;
 };
 
-class FourOfKind : public Calculable {
+class CardFive : public Cards {
     public:
-        FourOfKind(vector<int>);
+        CardFive(int, char);
         float valueCards() override;
 };
 
-class ThreeOfKind : public Calculable {
+class CardSix : public Cards {
     public:
-        ThreeOfKind(vector<int>);
+        CardSix(int, char);
         float valueCards() override;
 };
 
-class Flush : public Calculable {
+class CardSeven : public Cards {
     public:
-        Flush(vector<int>);
+        CardSeven(int, char);
         float valueCards() override;
 };
 
-class HighCard : public Calculable {
+class CardEight : public Cards {
     public:
-        HighCard(vector<int>);
+        CardEight(int, char);
         float valueCards() override;
 };
 
-class Straight : public Calculable {
+class CardNine : public Cards {
     public:
-        Straight(vector<int>);
+        CardNine(int, char);
         float valueCards() override;
 };
+
+class CardTen : public Cards {
+    public:
+        CardTen(int, char);
+        float valueCards() override;
+};
+
+class CardJack : public Cards {
+    public:
+        CardJack(int, char);
+        float valueCards() override;
+};
+
+class CardQueen : public Cards {
+    public:
+        CardQueen(int, char);
+        float valueCards() override;
+};
+
+class CardKing : public Cards {
+    public:
+        CardKing(int, char);
+        float valueCards() override;
+};
+
+class OnePair : public Combo {
+    public:
+        OnePair(vector<Cards>);
+        float valueCards() override;
+};
+
+class TwoPair : public Combo {
+    public:
+        TwoPair(vector<Cards>);
+        float valueCards() override;
+};
+
+class ThreeOfKind : public Combo {
+    public:
+        ThreeOfKind(vector<Cards>);
+        float valueCards() override;
+};
+
+class Straight : public Combo {
+    public:
+        Straight(vector<Cards>);
+        float valueCards() override;
+};
+
+class Flush : public Combo {
+    public:
+        Flush(vector<Cards>);
+        float valueCards() override;
+};
+
+class FullHouse : public Combo {
+    public:
+        FullHouse(vector<Cards>);
+        float valueCards() override;
+};
+
+class FourOfKind : public Combo {
+    public:
+        FourOfKind(vector<Cards>);
+        float valueCards() override;
+};
+
+class StraightFlush : public Combo {
+    public:
+        StraightFlush(vector<Cards>);
+        float valueCards() override;
+};
+
 #endif

@@ -1,12 +1,12 @@
 #include "Calculable.hpp"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // Class Card
 Cards::Cards(int value, char suit) {
     this->value = value;
     this->suit = suit;
-    this->cards.push_back(*this);
 }
 
 float Cards::valueCards() {
@@ -15,72 +15,347 @@ float Cards::valueCards() {
 
 // Class Combo
 Combo::Combo(vector<Cards> cards) {
-    this->cards = cards;
+    this -> cards = cards;
 }
 
 float Combo::valueCards() {
     return 0.0;
 }
 
-// Class OnePair
-OnePair::OnePair(vector<int> cards) {
+// Class AceCard (int value selalu 1)
+CardAce::CardAce(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.1;
+    if (this -> suit == 'H'){
+        nilai = 0.1;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float OnePair::valueCards() {    
+float CardAce::valueCards() {
+    return this->value;
 }
 
-// Class StraightFlush
-StraightFlush::StraightFlush(vector<int> cards) {
+CardTwo::CardTwo(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.2;
+    if (this -> suit == 'H'){
+        nilai = 0.2;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float StraightFlush::valueCards() {
+float CardTwo::valueCards() {
+    return this->value;
 }
 
-// Class TwoPair
-TwoPair::TwoPair(vector<int> cards) {
+CardThree::CardThree(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.3;
+    if (this -> suit == 'H'){
+        nilai = 0.3;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float TwoPair::valueCards() {
+float CardThree::valueCards() {
+    return this->value;
 }
 
-// Class FullHouse
-FullHouse::FullHouse(vector<int> cards) {
+CardFour::CardFour(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.4;
+    if (this -> suit == 'H'){
+        nilai = 0.4;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float FullHouse::valueCards() {
+float CardFour::valueCards() {
+    return this->value;
 }
 
-// Class FourOfKind
-FourOfKind::FourOfKind(vector<int> cards) {
+CardFive::CardFive(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.5;
+    if (this -> suit == 'H'){
+        nilai = 0.5;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float FourOfKind::valueCards() {
+float CardFive::valueCards() {
+    return this->value;
 }
 
-// Class ThreeOfKind
-ThreeOfKind::ThreeOfKind(vector<int> cards) {
+CardSix::CardSix(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.6;
+    if (this -> suit == 'H'){
+        nilai = 0.6;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float ThreeOfKind::valueCards() {
+float CardSix::valueCards() {
+    return this->value;
 }
 
-// Class Straight
-Straight::Straight(vector<int> cards) {
+CardSeven::CardSeven(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.7;
+    if (this -> suit == 'H'){
+        nilai = 0.7;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float Straight::valueCards() {
+float CardSeven::valueCards() {
+    return this->value;
 }
 
-// Class Flush
-Flush::Flush(vector<int> cards) {
+CardEight::CardEight(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.8;
+    if (this -> suit == 'H'){
+        nilai = 0.8;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float Flush::valueCards() {
+float CardEight::valueCards() {
+    return this->value;
 }
 
-// Class HighCard
-HighCard::HighCard(vector<int> cards) {
+CardNine::CardNine(int value, char suit) : Cards(value, suit) {
+    int nilai = 0.9;
+    if (this -> suit == 'H'){
+        nilai = 0.9;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
 }
 
-float HighCard::valueCards() {
+float CardNine::valueCards() {
+    return this->value;
+}
+
+CardTen::CardTen(int value, char suit) : Cards(value, suit) {
+    int nilai = 1;
+    if (this -> suit == 'H'){
+        nilai = 1;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
+}
+
+float CardTen::valueCards() {
+    return this->value;
+}
+
+CardJack::CardJack(int value, char suit) : Cards(value, suit) {
+    int nilai = 1.1;
+    if (this -> suit == 'H'){
+        nilai = 1.1;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
+}
+
+float CardJack::valueCards() {
+    return this->value;
+}
+
+CardQueen::CardQueen(int value, char suit) : Cards(value, suit) {
+    int nilai = 1.2;
+    if (this -> suit == 'H'){
+        nilai = 1.2;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
+}
+
+float CardQueen::valueCards() {
+    return this->value;
+}
+
+CardKing::CardKing(int value, char suit) : Cards(value, suit) {
+    int nilai = 1.3;
+    if (this -> suit == 'H'){
+        nilai = 1.3;
+    }
+    if (this -> suit == 'B'){
+        nilai += 0.03;
+    }
+    if (this -> suit == 'K'){
+        nilai += 0.06;
+    }
+    if (this -> suit == 'M'){
+        nilai += 0.09;
+    }
+    this->value = nilai;
+}
+
+float CardKing::valueCards() {
+    return this->value;
+}
+
+OnePair::OnePair(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float OnePair::valueCards(){
+
+}
+
+TwoPair::TwoPair(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float TwoPair::valueCards(){
+
+}
+
+ThreeOfKind::ThreeOfKind(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float ThreeOfKind::valueCards(){
+
+}
+
+Straight::Straight(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float Straight::valueCards(){
+
+}
+
+Flush::Flush(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float Flush::valueCards(){
+
+}
+
+FullHouse::FullHouse(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float FullHouse::valueCards(){
+
+}
+
+FourOfKind::FourOfKind(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float FourOfKind::valueCards(){
+
+}
+
+StraightFlush::StraightFlush(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+
+}
+
+float StraightFlush::valueCards(){
+
 }
