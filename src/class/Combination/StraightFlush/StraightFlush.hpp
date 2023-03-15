@@ -1,18 +1,16 @@
-#ifndef TUBES1_OOP_STRAIGHTFLUSH_H
-#define TUBES1_OOP_STRAIGHTFLUSH_H
+#include "./../Combination.hpp"
 
-#include "Combination.h"
+#ifndef STRAIGHTFLUSH_HPP
+#define STRAIGHTFLUSH_HPP
 
-class StraightFlushh: public Combination{
-public:
-    StraightFlushh(Player&,Table&);
-    ~StraightFlushh();
-
-    vector<Card*> comb();
-private:
+class StraightFlush : public Combination{
+    private:
     Player* p;
-    Table* t;
+    Table* t; 
+    public:
+        StraightFlush(Player &player, Table &tableCard);
+        ~StraightFlush();
+        vector<Card*> comb();
 };
-
 
 #endif
