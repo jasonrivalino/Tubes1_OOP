@@ -84,10 +84,3 @@ HighCard::HighCard(vector<int> cards) {
 
 float HighCard::valueCards() {
 }
-
-// Class Straight
-Straight::Straight(vector<int> cards) {
-}
-
-float Straight::valueCards() {
-}
