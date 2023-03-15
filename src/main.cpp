@@ -98,6 +98,8 @@ int main(){
                             cout << e.what() << endl;
                         } catch (quarterIsDeath e) {
                             cout << e.what() << endl;
+                        } catch (quarterCardIsUsed e){
+                            cout << e.what() << endl;
                         }
                         break;
                     case 5:
@@ -109,6 +111,8 @@ int main(){
                         } catch (notHaveQuadrupleCard e) {
                             cout << e.what() << endl;
                         } catch (quadrupleIsDeath e) {
+                            cout << e.what() << endl;
+                        } catch (quadrupleCardIsUsed e){
                             cout << e.what() << endl;
                         }
                         break;
@@ -122,6 +126,8 @@ int main(){
                             cout << e.what() << endl;
                         } catch (reRollIsDeath e) {
                             cout << e.what() << endl;
+                        } catch (reRollCardIsUsed e){
+                            cout << e.what() << endl;
                         }
                         break;
                     case 7:
@@ -133,6 +139,8 @@ int main(){
                         } catch (notHaveReverseCard e) {
                             cout << e.what() << endl;
                         } catch (reverseIsDeath e) {
+                            cout << e.what() << endl;
+                        } catch (reverseCardIsUsed e){
                             cout << e.what() << endl;
                         }
                         break;
@@ -146,6 +154,8 @@ int main(){
                             cout << e.what() << endl;
                         } catch (switchIsDeath e) {
                             cout << e.what() << endl;
+                        } catch (switchCardIsUsed e){
+                            cout << e.what() << endl;
                         }
                         break;
                     case 9:
@@ -157,6 +167,8 @@ int main(){
                         } catch (notHaveSwapCard e) {
                             cout << e.what() << endl;
                         } catch (swapIsDeath e) {
+                            cout << e.what() << endl;
+                        } catch (swapCardIsUsed e){
                             cout << e.what() << endl;
                         }
                         break;
@@ -170,6 +182,8 @@ int main(){
                             cout << e.what() << endl;
                         } catch (allCardUsed e){
                             cout<<e.what()<<endl;
+                        } catch (abilityCardIsUsed e){
+                            cout << e.what() << endl;
                         }
                         break;
                     case 11:

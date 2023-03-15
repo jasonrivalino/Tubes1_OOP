@@ -48,37 +48,37 @@ struct notHaveAbilityCard: public exception{
 
 struct reRollCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki ReRollCard";
+        return "Kamu sudah menggunakan ReRollCard";
     }
 };
 struct quadrupleCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki QuadrupleCard";
+        return "Kamu sudah menggunakan QuadrupleCard";
     }
 };
 struct quarterCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki QuarterCard";
+        return "Kamu sudah menggunakan QuarterCard";
     }
 };
 struct reverseCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki ReverseCard";
+        return "Kamu sudah menggunakan ReverseCard";
     }
 };
 struct swapCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki SwapCard";
+        return "Kamu sudah menggunakan SwapCard";
     }
 };
 struct switchCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki SwitchCard";
+        return "Kamu sudah menggunakan SwitchCard";
     }
 };
 struct abilityCardIsUsed: public exception{
     const char* const what() throw(){
-        return "Kamu tidak memiliki AbilityLessCard";
+        return "Kamu sudah menggunakan AbilityLessCard";
     }
 };
 
