@@ -15,111 +15,168 @@ using namespace std;
 
 class SetGame;
 
-class ReRoll : public Card{
+class Player;
 
-    public:
-        // Konstruktor
-        ReRoll();
-        // Destruktor
-        ~ReRoll();
-        // Setter and Getter
-        void setReRoll(bool);
-        bool getReRoll();
-        string getNameCard() const;
-        void ReRollEffect(Player &p,SetGame &s);
+class Ability{
+public:
+    // Konstruktor
+    Ability(string,bool,bool);
+    // Destruktor
+    ~Ability();
+    // Setter and Getter
+    virtual void setIsCardUsed(bool);
+    virtual void setIsCardDeath(bool);
+
+    virtual bool getIsCardUsed()const;
+    virtual bool getIsCardDeath()const;
+    virtual string getNameCard() const;
+    virtual void effect(Player &p,SetGame &s);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class Quadruple : public Card{
-    public:
-        // Konstruktor
-        Quadruple();
-        // Destruktor
-        ~Quadruple();
-        // Setter and Getter
-        void setQuadruple(bool);
-        bool getQuadruple();
-        string getNameCard() const;
-        void QuadrupleEffect(Player&, SetGame&);
+
+class ReRoll:public Ability{
+
+public:
+    // Konstruktor
+    ReRoll();
+    // Destruktor
+    ~ReRoll();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player &p,SetGame &s);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class Quarter : public Card{
-    public:
-        // Konstruktor
-        Quarter();
-        // Destruktor
-        ~Quarter();
-        // Setter and Getter
-        void setQuarter(bool);
-        bool getQuarter();
-        string getNameCard() const;
-        void QuarterEffect(Player&, SetGame&);
+class Quadruple:public Ability{
+public:
+    // Konstruktor
+    Quadruple();
+    // Destruktor
+    ~Quadruple();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player&, SetGame&);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class ReverseDirection : public Card{
-    public:
-        // Konstruktor
-        ReverseDirection();
-        // Destruktor
-        ~ReverseDirection();
-        // Setter and Getter
-        void setReverseDirection(bool);
-        bool getReverseDirection();
-        string getNameCard() const;
-        void ReverseDirectionEffect(Player&,SetGame&);
+class Quarter:public Ability{
+public:
+    // Konstruktor
+    Quarter();
+    // Destruktor
+    ~Quarter();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player&, SetGame&);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class SwapCard : public Card{
-    public:
-        // Konstruktor
-        SwapCard();
-        // Destruktor
-        ~SwapCard();
-        // Setter and Getter
-        void setSwapCard(bool);
-        bool getSwapCard();
-        string getNameCard() const;
-        void SwapCardEffect(Player&, Player&, Player&, int, int, SetGame&);
+class ReverseDirection:public Ability{
+public:
+    // Konstruktor
+    ReverseDirection();
+    // Destruktor
+    ~ReverseDirection();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player&,SetGame&);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class Switch : public Card{
-    public:
-        // Konstruktor
-        Switch();
-        // Destruktor
-        ~Switch();
-        // Setter and Getter
-        void setSwitch(bool);
-        bool getSwitch();
-        string getNameCard() const;
-        void SwitchEffect(Player&,Player&, SetGame&);
+class SwapCard:public Ability{
+public:
+    // Konstruktor
+    SwapCard();
+    // Destruktor
+    ~SwapCard();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player&, Player&, Player&, int, int, SetGame&);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
 };
 
-class Abilityless : public Card{
-    public:
-        // Konstruktor
-        Abilityless();
-        // Destruktor
-        ~Abilityless();
-        // Setter and Getter
-        
-        void setAbilityless(bool);
-        bool getAbilityless();
-        string getNameCard() const;
-        void AbilitylessEffect(SetGame &s, Player &abilityPlayer, Player &Target);
+class Switch:public Ability{
+public:
+    // Konstruktor
+    Switch();
+    // Destruktor
+    ~Switch();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(Player&,Player&, SetGame&);
 protected:
     string name;
+    bool isDeath;
+    bool isUsed;
+};
+
+class Abilityless:public Ability{
+public:
+    // Konstruktor
+    Abilityless();
+    // Destruktor
+    ~Abilityless();
+    // Setter and Getter
+    void setIsCardUsed(bool);
+    void setIsCardDeath(bool);
+
+    bool getIsCardUsed()const;
+    bool getIsCardDeath()const;
+    string getNameCard() const;
+    void effect(SetGame &s, Player &abilityPlayer, Player &Target);
+protected:
+    string name;
+    bool isDeath;
+    bool isUsed;
 };
 
 #endif

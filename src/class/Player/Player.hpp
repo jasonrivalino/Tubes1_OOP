@@ -6,6 +6,9 @@
 #include <vector>
 
 #include "../Card/Card.hpp"
+#include "../Ability/AbilityCard.hpp"
+
+class Ability;
 
 using namespace std;
 class Player{
@@ -13,7 +16,8 @@ protected:
     static int currentTurn;
     const int turn;
     int point;
-    string playerName; 
+    string playerName;
+    vector<Ability*> abilityCard;
     vector <Card*> cards;
 public:
     /*
@@ -23,17 +27,11 @@ public:
     // dcctor
     ~Player();
 
-    // untuk mendapatkan giliran dari player yang dipilih
-    int getTurn() const;
-
-    //untuk mendapatkan seluruh kartu yang dimiliki oleh player
-    vector<Card*> getCardsPlayer();
-
-    // mendapatkan banyaknya kartu yang player punya
-    int getSizeCardsPlayer();
-
     // menambahkan kartu palyer
     void addCard(Card &c);
+
+    //menambahkan ability card
+    void addAbilityCard(Ability&);
 
     //menambahkan kartu di posisi spesifik
     void addCardSpesPos(Card&,int);
@@ -50,12 +48,27 @@ public:
     //penghapusan kartu pertama player
     void removeFirstCard();
 
+    //penghapusan kartu pertama player
+    void removeAbilityCard();
+
 
     // men-setting poin player
     void setPoint(int);
 
+    //mendapatkan abilityCard
+    vector<Ability*> getAbility() const;
+
     //untuk mendapatkan poin dari player yang dipilih
     int getPoint();
+
+    // untuk mendapatkan giliran dari player yang dipilih
+    int getTurn() const;
+
+    //untuk mendapatkan seluruh kartu yang dimiliki oleh player
+    vector<Card*> getCardsPlayer();
+
+    // mendapatkan banyaknya kartu yang player punya
+    int getSizeCardsPlayer();
 
     //apakah player sama
     bool operator==(const Player&);

@@ -7,10 +7,6 @@ Player::Player(string playerName):turn(currentTurn+1){
     currentTurn++;
 }
 
-int Player::getTurn() const{
-    return turn;
-}
-
 void Player::addCard(Card &c){
     cards.push_back(&c);
 }
@@ -20,6 +16,7 @@ void Player::addCardSpesPos(Card &c, int idx) {
 
 Player::~Player(){
     cards.clear();
+    abilityCard.clear();
 }
 
 void Player::removeSpecificCard(Card c){
@@ -36,9 +33,7 @@ void Player::removeBackCard(){
 void Player::removeFirstCard() {
     this->cards.erase(this->cards.begin());
 }
-int Player::getSizeCardsPlayer() {
-    return this->cards.size();
-}
+
 void Player::printCards(){
     if (cards.size() == 0){
         cout << "No cards" << endl;
@@ -48,6 +43,15 @@ void Player::printCards(){
         cout << cards[i]->getNameCard() << " " << cards[i]->getNumberCard() << endl;
     }
     }
+}
+void Player::setPoint(int point) {
+    this->point = point;
+}
+void Player::removeAbilityCard() {
+    if(this->abilityCard.size()!=0) this->abilityCard.pop_back();
+}
+void Player::addAbilityCard(Ability &a) {
+    this->abilityCard.push_back(&a);
 }
 
 vector<Card*> Player::getCardsPlayer() {
@@ -61,11 +65,15 @@ bool Player::operator!=(const Player &p) {
     return this->getTurn()!=p.getTurn();
 }
 
-void Player::setPoint(int point) {
-    this->point = point;
-}
-
 int Player::getPoint() {
     return this->point;
 }
-
+int Player::getTurn() const{
+    return turn;
+}
+int Player::getSizeCardsPlayer() {
+    return this->cards.size();
+}
+vector<Ability*> Player::getAbility() const {
+    return this->abilityCard;
+}

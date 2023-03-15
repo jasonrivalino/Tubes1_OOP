@@ -21,8 +21,5 @@ public:
     vector<Card*> isTwoPair(Player &player, Table &tableCard);
     vector<Card*> isOnePair(Player &player, Table &tableCard);
     vector<Card*> isHighCard(Player &player, Table &tableCard);
-    
-
-
 
 };
