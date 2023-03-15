@@ -22,10 +22,10 @@ void SwapAct::Act() {
             this->s->getPlayers()[idxPlayer]->getAbility().size()==0
                     )
             )
-        throw notHaveQuarterCard();
+        throw notHaveSwapCard();
 
 
-    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw quarterIsDeath();
+    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw swapIsDeath();
 
     vector<Player*> allPlayers;
     int idxFirstPlayer,idxSecondPlayer;
