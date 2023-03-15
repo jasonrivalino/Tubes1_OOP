@@ -25,7 +25,7 @@ void Table::endRound() {
 void Table::showTable() {
 
 
-    cout<<"Table\n"<<endl;
+    cout<<"TABLE:"<<endl;
     if(this->cards.size()==0){
         cout<<"kartu masih kosong"<<endl;
     }else {

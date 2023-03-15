@@ -20,10 +20,10 @@ using namespace std;
 int actChoose(){
     int choose;
     cout<<"Silakan pilih aksi"<<endl;
-    cout<<"1.  Next\n2.  Double\n3.  Half\n4.  Quarter\n5.  Quadruple\n6.  ReRoll\n7.  Reverse\n8.  Switch\n9.  Swap\n10. AbilityLess\n11. Melihat kartu yang dimiliki"<<endl;
+    cout<<"1.  Next\n2.  Double\n3.  Half\n4.  Quarter\n5.  Quadruple\n6.  ReRoll\n7.  Reverse\n8.  Switch\n9.  Swap\n10. AbilityLess\n11. Melihat kartu yang dimiliki\n12. Melihat poin yang dimiliki"<<endl;
     cout<<">>";
     cin>>choose;
-    while (choose<1||choose>11){
+    while (choose<1||choose>12){
         cout<<"input salah, silakan ulang"<<endl;
         cout<<">>";
         cin>>choose;
@@ -59,11 +59,14 @@ int main(){
     SetGame game(7,fileSourceCardChoose);
 
     while (game.getRound()<7){
-        cout<<"Ronde ke-"<<game.getRound()<<endl;
-        while (playerTurn<8){
+        cout<<"RONDE "<<game.getRound()<<"\n"<<endl;
 
+
+        while (playerTurn<8){
+            table.showTable();
+            cout<<endl;
             playerCurrentTurn = game.playerTurn();
-            cout<<"Player ke-"<<playerCurrentTurn->getTurn()<<endl;
+            cout<<"PLAYER "<<playerCurrentTurn->getTurn()<<endl;
             int choose = actChoose();
 
             bool rightChoose = false;
@@ -189,13 +192,15 @@ int main(){
                     case 11:
                         playerCurrentTurn->printCards();
                         break;
+                    case 12:
+                        cout<<"Point kamu adalah : "<<playerCurrentTurn->getPoint()<<endl;
 
                 }
                 if(!rightChoose) {
                     cout << "Silakan masukkan pilihan lagi: " << endl;
                     cout << ">>";
                     cin >> choose;
-                    while (choose>11||choose<1){
+                    while (choose>12||choose<1){
                         cout<<"input salah!"<<endl;
                         cout<<">>";
                         cin>>choose;
