@@ -14,7 +14,7 @@ public:
     ~Combination();
     vector<Card*> isStraightFlush(Player &player, Table &tableCard);
     int isFourOfAKind(Player &player, Table &tableCard);
-    int isFullHouse(Player &player, Table &tableCard);
+    vector<Card*> isFullHouse(Player &player, Table &tableCard);
     vector<Card*> isFlush(Player &player, Table &tableCard);
     vector<Card*> isStraight(Player &player, Table &tableCard);
     vector<Card*> isThreeOfAKind(Player &player, Table &tableCard);

@@ -16,58 +16,93 @@ int main(){
         cout << "Inputan tidak valid\nApakah ingin menggunakan file kartu dari txt ?(Y/N) ";
         cin >> c;
     }
-    if(c == 'Y' or c == 'y') path = ".././config/card.txt";
+    if(c == 'Y' or c == 'y') path = "./config/card.txt";
     else if(c == 'N' or c == 'n') path = "";
 
     // buat pathnya belom
     SetGame s(7,path);
+    s.shareCardToPlayer(2);
+    s.shareAbilityCard();
 
-//     Table t;
-//     Card c1("M",1);
-//     Card c2("B",2);
-//     Card c3("H",3);
-//     Card c4("K",3);
-//     Card c5("H",4);
-//     Card c6("K",5);
-//     Card c7("B",6);
+    Table t;
+    Card c1("M",6);
+    Card c2("K",8);
+    Card c3("B",8);
+    Card c4("M",8);
+    Card c5("M",10);
+    Card c6("H",8);
+    Card c7("B",6);
 
-//     t.addCard(c2);
-//     t.addCard(c4);
-//     t.addCard(c5);
-//     t.addCard(c6);
-//     t.addCard(c3);
-//     Player p("cek");
-//     p.addCard(c1);
-//     p.addCard(c7);
+    t.addCard(c2);
+    t.addCard(c4);
+    t.addCard(c5);
+    t.addCard(c1);
+    t.addCard(c3);
+    Player p("cek");
+    p.addCard(c6);
+    p.addCard(c7);
 
-
-
-//     PlayerAction pA;
-
-//     pA.reverseCard(p,s);
-
-// //    for(int i=0;i<s.getPlayers().size();i++){
-// //        cout<<s.getPlayers()[i]->getTurn()<<endl;
-// //    }
+//    for(int i=0;i<s.getPlayers().size();i++){
+//        cout<<s.getPlayers()[i]->getTurn()<<endl;
+//    }
 //     // cout << "tes c\n";
 //     // cout << p.getCardsPlayer()[0]->getNameCard() << endl;
 //     // cout << p.getCardsPlayer()[1]->getNameCard() << endl;
 
-//     Combination c;
-//     // vector <Card*> v = c.isStraightFlush(p,t);
-//     // cout << c.isFourOfAKind(p,t)<<endl;
-// //    vector<Card*> itIs=c.isStraight(p,t);
-// //    for(int i=0;i<itIs.size();i++) cout <<itIs[i]->getNumberCard()  << endl;
+    Combination comb;
 
-//     // cout << c.isFlush(p,t) << endl;
-//     // cout << "v size : " << v.size() << endl;
-//     // cout << v[4]->getNumberCard() << endl;
-//     // cout << v[4]->getNameCard() << endl;
-//     // for(auto x : v) {
-//     //     cout << x->getNameCard() << "   " << x->getNumberCard() << endl;
-//     //     // cout << x->getNameCard() << endl;
-//     //     // cout << x->getNumberCard() << endl;
-//     // }
+    // cout << comb.isFourOfAKind(p,t) << endl;
+
+    vector <Card*> v = comb.isOnePair(p,t);
+    if(v.size() == 0) cout << "gaaada isinya\n";
+    else{
+        for(auto x : v) {
+            cout << x->getNameCard() << "   " << x->getNumberCard() << endl;
+            // cout << x->getNameCard() << endl;
+            // cout << x->getNumberCard() << endl;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // cout << comb.isFourOfAKind(p,t)<<endl;
+
+    // cout << c.isFlush(p,t) << endl;
+    // cout << "v size : " << v.size() << endl;
+    // cout << v[4]->getNumberCard() << endl;
+    // cout << v[4]->getNameCard() << endl;
+
+
+//     PlayerAction pA;
+
+//     cout << s.getPlayers()[0]->getCardsPlayer()[2]->getNameCard()<<endl;
+// try{
+//     pA.swapCard(*s.getPlayers()[0],s);
+// }catch(notHaveReRoll e){
+//     cout<<e.what()<<endl;
+// }
+
 
 //     return 0;
 }
