@@ -17,12 +17,8 @@ void SwitchAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(
-            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Switch"||
-            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
-                    )
-            )
-        throw notHaveSwitchCard();
+    if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveSwitchCard();
+    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Switch")) throw notHaveSwitchCard();
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw switchIsDeath();
 
     vector<Player*> allPlayers;

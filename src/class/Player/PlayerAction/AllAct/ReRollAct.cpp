@@ -16,14 +16,8 @@ void ReRollAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(
-            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="ReRoll"||
-            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
-                    )
-            )
-        throw notHaveReRollCard();
-
-
+    if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveReRollCard();
+    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="ReRoll")) throw notHaveReRollCard();
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw reRollIsDeath();
 
 

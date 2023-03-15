@@ -13,5 +13,5 @@ DoubleAct::DoubleAct(Player &p, SetGame &s): Action() {
 void DoubleAct::Act() {
     long pointBeforeAction = this->s->getPointGame();
     this->s->setPoint(this->s->getPointGame()*2);
-    cout << this->p << "melakukan DOUBLE!" << "Poin hadiah naik dari " << pointBeforeAction << " menjadi " << this->s->getPointGame() << endl;
+    cout <<"Player-"<< this->p->getTurn() << " melakukan DOUBLE!" << "Poin hadiah naik dari " << pointBeforeAction << " menjadi " << this->s->getPointGame() << endl;
 }

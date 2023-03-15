@@ -3,90 +3,189 @@
 #include "class/Combination/Combination.hpp"
 #include "class/Player/PlayerAction/Action.hpp"
 #include "class/Player/PlayerAction/AllAct/SwapAct.hpp"
+#include "class/Player/PlayerAction/AllAct/NextAct.hpp"
+#include "class/Player/PlayerAction/AllAct/DoubleAct.hpp"
+#include "class/Player/PlayerAction/AllAct/HalfAct.hpp"
 #include "class/Player/PlayerAction/AllAct/ReverseAct.hpp"
 #include "class/Player/PlayerAction/AllAct/QuadrupleAct.hpp"
 #include "class/Player/PlayerAction/AllAct/QuarterAct.hpp"
 #include "class/Player/PlayerAction/AllAct/SwitchAct.hpp"
 #include "class/Player/PlayerAction/AllAct/ReRollAct.hpp"
 #include "class/Player/PlayerAction/AllAct/AbilityLessAct.hpp"
+#include "class/Splash/Splash.hpp"
 #include "class/Ability/AbilityCard.hpp"
 
 using namespace std;
 
-int main(){
-    SetGame s(7);
-    s.shareCardToPlayer(2);
-    s.shareAbilityCard();
-
-    Table t;
-    Card c1("M",1);
-    Card c2("B",2);
-    Card c3("H",3);
-    Card c4("K",3);
-    Card c5("H",4);
-    Card c6("K",5);
-    Card c7("B",6);
-
-    t.addCard(c2);
-    t.addCard(c4);
-    t.addCard(c5);
-    t.addCard(c6);
-    t.addCard(c3);
-//    t.addCard(c4);
-//    t.addCard(c5);
-    Player p("cek");
-    p.addCard(c1);
-    p.addCard(c7);
-
-    cout<<s.getPlayers()[0]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[1]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[2]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[3]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[4]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[5]->getAbility()[0]->getNameCard()<<endl;
-    cout<<s.getPlayers()[6]->getAbility()[0]->getNameCard()<<endl;
-
-    Action *action = new QuarterAct(*s.getPlayers()[6],s);
-
-    try {
-
-//        pA.switchCard(*s.getPlayers()[5], s);
-    action->Act();
-
-    }catch (notHaveQuarterCard e){
-        cout<<e.what()<<endl;
+int actChoose(){
+    int choose;
+    cout<<"Silakan pilih aksi"<<endl;
+    cout<<"1.  Next\n2.  Double\n3.  Half\n4.  Quarter\n5.  Quadruple\n6.  ReRoll\n7.  Reverse\n8.  Switch\n9.  Swap\n10. AbilityLess"<<endl;
+    cout<<">>";
+    cin>>choose;
+    while (choose<1||choose>>10){
+        cout<<"input salah, silakan ulang"<<endl;
+        cout<<">>";
+        cin>>choose;
     }
-    cout<<s.getPlayers()[0]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[1]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[2]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[3]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[4]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[5]->getAbility()[0]->getIsCardUsed()<<endl;
-    cout<<s.getPlayers()[6]->getAbility()[0]->getIsCardUsed()<<endl;
+    return choose;
+}
 
 
-//    for(int i=0;i<s.getPlayers().size();i++){
-//        cout<<s.getPlayers()[i]->getTurn()<<endl;
-//    }
-    // cout << "tes c\n";
-    // cout << p.getCardsPlayer()[0]->getNameCard() << endl;
-    // cout << p.getCardsPlayer()[1]->getNameCard() << endl;
+int main(){
+    Splash splash;
+    Table table;
+    Player* playerCurrentTurn;
+    Action* action;
+    int playerTurn=1;
+    int fileSourceCardChoose;
 
-    Combination c;
-    // vector <Card*> v = c.isStraightFlush(p,t);
-    // cout << c.isFourOfAKind(p,t)<<endl;
-//    vector<Card*> itIs=c.isStraight(p,t);
-//    for(int i=0;i<itIs.size();i++) cout <<itIs[i]->getNumberCard()  << endl;
+    splash.SplashOpening();
 
-    // cout << c.isFlush(p,t) << endl;
-    // cout << "v size : " << v.size() << endl;
-    // cout << v[4]->getNumberCard() << endl;
-    // cout << v[4]->getNameCard() << endl;
-    // for(auto x : v) {
-    //     cout << x->getNameCard() << "   " << x->getNumberCard() << endl;
-    //     // cout << x->getNameCard() << endl;
-    //     // cout << x->getNumberCard() << endl;
-    // }
+    cout<<"Apakah anda ingin kartu diacak sesuai card.txt:"<<endl;
+    cout<<"1. Ya\n2. Tidak"<<endl;
+    cout<<">>";
+    cin>>fileSourceCardChoose;
 
+    while (fileSourceCardChoose>2||fileSourceCardChoose<1){
+        cout<<"input salah"<<endl;
+        cout<<">>";
+        cin>>fileSourceCardChoose;
+    }
+
+
+
+
+    SetGame game(7,fileSourceCardChoose);
+
+    while (game.getRound()<7){
+        cout<<"Ronde ke-"<<game.getRound()<<endl;
+        while (playerTurn<8){
+
+            playerCurrentTurn = game.playerTurn();
+            cout<<"Player ke-"<<playerCurrentTurn->getTurn()<<endl;
+            int choose = actChoose();
+
+            bool rightChoose = false;
+            while (!rightChoose) {
+                switch (choose) {
+                    case 1:
+                        action = new NextAct(*playerCurrentTurn, game);
+                        action->Act();
+                        rightChoose = true;
+                        break;
+                    case 2:
+                        action = new DoubleAct(*playerCurrentTurn, game);
+                        action->Act();
+                        rightChoose = true;
+                        game.nextTurn();
+                        break;
+                    case 3:
+                        action = new HalfAct(*playerCurrentTurn, game);
+                        action->Act();
+                        rightChoose = true;
+                        game.nextTurn();
+                        break;
+                    case 4:
+                        action = new QuarterAct(*playerCurrentTurn, game);
+
+                        try {
+                            action->Act();
+                            cout<<"teset"<<endl;
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveQuarterCard e) {
+                            cout << e.what() << endl;
+                        } catch (quarterIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 5:
+                        action = new QuadrupleAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveQuadrupleCard e) {
+                            cout << e.what() << endl;
+                        } catch (quadrupleIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 6:
+                        action = new ReRollAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveReRollCard e) {
+                            cout << e.what() << endl;
+                        } catch (reRollIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 7:
+                        action = new ReverseAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveReverseCard e) {
+                            cout << e.what() << endl;
+                        } catch (reverseIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 8:
+                        action = new SwitchAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveSwitchCard e) {
+                            cout << e.what() << endl;
+                        } catch (switchIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 9:
+                        action = new SwapAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveSwapCard e) {
+                            cout << e.what() << endl;
+                        } catch (swapIsDeath e) {
+                            cout << e.what() << endl;
+                        }
+                        break;
+                    case 10:
+                        action = new AbilityLessAct(*playerCurrentTurn, game);
+                        try {
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                        } catch (notHaveAbilityCard e) {
+                            cout << e.what() << endl;
+                        } catch (allCardUsed e){
+                            cout<<e.what()<<endl;
+                        }
+                        break;
+                }
+                if(!rightChoose) {
+                    cout << "silakan masukan lagi karena pilihan anda tidak valid" << endl;
+                    cout << ">>";
+                    cin >> choose;
+                }
+            }
+            playerTurn++;
+        }
+        playerTurn=1;
+        game.endRound(table);
+    }
+
+
+    splash.SplashClosing();
     return 0;
 }

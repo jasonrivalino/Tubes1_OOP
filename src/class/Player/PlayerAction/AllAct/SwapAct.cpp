@@ -17,14 +17,8 @@ void SwapAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(!(
-            this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Swap"||
-            this->s->getPlayers()[idxPlayer]->getAbility().size()==0
-                    )
-            )
-        throw notHaveSwapCard();
-
-
+    if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveSwapCard();
+    if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Swap")) throw notHaveSwapCard();
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw swapIsDeath();
 
     vector<Player*> allPlayers;
@@ -35,7 +29,6 @@ void SwapAct::Act() {
             allPlayers.push_back(this->s->getPlayers()[i]);
         }
     }
-
 
 
     cout<<"Player "<<this->p->getTurn()<<" melakukan Swap"<<endl;

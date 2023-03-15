@@ -47,6 +47,7 @@ bool ReRoll::getIsCardUsed() const {return this->isUsed;}
 
 
 void ReRoll::effect(Player &p,SetGame &s){
+    cout<<"Player-"<<p.getTurn()<<" melakukan ReRoll"<<endl;
     p.removeFirstCard();
     p.removeFirstCard();
     p.addCardSpesPos(*s.getCards()[s.getSizeCards()-1],0);

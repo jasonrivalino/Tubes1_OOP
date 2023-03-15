@@ -5,11 +5,14 @@
 #include "SetGame.hpp"
 
 
-int SetGame::turn=1;
 
-SetGame::SetGame(int jumPlayer, string path) {
-
+SetGame::SetGame(int jumPlayer,int choose) {
+    string path;
+    this->turn=1;
+    this->round=1;
     this->pointGame=64;
+
+
 
     string warna[4] = {"Kuning","Hijau","Merah","Biru"};
     for(int i=1;i<jumPlayer+1;i++){
@@ -24,7 +27,7 @@ SetGame::SetGame(int jumPlayer, string path) {
     this->ability.push_back(new Abilityless);
 
     random_shuffle(this->ability.begin(), this->ability.end());
-    if(path == "") {
+    if(choose==2) {
         for(int i=0;i<52;i++){
             int numCard = i%13+1;
             int numWarna = i/13;
@@ -80,15 +83,15 @@ SetGame::SetGame(int jumPlayer, string path) {
 
         inFile.close();
     }
+
+    this->shareCardToPlayer(2);
 }
 SetGame::~SetGame() {
     this->ability.clear();
     this->cards.clear();
     this->players.clear();
 }
-int SetGame::getSizeCards() {
-    return this->cards.size();
-}
+
 void SetGame::addCard(Card card) {
     this->cards.push_back(&card);
 }
@@ -116,6 +119,11 @@ void SetGame::shareCardToPlayer(int shareCard) {
         this->cards.pop_back();
     }
 }
+void SetGame::shareCardToTable(Table& t) {
+    t.addCard(*this->cards[this->cards.size()-1]);
+
+    this->cards.pop_back();
+}
 void SetGame::shareAbilityCard() {
     for(int i=0;i< this->players.size();i++) this->players[i]->addAbilityCard(*this->ability[i]);
     this->removeAbilityCards();
@@ -125,7 +133,12 @@ void SetGame::printCards() {
         cout<< this->cards[i]->getNameCard()<<" "<< this->cards[i]->getNumberCard()<<endl;
     }
 }
-void SetGame::endRound(Player &playerWin) {
+void SetGame::endRound(Table& t) {
+
+    this->round++;
+    if(round==7) return;
+    if(round==2) this->shareAbilityCard();
+    if(round>1) this->shareCardToTable(t);
 
 
 
@@ -138,42 +151,41 @@ void SetGame::endRound(Player &playerWin) {
 
 
 
-    this->pointGame=64;
-
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+//    this->pointGame=64;
 
 
-    this->cards.clear();
 
-    this->ability.push_back(new ReRoll);
-    this->ability.push_back(new Quadruple);
-    this->ability.push_back(new Quarter);
-    this->ability.push_back(new ReverseDirection);
-    this->ability.push_back(new SwapCard);
-    this->ability.push_back(new Switch);
-    this->ability.push_back(new Abilityless);
-    random_shuffle(this->ability.begin(), this->ability.end());
+//    this->cards.clear();
 
-    for(int i=0;i<52;i++){
-        int numCard = i%13+1;
-        int numWarna = i/13;
+//    this->ability.push_back(new ReRoll);
+//    this->ability.push_back(new Quadruple);
+//    this->ability.push_back(new Quarter);
+//    this->ability.push_back(new ReverseDirection);
+//    this->ability.push_back(new SwapCard);
+//    this->ability.push_back(new Switch);
+//    this->ability.push_back(new Abilityless);
+//    random_shuffle(this->ability.begin(), this->ability.end());
 
-        this->cards.push_back(new Card(warna[numWarna],numCard));
-    }
-    random_shuffle(this->cards.begin(), this->cards.end());
+//    for(int i=0;i<52;i++){
+//        int numCard = i%13+1;
+//        int numWarna = i/13;
+//
+//        this->cards.push_back(new Card(warna[numWarna],numCard));
+//    }
+//    random_shuffle(this->cards.begin(), this->cards.end());
+//
+//    if(this->players[1]->getTurn()-this->players[0]->getTurn()==-1){
+//        reverseTurn();
+//    }
 
-    if(this->players[1]->getTurn()-this->players[0]->getTurn()==-1){
-        reverseTurn();
-    }
-
-    int idxPlayer=0;
-    for(int i=0;i< this->players.size();i++){
-        if(*this->players[i]==playerWin) idxPlayer=i;
-    }
-
-
-    this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+this->pointGame);
-    this->pointGame=64;
+//    int idxPlayer=0;
+//    for(int i=0;i< this->players.size();i++){
+//        if(*this->players[i]==playerWin) idxPlayer=i;
+//    }
+//
+//
+//    this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+this->pointGame);
+//    this->pointGame=64;
 }
 void SetGame::reverseTurn() {
     if(this->turn>4) this->turn-=(this->turn-4);
@@ -181,25 +193,34 @@ void SetGame::reverseTurn() {
     reverse(this->players.begin(), this->players.end());
 }
 void SetGame::nextTurn() {
-    turn++;
+    if(turn==7) turn=1; else turn++;
 }
 void SetGame::setTurn(int t) {
     turn=t-1;
 }
 
-vector<Card*> SetGame::getCards() {
+vector<Card*> SetGame::getCards() const {
     return this->cards;
 }
-vector<Ability*> SetGame::getAbilityCards() {
+vector<Ability*> SetGame::getAbilityCards() const {
     return this->ability;
 }
-vector<Player*> SetGame::getPlayers() {
+vector<Player*> SetGame::getPlayers() const{
     return this->players;
 }
 Player* SetGame::playerTurn() const {
     return this->players[this->turn-1];
 }
 
-long int SetGame::getPointGame() {
+long int SetGame::getPointGame() const{
     return this->pointGame;
+}
+int SetGame::getSizeCards() const {
+    return this->cards.size();
+}
+int SetGame::getTurn() const {
+    return this->turn;
+}
+int SetGame::getRound() const {
+    return this->round;
 }

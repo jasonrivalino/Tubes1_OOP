@@ -15,6 +15,7 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 
 class Player;
 class Ability;
@@ -24,11 +25,12 @@ private:
     vector<Card*> cards;
     vector<Player*> players;
     vector<Ability*> ability;
-    static int turn;
+    int round;
+    int turn;
     long int pointGame;
 public:
 
-    SetGame(int jumPlayer);
+    SetGame(int,int);
     ~SetGame();
 
     void addCard(Card card);
@@ -36,22 +38,25 @@ public:
     void removeFirstCard();
     void removeAbilityCards();
     void shareCardToPlayer(int shareCard);
+    void shareCardToTable(Table&);
     void shareAbilityCard();
-    void endRound(Player &playerWin);
+    void endRound(Table&);
     void setPoint(long);
     void reverseTurn();
-
-
-    vector<Ability*> getAbilityCards();
-    vector<Card*> getCards();
-    vector<Player*> getPlayers();
-    Player* playerTurn() const;
-    int getSizeCards();
     void showAllPoint();
     void printCards();
     void nextTurn();
     void setTurn(int);
-    long int getPointGame();
+
+
+    vector<Ability*> getAbilityCards() const;
+    vector<Card*> getCards() const;
+    vector<Player*> getPlayers() const;
+    Player* playerTurn() const;
+    int getSizeCards() const;
+    int getTurn() const;
+    int getRound() const;
+    long int getPointGame() const;
 };
 
 

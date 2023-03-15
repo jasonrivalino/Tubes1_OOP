@@ -14,6 +14,6 @@ void HalfAct::Act() {
     long pointBeforeAction = this->s->getPointGame();
     if (pointBeforeAction != 1) {
         this->s->setPoint(this->s->getPointGame()/2);
-        cout << this->p << "melakukan HALF!" << "Poin hadiah turun dari " << pointBeforeAction << " menjadi " << this->s->getPointGame() << endl;
+        cout <<"Player-"<< this->p->getTurn() << " melakukan HALF!" << "Poin hadiah turun dari " << pointBeforeAction << " menjadi " << this->s->getPointGame() << endl;
     }
 }
