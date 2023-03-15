@@ -39,9 +39,16 @@ void Player::printCards(){
         cout << "No cards" << endl;
     }
     else{
+        cout<<"Kartu reguler:"<<endl;
         for(int i = 0; i < cards.size();i++){
         cout << cards[i]->getNameCard() << " " << cards[i]->getNumberCard() << endl;
-    }
+        }
+        cout<<"Kartu Ability:"<<endl;
+        if(this->abilityCard.size()==0)
+            cout<<"kamu masih belum memiliki kartu ability"<<endl;
+        else
+            cout<< this->abilityCard[0]->getNameCard()<<endl;
+
     }
 }
 void Player::setPoint(int point) {

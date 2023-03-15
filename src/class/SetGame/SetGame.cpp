@@ -139,6 +139,7 @@ void SetGame::endRound(Table& t) {
     if(round==7) return;
     if(round==2) this->shareAbilityCard();
     if(round>1) this->shareCardToTable(t);
+    if (this->turn == 7) this->turn = 1; else this->turn++;
 
 
 
@@ -188,8 +189,7 @@ void SetGame::endRound(Table& t) {
 //    this->pointGame=64;
 }
 void SetGame::reverseTurn() {
-    if(this->turn>4) this->turn-=(this->turn-4);
-    if(this->turn<4) this->turn+=(this->turn-4);
+    this->turn=(8- this->turn);
     reverse(this->players.begin(), this->players.end());
 }
 void SetGame::nextTurn() {

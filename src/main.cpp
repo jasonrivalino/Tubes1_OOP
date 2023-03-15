@@ -20,10 +20,10 @@ using namespace std;
 int actChoose(){
     int choose;
     cout<<"Silakan pilih aksi"<<endl;
-    cout<<"1.  Next\n2.  Double\n3.  Half\n4.  Quarter\n5.  Quadruple\n6.  ReRoll\n7.  Reverse\n8.  Switch\n9.  Swap\n10. AbilityLess"<<endl;
+    cout<<"1.  Next\n2.  Double\n3.  Half\n4.  Quarter\n5.  Quadruple\n6.  ReRoll\n7.  Reverse\n8.  Switch\n9.  Swap\n10. AbilityLess\n11. Melihat kartu yang dimiliki"<<endl;
     cout<<">>";
     cin>>choose;
-    while (choose<1||choose>>10){
+    while (choose<1||choose>11){
         cout<<"input salah, silakan ulang"<<endl;
         cout<<">>";
         cin>>choose;
@@ -172,11 +172,20 @@ int main(){
                             cout<<e.what()<<endl;
                         }
                         break;
+                    case 11:
+                        playerCurrentTurn->printCards();
+                        break;
+
                 }
                 if(!rightChoose) {
-                    cout << "silakan masukan lagi karena pilihan anda tidak valid" << endl;
+                    cout << "Silakan masukkan pilihan lagi: " << endl;
                     cout << ">>";
                     cin >> choose;
+                    while (choose>11||choose<1){
+                        cout<<"input salah!"<<endl;
+                        cout<<">>";
+                        cin>>choose;
+                    }
                 }
             }
             playerTurn++;

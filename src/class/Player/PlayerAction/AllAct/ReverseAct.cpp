@@ -19,9 +19,11 @@ void ReverseAct::Act() {
 
     if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveReverseCard();
     if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Reverse")) throw notHaveReverseCard();
+
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw reverseIsDeath();
 
 
     this->effect(*p,*s);
+    this->p->getAbility()[0]->setIsCardUsed(true);
 }
 
