@@ -8,7 +8,7 @@ class ThreeOfAKind : public Combination{
     public: 
         ThreeOfAKind(Player &player, Table &tableCard);
         ~ThreeOfAKind();
-        vector<Card*> comb();
+        vector<Card*> combThreeOfAKind();
     private:
         Player* p;
         Table* t;

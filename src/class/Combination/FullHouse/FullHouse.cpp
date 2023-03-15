@@ -10,7 +10,7 @@ FullHouse::~FullHouse(){
     delete t;
 }
 
-vector<Card*> comb() {
+vector<Card*> FullHouse :: combFullHouse() {
     vector <Card*> ret;
     vector <Card*> threeKindCard;
     vector <Card*> twoKindCard;
@@ -18,8 +18,8 @@ vector<Card*> comb() {
     vector<Card*> allCard;
     bool pcard = false;
  
-    for(int i = 0 ; i < tableCard.getCards().size(); i++) allCard.push_back(tableCard.getCards()[i]);
-    for(int i = 0 ; i < player.getCardsPlayer().size(); i++) allCard.push_back(player.getCardsPlayer()[i]);
+    for(int i = 0 ; i < t->getCards().size(); i++) allCard.push_back(t->getCards()[i]);
+    for(int i = 0 ; i < p->getCardsPlayer().size(); i++) allCard.push_back(p->getCardsPlayer()[i]);
     for(int i = 0 ; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
     sort(forSort.begin(), forSort.end());
  
@@ -123,9 +123,9 @@ vector<Card*> comb() {
             for(int i = 0 ; i < threeKindCard.size(); i++) ret.push_back(threeKindCard[i]);
             for(int i = 0 ; i < twoKindCard.size(); i++) ret.push_back(twoKindCard[i]);
  
-            for(int i = 0 ; i < player.getCardsPlayer().size(); i ++){
+            for(int i = 0 ; i < p->getCardsPlayer().size(); i ++){
                 for(int j = 0; j < ret.size(); j ++){
-                    if(player.getCardsPlayer()[i] == ret[j]){
+                    if(p->getCardsPlayer()[i] == ret[j]){
                         pcard = true;
                         break;
                     }
@@ -138,14 +138,14 @@ vector<Card*> comb() {
                 bool ijo = true;
                 int looooop = 0;
                 int cekthree = -99, cektwo = -99;
-                for(int i = 0; i < player.getCardsPlayer().size(); i ++){
-                    if(player.getCardsPlayer()[i]->getNumberCard() == threeKind){
+                for(int i = 0; i < p->getCardsPlayer().size(); i ++){
+                    if(p->getCardsPlayer()[i]->getNumberCard() == threeKind){
                         cekthree = i;
                         break;
                     }
-                    else if(player.getCardsPlayer()[i]->getNumberCard() == twoKind){
+                    else if(p->getCardsPlayer()[i]->getNumberCard() == twoKind){
                         if(looooop == 0){
-                            if(player.getCardsPlayer()[i]->getNameCard() != "H"){
+                            if(p->getCardsPlayer()[i]->getNameCard() != "H"){
                                 ijo = false;
                                 cektwo = i;
                             }
@@ -179,7 +179,7 @@ vector<Card*> comb() {
                             break;
                         }
                     }
-                    ret.insert(ret.begin(), player.getCardsPlayer()[cekthree]);
+                    ret.insert(ret.begin(), p->getCardsPlayer()[cekthree]);
                 }
                 else if(cektwo != -99){
                     for(int i = 3 ; i < 5; i++){
@@ -196,7 +196,7 @@ vector<Card*> comb() {
                             break;
                         }
                     }
-                    ret.insert(ret.begin()+3, player.getCardsPlayer()[cektwo]);
+                    ret.insert(ret.begin()+3, p->getCardsPlayer()[cektwo]);
                 }
                 return ret;
             }

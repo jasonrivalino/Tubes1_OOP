@@ -5,7 +5,12 @@ Flush :: Flush (Player &p, Table &t) : Combination() {
     this->t = &t;
 }
 
-vector<Card*> Flush :: comb() {
+Flush :: ~Flush() {
+    delete p;
+    delete t;
+}
+
+vector<Card*> Flush :: combFlush() {
     vector<Card*> ret;
     vector<int> forSort;
     vector<Card*> allCard;

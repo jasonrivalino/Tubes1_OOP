@@ -10,18 +10,18 @@ FourOfAKind::~FourOfAKind(){
     delete t;
 }
 
-vector<Card*> comb() {
+int FourOfAKind :: combFourOfAKind() {
     int ret;
     vector<int> forSort;
     vector<Card*> allCard;
  
     bool pcard = false;
  
-    for (int i = 0; i < tableCard.getCards().size(); i++) {
-        allCard.push_back(tableCard.getCards()[i]);
+    for (int i = 0; i < t->getCards().size(); i++) {
+        allCard.push_back(t->getCards()[i]);
     }
-    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-        allCard.push_back(player.getCardsPlayer()[i]);
+    for (int i = 0; i < p->getCardsPlayer().size(); i++) {
+        allCard.push_back(p->getCardsPlayer()[i]);
     }
     for (int i = 0; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
     sort(forSort.begin(), forSort.end());
@@ -32,8 +32,8 @@ vector<Card*> comb() {
             counter++;
             if (counter == 4) {
                 ret = forSort[i];
-                for (int j=0; j < player.getCardsPlayer().size(); j++) {
-                    if(player.getCardsPlayer()[j]->getNumberCard() == ret) return ret;
+                for (int j=0; j < p->getCardsPlayer().size(); j++) {
+                    if(p->getCardsPlayer()[j]->getNumberCard() == ret) return ret;
                 }
                 return -99;
             }

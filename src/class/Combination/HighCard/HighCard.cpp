@@ -10,7 +10,7 @@ HighCard :: ~HighCard() {
     delete t;
 }
 
-vector<Card*> HighCard :: comb() {
+vector<Card*> HighCard :: combHighCard() {
     map <string, int> mp;
     mp["M"] = 4;
     mp["K"] = 3;
@@ -18,21 +18,21 @@ vector<Card*> HighCard :: comb() {
     mp["H"] = 1;
 
     vector<Card*> ret;
-    if(player.getCardsPlayer()[0]->getNumberCard() > player.getCardsPlayer()[1]->getNumberCard()){
-        ret.push_back(player.getCardsPlayer()[0]);
+    if(p->getCardsPlayer()[0]->getNumberCard() > p->getCardsPlayer()[1]->getNumberCard()){
+        ret.push_back(p->getCardsPlayer()[0]);
         return ret;
     }
-    else if (player.getCardsPlayer()[0]->getNumberCard() < player.getCardsPlayer()[1]->getNumberCard()){
-        ret.push_back(player.getCardsPlayer()[1]);
+    else if (p->getCardsPlayer()[0]->getNumberCard() < p->getCardsPlayer()[1]->getNumberCard()){
+        ret.push_back(p->getCardsPlayer()[1]);
         return ret;
     }
     else{
-        if(mp[player.getCardsPlayer()[0]->getNameCard()] > mp[player.getCardsPlayer()[1]->getNameCard()]){
-            ret.push_back(player.getCardsPlayer()[0]);
+        if(mp[p->getCardsPlayer()[0]->getNameCard()] > mp[p->getCardsPlayer()[1]->getNameCard()]){
+            ret.push_back(p->getCardsPlayer()[0]);
             return ret;
         }
         else{
-            ret.push_back(player.getCardsPlayer()[1]);
+            ret.push_back(p->getCardsPlayer()[1]);
             return ret;
         }
     }

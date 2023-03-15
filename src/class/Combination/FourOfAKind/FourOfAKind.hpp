@@ -6,12 +6,14 @@
 
 class FourOfAKind : public Combination{
     private:
-    Player* p;
-    Table* t; 
+        Player* p;
+        Table* t; 
+    
     public: 
         FourOfAKind(Player&, Table&);
         ~FourOfAKind();
-        vector<Card*> comb();
+        
+        int combFourOfAKind();
 };
 
 #endif

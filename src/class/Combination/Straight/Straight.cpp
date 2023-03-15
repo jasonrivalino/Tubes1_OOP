@@ -9,14 +9,14 @@ Straight::~Straight() {
     delete t;
 }
 
-vector<Card*> Straight::comb(){
+vector<Card*> Straight::combStraight(){
     vector<Card*> allCard;
     vector<int> forSort;
     vector<Card*> ret;
     bool pcard;
  
-    for(int i=0; i < player.getCardsPlayer().size(); i++) allCard.push_back(player.getCardsPlayer()[i]);
-    for(int i=0; i < tableCard.getCards().size(); i++) allCard.push_back(tableCard.getCards()[i]);
+    for(int i=0; i < p->getCardsPlayer().size(); i++) allCard.push_back(p->getCardsPlayer()[i]);
+    for(int i=0; i < t->getCards().size(); i++) allCard.push_back(t->getCards()[i]);
  
     //yang gw benerin
     //nanti panggil iStraight pas terakhir biar pas ke erase ga ngefek ke kombinasi lebih lanjut
@@ -77,7 +77,7 @@ vector<Card*> Straight::comb(){
                 for(int k = 0; k < allCard.size(); k++){
                     if(forSort[j] == allCard[k]->getNumberCard()) {
                         ret.push_back(allCard[k]);
-                        if(allCard[k] == player.getCardsPlayer()[0] || allCard[k] == player.getCardsPlayer()[1]) pcard = true;
+                        if(allCard[k] == p->getCardsPlayer()[0] || allCard[k] == p->getCardsPlayer()[1]) pcard = true;
  
                         continue;
                     }
@@ -86,7 +86,7 @@ vector<Card*> Straight::comb(){
                     for(int k = 0; k < allCard.size(); k ++) {
                         if(forSort[j-1] == allCard[k]->getNumberCard()){
                             ret.push_back(allCard[k]);
-                            if(allCard[k] == player.getCardsPlayer()[0] || allCard[k] == player.getCardsPlayer()[1]) pcard = true;
+                            if(allCard[k] == p->getCardsPlayer()[0] || allCard[k] == p->getCardsPlayer()[1]) pcard = true;
                             continue;
                         }
                     }

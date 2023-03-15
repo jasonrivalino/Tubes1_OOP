@@ -10,17 +10,19 @@ OnePair :: ~OnePair() {
     delete t;
 }
 
-vector<Card*> OnePair :: comb() {
+vector<Card*> OnePair :: combOnePair() {
     vector<Card*> ret;
     vector<int> forSort;
     vector<int> intPair;
+    vector<Card*> allCard;
+
     int countpair = 0;
  
-    for (int i = 0; i < tableCard.getCards().size(); i++) {
-        allCard.push_back(tableCard.getCards()[i]);
+    for (int i = 0; i < t->getCards().size(); i++) {
+        allCard.push_back(t->getCards()[i]);
     }
-    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-        allCard.push_back(player.getCardsPlayer()[i]);
+    for (int i = 0; i < p->getCardsPlayer().size(); i++) {
+        allCard.push_back(p->getCardsPlayer()[i]);
     }
     for (int i = 0; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
     sort(forSort.begin(), forSort.end());
@@ -48,9 +50,9 @@ vector<Card*> OnePair :: comb() {
     else{
         int idxplayercard;
         bool cek = false;
-        for(int i = 0 ; i < player.getCardsPlayer().size(); i++){
+        for(int i = 0 ; i < p->getCardsPlayer().size(); i++){
             for(int j = intPair.size() - 1 ; j >= 0; j--){
-                if(player.getCardsPlayer()[i]->getNumberCard() == intPair[j]){
+                if(p->getCardsPlayer()[i]->getNumberCard() == intPair[j]){
                     idxplayercard = j;
                     cek = true;
                 }
@@ -71,7 +73,7 @@ vector<Card*> OnePair :: comb() {
             if(pair1.size() == 3){
                 vector <int> nonpcard;
                 for(int i = 0; i < pair1.size(); i++){
-                    if(pair1[i] != player.getCardsPlayer()[0] and pair1[i] != player.getCardsPlayer()[1]){
+                    if(pair1[i] != p->getCardsPlayer()[0] and pair1[i] != p->getCardsPlayer()[1]){
                         nonpcard.push_back(i);
                     }
                 }
@@ -108,7 +110,7 @@ vector<Card*> OnePair :: comb() {
                 bool pcardmerah = false;
                 int idxpcard;
                 for(int i = 0 ; i < pair1.size(); i++){
-                    if((pair1[i] == player.getCardsPlayer()[0] or pair1[i] == player.getCardsPlayer()[1])){
+                    if((pair1[i] == p->getCardsPlayer()[0] or pair1[i] == p->getCardsPlayer()[1])){
                         if(pair1[i]->getNameCard() == "M") pcardmerah = true;
                         else idxpcard = i;
                         break;  

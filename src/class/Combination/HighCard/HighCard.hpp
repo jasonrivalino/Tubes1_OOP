@@ -1,12 +1,13 @@
 #ifndef HIGHCARD_H
 #define HIGHCARD_H
 #include "./../Combination.hpp"
+#include <map>
 
 class HighCard : public Combination {
     public:
         HighCard(Player&, Table&);
         ~HighCard();
-        vector<Card*> comb();
+        vector<Card*> combHighCard();
 
     private:
         Player* p;

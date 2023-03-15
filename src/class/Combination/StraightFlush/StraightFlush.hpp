@@ -10,7 +10,7 @@ class StraightFlush : public Combination{
     public:
         StraightFlush(Player &player, Table &tableCard);
         ~StraightFlush();
-        vector<Card*> comb();
+        vector<Card*> combStraightFlush();
 };
 
 #endif

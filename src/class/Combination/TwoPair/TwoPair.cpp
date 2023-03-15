@@ -10,18 +10,18 @@ TwoPair :: ~TwoPair() {
     delete t;
 }
 
-vector<Card*> TwoPair :: comb(){
+vector<Card*> TwoPair :: combTwoPair(){
     vector<Card*> allCard;
     vector<Card*> ret;
     vector<int> forSort;
     vector<int> intPair;
     int countpair = 0;
  
-    for (int i = 0; i < tableCard.getCards().size(); i++) {
-        allCard.push_back(tableCard.getCards()[i]);
+    for (int i = 0; i < t->getCards().size(); i++) {
+        allCard.push_back(t->getCards()[i]);
     }
-    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-        allCard.push_back(player.getCardsPlayer()[i]);
+    for (int i = 0; i < p->getCardsPlayer().size(); i++) {
+        allCard.push_back(p->getCardsPlayer()[i]);
     }
     for (int i = 0; i < allCard.size(); i++) forSort.push_back(allCard[i]->getNumberCard());
     sort(forSort.begin(), forSort.end());
@@ -50,12 +50,12 @@ vector<Card*> TwoPair :: comb(){
     else {
         int idxplayercard;
         bool cek = false;
-        for(int i = 0; i < player.getCardsPlayer().size(); i++){
+        for(int i = 0; i < p->getCardsPlayer().size(); i++){
             for(int j = intPair.size() - 1 ; j >= 0; j--){
-                // cout << "player card :" << player.getCardsPlayer()[i]->getNumberCard() << endl;
+                // cout << "player card :" << p->getCardsPlayer()[i]->getNumberCard() << endl;
                 // cout << "intpair : " << intPair[j] << endl;
                 // cout << "idxplayercard :" << idxplayercard << endl << endl;
-                if(player.getCardsPlayer()[i]->getNumberCard() == intPair[j]){
+                if(p->getCardsPlayer()[i]->getNumberCard() == intPair[j]){
                     idxplayercard = j;
                     cek = true;
                     // break;
@@ -78,7 +78,7 @@ vector<Card*> TwoPair :: comb(){
             if(pair1.size() == 3){
                 vector <int> nonpcard;
                 for(int i = 0; i < pair1.size(); i++){
-                    if(pair1[i] != player.getCardsPlayer()[0] and pair1[i] != player.getCardsPlayer()[1]){
+                    if(pair1[i] != p->getCardsPlayer()[0] and pair1[i] != p->getCardsPlayer()[1]){
                         nonpcard.push_back(i);
                     }
                 }
@@ -115,7 +115,7 @@ vector<Card*> TwoPair :: comb(){
                 bool pcardmerah = false;
                 int idxpcard;
                 for(int i = 0 ; i < pair1.size(); i++){
-                    if((pair1[i] == player.getCardsPlayer()[0] or pair1[i] == player.getCardsPlayer()[1])){
+                    if((pair1[i] == p->getCardsPlayer()[0] or pair1[i] == p->getCardsPlayer()[1])){
                         if(pair1[i]->getNameCard() == "M") pcardmerah = true;
                         else idxpcard = i;
                         break;  
@@ -147,7 +147,7 @@ vector<Card*> TwoPair :: comb(){
             if(pair2.size() == 3){
                 vector <int> nonpcard;
                 for(int i = 0; i < pair2.size(); i++){
-                    if(pair2[i] != player.getCardsPlayer()[0] and pair2[i] != player.getCardsPlayer()[1]){
+                    if(pair2[i] != p->getCardsPlayer()[0] and pair2[i] != p->getCardsPlayer()[1]){
                         nonpcard.push_back(i);
                     }
                 }
@@ -184,7 +184,7 @@ vector<Card*> TwoPair :: comb(){
                 bool pcardmerah = false;
                 int idxpcard;
                 for(int i = 0 ; i < pair2.size(); i++){
-                    if((pair2[i] == player.getCardsPlayer()[0] or pair2[i] == player.getCardsPlayer()[1])){
+                    if((pair2[i] == p->getCardsPlayer()[0] or pair2[i] == p->getCardsPlayer()[1])){
                         if(pair2[i]->getNameCard() == "M") pcardmerah = true;
                         else idxpcard = i;
                         break;  

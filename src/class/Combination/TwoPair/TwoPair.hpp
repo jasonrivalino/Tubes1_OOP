@@ -6,7 +6,7 @@ class TwoPair : public Combination {
     public:
         TwoPair(Player &p, Table &t);
         ~TwoPair();
-        vector<Card*> comb();
+        vector<Card*> combTwoPair();
     private:
     Player* p;
     Table* t;

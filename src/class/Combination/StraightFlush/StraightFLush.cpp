@@ -10,19 +10,20 @@ StraightFlush::~StraightFlush(){
     delete t;
 }
 
-vector<Card*> StraightFlush::comb(){
+vector<Card*> StraightFlush::combStraightFlush(){
     int count=0;
     int idx=99;
+    vector <Card*> allCard;
     vector <Card*> ret;
     
  
-    int sizeCardTable=tableCard.getCards().size();
-    for(int i=0;i<player.getCardsPlayer().size();i++){
+    int sizeCardTable=t->getCards().size();
+    for(int i=0;i<p->getCardsPlayer().size();i++){
         count=0;
         for(int j=0;j<sizeCardTable;j++){
  
  
-            if(player.getCardsPlayer()[i]->getNameCard()==tableCard.getCards()[j]->getNameCard()){
+            if(p->getCardsPlayer()[i]->getNameCard()==t->getCards()[j]->getNameCard()){
                 count++;
             }
         }
@@ -42,17 +43,17 @@ vector<Card*> StraightFlush::comb(){
  
         int countpcard = 1;
  
-        for(int i = 0; i < tableCard.getCards().size(); i++){
-            if (player.getCardsPlayer()[idx]->getNameCard() == tableCard.getCards()[i]->getNameCard()){
-                temp.push_back(tableCard.getCards()[i]);
+        for(int i = 0; i < t->getCards().size(); i++){
+            if (p->getCardsPlayer()[idx]->getNameCard() == t->getCards()[i]->getNameCard()){
+                temp.push_back(t->getCards()[i]);
             }
         }
  
         for (int i = 0; i < temp.size(); i++) allCard.push_back(temp[i]);
-        allCard.push_back(player.getCardsPlayer()[idx]);
+        allCard.push_back(p->getCardsPlayer()[idx]);
  
-        if(idx == 0 && player.getCardsPlayer()[idx]->getNameCard() == player.getCardsPlayer()[idx+1]->getNameCard()) {
-            allCard.push_back(player.getCardsPlayer()[idx+1]);
+        if(idx == 0 && p->getCardsPlayer()[idx]->getNameCard() == p->getCardsPlayer()[idx+1]->getNameCard()) {
+            allCard.push_back(p->getCardsPlayer()[idx+1]);
             countpcard ++;
         }
  
@@ -127,15 +128,15 @@ vector<Card*> StraightFlush::comb(){
                     }
                     cek ++ ;
                     if  (countpcard == 1 &&
-                        (forSort[j] == player.getCardsPlayer()[idx]->getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[idx]->getNumberCard() )){
+                        (forSort[j] == p->getCardsPlayer()[idx]->getNumberCard() ||
+                        forSort[j-1] == p->getCardsPlayer()[idx]->getNumberCard() )){
                             pcard = true;
                     }
                     else if (countpcard == 2 &&
-                        (forSort[j] == player.getCardsPlayer()[0]->getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[0]->getNumberCard() ||
-                        forSort[j] == player.getCardsPlayer()[1]->getNumberCard() ||
-                        forSort[j-1] == player.getCardsPlayer()[1]->getNumberCard()) ){
+                        (forSort[j] == p->getCardsPlayer()[0]->getNumberCard() ||
+                        forSort[j-1] == p->getCardsPlayer()[0]->getNumberCard() ||
+                        forSort[j] == p->getCardsPlayer()[1]->getNumberCard() ||
+                        forSort[j-1] == p->getCardsPlayer()[1]->getNumberCard()) ){
                             pcard = true;
                     }
                 }

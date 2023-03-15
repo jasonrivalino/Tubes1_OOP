@@ -7,7 +7,7 @@ class Straight : public Combination{
     public: 
         Straight(Player &player, Table &tableCard);
         ~Straight();
-        vector<Card*> comb();
+        vector<Card*> combStraight();
     private:
         Player* p;
         Table* t;

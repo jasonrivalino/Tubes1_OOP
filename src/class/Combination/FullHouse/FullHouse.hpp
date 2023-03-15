@@ -10,7 +10,7 @@ class FullHouse : public Combination{
     public:
         FullHouse(Player&, Table&);
         FullHouse();
-        vector<Card*> comb();
+        vector<Card*> combFullHouse();
 };
 
 #endif

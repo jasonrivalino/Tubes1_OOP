@@ -10,7 +10,7 @@ ThreeOfAKind::~ThreeOfAKind(){
     delete t;
 }
 
-vector<Card*> ThreeOfAKind::comb(){
+vector<Card*> ThreeOfAKind::combThreeOfAKind(){
     vector<Card*> allCard;
     vector<Card*> ret;
     vector<int> forSort;

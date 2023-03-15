@@ -8,7 +8,7 @@ class Flush : public Combination {
         Flush(Player&, Table&);
         ~Flush();
 
-        vector<Card*> comb();
+        vector<Card*> combFlush();
 
     private:
         Player* p;
