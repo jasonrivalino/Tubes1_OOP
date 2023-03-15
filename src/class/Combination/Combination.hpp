@@ -8,7 +8,6 @@ using namespace std;
 class Combination
 {
 private:
-    vector <Card*> allCard;
 public:
     Combination(/* args */);
     ~Combination();
