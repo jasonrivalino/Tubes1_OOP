@@ -10,7 +10,7 @@ class FourOfAKind : public Combination{
         Table* t; 
     
     public: 
-        FourOfAKind(Player&, Table&);
+        FourOfAKind(Player &Player, Table &tableCard);
         ~FourOfAKind();
         
         int combFourOfAKind();
