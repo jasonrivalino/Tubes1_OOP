@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "class/Combination/Combination.hpp"
 using namespace std;
 
 // Pure Virtual Class
@@ -14,6 +15,7 @@ class Calculable {
 class Cards : public Calculable {
     public:
         Cards (string, float);
+        string getSuit();
         float valueCards() override;
     protected:
         float value;
@@ -25,7 +27,9 @@ class Combo : public Calculable {
         Combo(vector<Cards>);
         float valueCards() override;
     protected:
-        vector<Cards> cards;
+        vector<Cards*> cards;
+        float value;
+        string suit;
 };
 
 class CardAce : public Cards {
@@ -106,52 +110,52 @@ class CardKing : public Cards {
         float valueCards() override;
 };
 
-// class OnePair : public Combo {
-//     public:
-//         OnePair(vector<Cards>);
-//         float valueCards() override;
-// };
+class OnePair : public Combo {
+    public:
+        OnePair(vector<Cards>);
+        float valueCards() override;
+};
 
-// class TwoPair : public Combo {
-//     public:
-//         TwoPair(vector<Cards>);
-//         float valueCards() override;
-// };
+class TwoPair : public Combo {
+    public:
+        TwoPair(vector<Cards>);
+        float valueCards() override;
+};
 
-// class ThreeOfKind : public Combo {
-//     public:
-//         ThreeOfKind(vector<Cards>);
-//         float valueCards() override;
-// };
+class ThreeOfKind : public Combo {
+    public:
+        ThreeOfKind(vector<Cards>);
+        float valueCards() override;
+};
 
-// class Straight : public Combo {
-//     public:
-//         Straight(vector<Cards>);
-//         float valueCards() override;
-// };
+class Straight : public Combo {
+    public:
+        Straight(vector<Cards>);
+        float valueCards() override;
+};
 
-// class Flush : public Combo {
-//     public:
-//         Flush(vector<Cards>);
-//         float valueCards() override;
-// };
+class Flush : public Combo {
+    public:
+        Flush(vector<Cards>);
+        float valueCards() override;
+};
 
-// class FullHouse : public Combo {
-//     public:
-//         FullHouse(vector<Cards>);
-//         float valueCards() override;
-// };
+class FullHouse : public Combo {
+    public:
+        FullHouse(vector<Cards>);
+        float valueCards() override;
+};
 
-// class FourOfKind : public Combo {
-//     public:
-//         FourOfKind(vector<Cards>);
-//         float valueCards() override;
-// };
+class FourOfKind : public Combo {
+    public:
+        FourOfKind(vector<Cards>);
+        float valueCards() override;
+};
 
-// class StraightFlush : public Combo {
-//     public:
-//         StraightFlush(vector<Cards>);
-//         float valueCards() override;
-// };
+class StraightFlush : public Combo {
+    public:
+        StraightFlush(vector<Cards>);
+        float valueCards() override;
+};
 
 #endif
