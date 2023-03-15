@@ -16,11 +16,11 @@ vector<Card*> ThreeOfAKind::combThreeOfAKind(){
     vector<int> forSort;
     bool pcard = false;
  
-    for (int i = 0; i < tableCard.getCards().size(); i++) {
-        allCard.push_back(tableCard.getCards()[i]);
+    for (int i = 0; i < t->getCards().size(); i++) {
+        allCard.push_back(t->getCards()[i]);
     }
-    for (int i = 0; i < player.getCardsPlayer().size(); i++) {
-        allCard.push_back(player.getCardsPlayer()[i]);
+    for (int i = 0; i < p->getCardsPlayer().size(); i++) {
+        allCard.push_back(p->getCardsPlayer()[i]);
     }
  
     for (int i = 0; i < allCard.size(); i ++) forSort.push_back(allCard[i]->getNumberCard());
@@ -31,28 +31,28 @@ vector<Card*> ThreeOfAKind::combThreeOfAKind(){
         if (forSort[i] == forSort[i + 1]) {
             counter ++ ;
             if (counter == 3) {
-                for(int j = 0; j < player.getCardsPlayer().size(); j++) {
-                    if(player.getCardsPlayer()[j]->getNumberCard() == forSort[i]){
+                for(int j = 0; j < p->getCardsPlayer().size(); j++) {
+                    if(p->getCardsPlayer()[j]->getNumberCard() == forSort[i]){
                         if(ret.size() == 0){
-                            ret.push_back(player.getCardsPlayer()[j]);
+                            ret.push_back(p->getCardsPlayer()[j]);
                         }
                         else{
                             if(ret[0]->getNameCard() == "K"){
-                                if(player.getCardsPlayer()[j]->getNameCard() == "M"){
+                                if(p->getCardsPlayer()[j]->getNameCard() == "M"){
                                     ret.clear();
-                                    ret.push_back(player.getCardsPlayer()[j]);
+                                    ret.push_back(p->getCardsPlayer()[j]);
                                 }
                             }
                             else if(ret[0]->getNameCard() == "B"){
-                                if(player.getCardsPlayer()[j]->getNameCard() == "M" or player.getCardsPlayer()[j]->getNameCard() == "K"){
+                                if(p->getCardsPlayer()[j]->getNameCard() == "M" or p->getCardsPlayer()[j]->getNameCard() == "K"){
                                     ret.clear();
-                                    ret.push_back(player.getCardsPlayer()[j]);
+                                    ret.push_back(p->getCardsPlayer()[j]);
                                 }
                             }
                             else if(ret[0]->getNameCard() == "H"){
-                                if(player.getCardsPlayer()[j]->getNameCard() == "M" or player.getCardsPlayer()[j]->getNameCard() == "K" or player.getCardsPlayer()[j]->getNameCard() == "B"){
+                                if(p->getCardsPlayer()[j]->getNameCard() == "M" or p->getCardsPlayer()[j]->getNameCard() == "K" or p->getCardsPlayer()[j]->getNameCard() == "B"){
                                     ret.clear();
-                                    ret.push_back(player.getCardsPlayer()[j]);
+                                    ret.push_back(p->getCardsPlayer()[j]);
                                 }
                             }
                         }
