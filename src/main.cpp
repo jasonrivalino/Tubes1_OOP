@@ -1,6 +1,6 @@
 
 #include "class/SetGame/SetGame.hpp"
-// #include "class/Combination/Combination.hpp"
+#include "class/Combination/Combination.hpp"
 #include "class/Player/PlayerAction/PlayerAction.hpp"
 #include "class/Ability/AbilityCard.hpp"
 #include "class/Card/Calculable/Calculable.hpp"

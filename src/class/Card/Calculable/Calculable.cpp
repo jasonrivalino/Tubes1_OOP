@@ -296,16 +296,18 @@ float CardKing::valueCards() {
     return this->value;
 }
 
-// OnePair::OnePair(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
-// }
+OnePair::OnePair(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
+    float maxHigh = 1.39;
+    // Akses kartu yang didapat
+    // Cari pasangan
+}
 
 // float OnePair::valueCards(){
 
 // }
 
 // TwoPair::TwoPair(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxOnePair = 2.75;
 // }
 
 // float TwoPair::valueCards(){
@@ -313,7 +315,7 @@ float CardKing::valueCards() {
 // }
 
 // ThreeOfKind::ThreeOfKind(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxTwoPair = 5.30;
 // }
 
 // float ThreeOfKind::valueCards(){
@@ -321,7 +323,7 @@ float CardKing::valueCards() {
 // }
 
 // Straight::Straight(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxThreeOfKind = 4.08;
 // }
 
 // float Straight::valueCards(){
@@ -329,7 +331,7 @@ float CardKing::valueCards() {
 // }
 
 // Flush::Flush(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxStraight = 5.92;
 // }
 
 // float Flush::valueCards(){
@@ -337,7 +339,7 @@ float CardKing::valueCards() {
 // }
 
 // FullHouse::FullHouse(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxFlush = 5.85;
 // }
 
 // float FullHouse::valueCards(){
@@ -345,7 +347,7 @@ float CardKing::valueCards() {
 // }
 
 // FourOfKind::FourOfKind(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//     float maxFullHouse = 6.63;
 // }
 
 // float FourOfKind::valueCards(){
@@ -353,7 +355,7 @@ float CardKing::valueCards() {
 // }
 
 // StraightFlush::StraightFlush(vector<Cards> cards) : Combo(vector<Cards>(cards)) {
-
+//      float maxFourOfKind = 5.38;
 // }
 
 // float StraightFlush::valueCards(){
