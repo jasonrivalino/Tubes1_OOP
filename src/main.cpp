@@ -1,8 +1,9 @@
 
 #include "class/SetGame/SetGame.hpp"
-#include "class/Combination/Combination.hpp"
-#include "class/Player/PlayerAction/PlayerAction.hpp"
-#include "class/Ability/AbilityCard.hpp"
+#include "class/Combination/Example/Combination.h"
+#include "class/Combination/Example/StraightFlush.h"
+//#include "class/Player/PlayerAction/PlayerAction.hpp"
+//#include "class/Ability/AbilityCard.hpp"
 
 using namespace std;
 
@@ -31,9 +32,9 @@ int main(){
 
 
 
-    PlayerAction pA;
-
-    pA.reverseCard(p,s);
+//    PlayerAction pA;
+//
+//    pA.reverseCard(p,s);
 
 //    for(int i=0;i<s.getPlayers().size();i++){
 //        cout<<s.getPlayers()[i]->getTurn()<<endl;
@@ -42,8 +43,15 @@ int main(){
     // cout << p.getCardsPlayer()[0]->getNameCard() << endl;
     // cout << p.getCardsPlayer()[1]->getNameCard() << endl;
 
-    Combination c;
-    // vector <Card*> v = c.isStraightFlush(p,t);
+    Combination *c= new StraightFlushh(p,t);
+
+    vector<Card*> it=c->comb();
+
+    cout<<it.size();
+    for(int i=0;i<it.size();i++){
+        cout<<it[0]->getNumberCard()<<endl;
+    }
+//     vector <Card*> v = c.isStraightFlush(p,t);
     // cout << c.isFourOfAKind(p,t)<<endl;
 //    vector<Card*> itIs=c.isStraight(p,t);
 //    for(int i=0;i<itIs.size();i++) cout <<itIs[i]->getNumberCard()  << endl;
