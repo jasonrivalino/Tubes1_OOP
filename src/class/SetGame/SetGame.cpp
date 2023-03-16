@@ -148,24 +148,31 @@ void SetGame::endRound(Table& t) {
 
 
         vector<double> allPlayerComb;
+        
+        Player p1 = *this->players[0];
+        Player p2 = *this->players[1];
+        Player p3 = *this->players[2];
+        Player p4 = *this->players[3];
+        Player p5 = *this->players[4];
+        Player p6 = *this->players[5];
+        Player p7 = *this->players[6];
+        // vector<Card*> p1=this->players[0]->getCardsPlayer();
+        // vector<Card*> p2= this->players[1]->getCardsPlayer();
+        // vector<Card*> p3= this->players[2]->getCardsPlayer();
+        // vector<Card*> p4= this->players[3]->getCardsPlayer();
+        // vector<Card*> p5= this->players[4]->getCardsPlayer();
+        // vector<Card*> p6= this->players[5]->getCardsPlayer();
+        // vector<Card*> p7= this->players[6]->getCardsPlayer();
+        // vector<Card*> table = t.getCards();
 
-        vector<Card*> p1=this->players[0]->getCardsPlayer();
-        vector<Card*> p2= this->players[1]->getCardsPlayer();
-        vector<Card*> p3= this->players[2]->getCardsPlayer();
-        vector<Card*> p4= this->players[3]->getCardsPlayer();
-        vector<Card*> p5= this->players[4]->getCardsPlayer();
-        vector<Card*> p6= this->players[5]->getCardsPlayer();
-        vector<Card*> p7= this->players[6]->getCardsPlayer();
-        vector<Card*> table = t.getCards();
 
-
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p1,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p2,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p3,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p4,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p5,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p6,table));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(p7,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p1,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p2,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p3,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p4,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p5,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p6,t));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p7,t));
 
         double max = *max_element(allPlayerComb.begin(),allPlayerComb.end());
 
@@ -357,12 +364,33 @@ unsigned long int SetGame::getHighPointPlayer() const {
     }
     return *max_element(point.begin(),point.end());
 }
-double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
+double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
+    vector<Card*> p;
+    vector<Card*> t;
+
+    for(int i = 0 ; i < player.getCardsPlayer().size(); i++) p.push_back(player.getCardsPlayer()[i]);
+    for(int i = 0 ; i < table.getCards().size(); i++) t.push_back(table.getCards()[i]);
+    
+    
+    
     vector<Card*> allCard;
     vector<double> allValue;
     for(int i=0;i<p.size();i++) allCard.push_back(p[i]);
     for(int i=0;i<t.size();i++) allCard.push_back(t[i]);
 
+
+    // vector<Card*> tableee;
+    // vector<Card*> playerrr;
+    // Table tab;
+    // Player play("temp");
+
+    // Card c[0], c[1], c[2], c[3], c[4], c[5], c[6];
+    // for(int i=1; i <= allCard.size(); i++){
+    //     Card c[i](allCard[i]->getNameCard(), allCard[i]->getNumberCard());
+    // }
+    
+    // for(int i=0; i < p.size(); i ++) playerrr.push_back(p[i]);
+    // for(int i=0; i < t.size(); i ++) tableee.push_back(p[i]);
 
     Calculable *c0;
     Calculable *c1;
@@ -374,6 +402,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     Calculable *c7;
     Calculable *c8;
 
+    Combination c;
     for(auto x : allCard) {
         cout << x->getNameCard() << "     " << x->getNumberCard() << endl;
     }
@@ -391,7 +420,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "High Card\n";
-        vector<Card*> v = isHighCard(p,t);
+        vector<Card*> v = c.isHighCard(player,table);
         if(v.size() != 0){
             c0 = new HighCard(v);
             allValue.push_back(c0->valueCards());
@@ -409,7 +438,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "One Pair\n";
-        vector<Card*> v = isOnePair(p,t);
+        vector<Card*> v = c.isOnePair(player,table);
         if(v.size() != 0){
             c1 = new OnePair(v);
             allValue.push_back(c1->valueCards());
@@ -426,7 +455,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "Two Pair\n";
-        vector<Card*> v = isTwoPair(p,t);
+        vector<Card*> v = c.isTwoPair(player,table);
         if(v.size() != 0){
             c2 = new TwoPair(v);
             allValue.push_back(c2->valueCards());
@@ -443,7 +472,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "ThreeOfAKind\n";
-        vector<Card*> v = isThreeOfAKind(p,t);
+        vector<Card*> v = c.isThreeOfAKind(player,table);
         if(v.size() != 0){
             c3 = new ThreeOfAKind(v);
             allValue.push_back(c3->valueCards());
@@ -460,7 +489,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "Straight\n";
-        vector<Card*> v = isStraight(p,t);
+        vector<Card*> v = c.isStraight(player,table);
         if(v.size() != 0){
             c4 = new Straight(v);
             allValue.push_back(c4->valueCards());
@@ -477,7 +506,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "Flush\n";
-        vector<Card*> v = isFlush(p,t);
+        vector<Card*> v = c.isFlush(player,table);
         if(v.size() != 0){
             c5 = new Flush(v);
             allValue.push_back(c5->valueCards());
@@ -494,7 +523,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "FullHouse\n";
-        vector<Card*> v = isFullHouse(p,t);
+        vector<Card*> v = c.isFullHouse(player,table);
         if(v.size() != 0){
             c6 = new FullHouse(v);
             allValue.push_back(c6->valueCards());
@@ -512,7 +541,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "FourOfAKind\n";
-        vector<Card*> v = isFourOfAKind(p,t);
+        vector<Card*> v = c.isFourOfAKind(player,table);
         if(v.size() != 0){
             c7 = new FourOfAKind(v);
             allValue.push_back(c7->valueCards());
@@ -529,7 +558,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
 
     try {
         cout << "StraightFlush\n";
-        vector<Card*> v = isStraightFlush(p,t);
+        vector<Card*> v = c.isStraightFlush(player,table);
         if(v.size() != 0){
             c8 = new StraightFlush(v);
             allValue.push_back(c8->valueCards());

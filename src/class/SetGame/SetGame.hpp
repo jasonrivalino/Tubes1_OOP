@@ -10,7 +10,7 @@
 #include "../Ability/AbilityCard.hpp"
 #include "../Table/Table.hpp"
 #include "../Card/Calculable/Calculable.hpp"
-#include "../Card/Combination/Combination.hpp"
+#include "../Combination/Combination.hpp"
 
 
 using namespace std;
@@ -59,7 +59,7 @@ public:
     int getTurn() const;
     int getRound() const;
     unsigned long int getHighPointPlayer() const;
-    double getHighCombinationPlayer(vector<Card*>&,vector<Card*>&);
+    double getHighCombinationPlayer(Player&,Table&);
     unsigned long int getPointGame() const;
 
 };
