@@ -36,6 +36,7 @@ public:
 
     void addCard(Card card);
     void removeBackCard();
+    void removeAllCards();
     void removeFirstCard();
     void removeAbilityCards();
     void shareCardToPlayer(int shareCard);

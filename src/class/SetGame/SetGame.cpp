@@ -100,6 +100,9 @@ void SetGame::addCard(Card card) {
 void  SetGame::removeBackCard() {
     this->cards.pop_back();
 }
+void SetGame::removeAllCards() {
+    this->cards.clear();
+}
 void SetGame::removeFirstCard() {
     this->cards.erase(this->cards.begin());
 }
@@ -139,6 +142,9 @@ void SetGame::endRound(Table& t) {
 
     this->round++;
     if(round==7){
+        string warna[4] = {"K","H","M","B"};
+
+
         vector<double> allPlayerComb;
 
         vector<Card*> p1=this->players[0]->getCardsPlayer();
@@ -173,8 +179,79 @@ void SetGame::endRound(Table& t) {
         this->pointGame=64;
         this->turn=1;
         if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
-    
         t.removeTableCard();
+        this->removeAllCards();
+        for(int i=0; this->players.size();i++){
+            this->players[i]->removeAbilityCard();
+        }
+
+        int choose;
+        cout<<"pilih kartu random mengguakan txt atau tidak\n1. Ya\n2. Tidak"<<endl;
+        cout<<">>";
+        cin>>choose;
+        while(choose>2||choose<1){
+            cout<<"input salah"<<endl;
+            cout<<">>";
+            cin>>choose;
+        }
+        if(choose==2) {
+            for(int i=0;i<52;i++){
+                int numCard = i%13+1;
+                int numWarna = i/13;
+
+                this->cards.push_back(new Card(warna[numWarna],numCard));
+            }
+
+            random_shuffle(this->cards.begin(), this->cards.end());
+        }
+        else {
+            string path = "src/config/card.txt";
+            // cout << "fdfdfd";
+            ifstream inFile(path);
+            int numCard, numWarna;
+            char ch;
+            bool angka = false;
+
+            // cout << path << endl;
+            if (!inFile) {
+                std::cerr << "Unable to open file";
+                exit(1);
+            }
+
+            while (inFile >> noskipws >> ch) {
+                if(ch >= 'A' && ch <= 'Z'){
+                    if (ch == 'H'){
+                        numWarna = 0;
+                    }
+                    else if (ch == 'B') {
+                        numWarna = 1;
+                    }
+                    else if (ch == 'K') {
+                        numWarna = 2;
+                    }
+                    else if (ch == 'M') {
+                        numWarna = 3;
+                    }
+                }
+                else if(ch >= '0' &&  ch <= '9'){
+                    if(!angka) {
+                        angka = true;
+                        numCard = ch - '0';
+                    }
+                    else {
+                        numCard = numCard*10 + ch - '0';
+                    }
+                }
+                else if(ch == '\n') {
+                    angka = false;
+                    this->cards.push_back(new Card(warna[numWarna],numCard));
+                }
+                // cout<<"warna : " << warna[numWarna]<<" angka : "<<numCard<<endl;
+            }
+
+            inFile.close();
+        }
+
     }
 
 
