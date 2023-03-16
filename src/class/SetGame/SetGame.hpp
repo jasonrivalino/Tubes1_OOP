@@ -28,7 +28,7 @@ private:
     vector<Ability*> ability;
     int round;
     int turn;
-    long int pointGame;
+    unsigned long int pointGame;
 public:
 
     SetGame(int,int);
@@ -42,13 +42,13 @@ public:
     void shareCardToTable(Table&);
     void shareAbilityCard();
     void endRound(Table&);
-    void setPoint(long);
+    void setPoint(unsigned long int);
     void reverseTurn();
     void showAllPoint();
     void printCards();
     void nextTurn();
     void setTurn(int);
-
+    void setRound(int);
 
     vector<Ability*> getAbilityCards() const;
     vector<Card*> getCards() const;
@@ -57,9 +57,10 @@ public:
     int getSizeCards() const;
     int getTurn() const;
     int getRound() const;
-    long int getHighPointPlayer() const;
+    unsigned long int getHighPointPlayer() const;
     double getHighCombinationPlayer(vector<Card*>&,vector<Card*>&);
-    long int getPointGame() const;
+    unsigned long int getPointGame() const;
+
 };
 
 

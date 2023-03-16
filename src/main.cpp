@@ -58,8 +58,10 @@ int main(){
 
 
     SetGame game(7,fileSourceCardChoose);
-
-    while (game.getHighPointPlayer()< pow(2,32)) {
+    unsigned long int endgame = pow(2,32);
+    while (game.getHighPointPlayer()< endgame) {
+        cout << "\nhigh point player : " << game.getHighPointPlayer() << endl;
+        cout << "batas ygyg :" << endgame << endl<< endl;
         cout<<"GAME "<<gameNumber<<endl;
         while (game.getRound() < 7) {
             cout << "RONDE " << game.getRound() << "\n" << endl;
@@ -215,6 +217,7 @@ int main(){
             playerTurn = 1;
             game.endRound(table);
         }
+        game.setRound(1);
     }
 
 

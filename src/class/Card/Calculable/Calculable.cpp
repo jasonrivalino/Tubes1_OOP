@@ -4,6 +4,7 @@ using namespace std;
 
 Cards::Cards(vector<Card*> v) {
     this->cards = v;
+    this->value = 0.0;
 }
 
 

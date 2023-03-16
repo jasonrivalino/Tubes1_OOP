@@ -55,7 +55,7 @@ void Player::printCards(){
 
     }
 }
-void Player::setPoint(int point) {
+void Player::setPoint(unsigned long int point) {
     this->point = point;
 }
 void Player::removeAbilityCard() {
@@ -76,7 +76,7 @@ bool Player::operator!=(const Player &p) {
     return this->getTurn()!=p.getTurn();
 }
 
-int Player::getPoint() {
+unsigned long int Player::getPoint() {
     return this->point;
 }
 int Player::getSizeCardsPlayer() {

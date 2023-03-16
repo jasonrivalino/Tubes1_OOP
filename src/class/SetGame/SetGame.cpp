@@ -105,7 +105,7 @@ void SetGame::removeFirstCard() {
 void SetGame::removeAbilityCards() {
     this->ability.pop_back();
 }
-void SetGame::setPoint(long point) {
+void SetGame::setPoint(unsigned long int point) {
     this->pointGame = point;
 }
 void SetGame::showAllPoint() {
@@ -165,14 +165,14 @@ void SetGame::endRound(Table& t) {
 
         cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<endl;
 
-        this->players[idxPlayer]->setPoint(this->getPointGame()+ this->pointGame);
+        this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+ this->pointGame);
 
 
 
         this->pointGame=64;
         this->turn=1;
         if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
-        this->round=1;
+    
         t.removeTableCard();
     }
 
@@ -238,6 +238,9 @@ void SetGame::nextTurn() {
 void SetGame::setTurn(int t) {
     turn=t-1;
 }
+void SetGame :: setRound(int t){
+    this->round = t;
+}
 
 vector<Card*> SetGame::getCards() const {
     return this->cards;
@@ -252,7 +255,7 @@ Player* SetGame::playerTurn() const {
     return this->players[this->turn-1];
 }
 
-long int SetGame::getPointGame() const{
+unsigned long int SetGame::getPointGame() const{
     return this->pointGame;
 }
 int SetGame::getSizeCards() const {
@@ -264,9 +267,12 @@ int SetGame::getTurn() const {
 int SetGame::getRound() const {
     return this->round;
 }
-long int SetGame::getHighPointPlayer() const {
-    vector<int> point;
+unsigned long int SetGame::getHighPointPlayer() const {
+    vector<unsigned long int> point;
     for(int i=0;i< this->players.size();i++) point.push_back(this->players[i]->getPoint());
+    for(int i = 0 ; i < point.size(); i++){
+        cout << point[i] << endl;
+    }
     return *max_element(point.begin(),point.end());
 }
 double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
@@ -285,83 +291,189 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     Calculable *c6;
     Calculable *c7;
     Calculable *c8;
+    Calculable *c9;
+
+    for(auto x : allCard) {
+        cout << x->getNameCard() << "     " << x->getNumberCard() << endl;
+    }
+    // cout << "-----------------\n";
+    // cout << c1->valueCards() << endl;
+    // cout << c2->valueCards() << endl;
+    // cout << c3->valueCards() << endl;
+    // cout << c4->valueCards() << endl;
+    // cout << c5->valueCards() << endl;
+    // cout << c6->valueCards() << endl;
+    // cout << c7->valueCards() << endl;
+    // cout << c8->valueCards() << endl;
+    // cout << c9->valueCards() << endl;
+    // cout << "------------------\n";
+
 
     try {
-
-        c3=new TwoPair(allCard);
-        allValue.push_back(c3->valueCards());
-        cout << c3->valueCards() << endl;
-    }catch (bad_array_new_length e){}
-
-
-    try {
-
+        cout << "masuk c1\n";
         c1 = new Straight(allCard);
-        allValue.push_back(c1->valueCards());
         cout << c1->valueCards() << endl;
+        cout << "fdfdfdfd\n";
+        if(c1->valueCards() != 0){
+            allValue.push_back(c1->valueCards());
+            cout << c1->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
         delete c1;
-    }catch (bad_array_new_length e){}
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
 
     try {
-
-        c7 = new FullHouse(allCard);
-        allValue.push_back(c7->valueCards());
-        cout << c7->valueCards() << endl;
-        delete c7;
-    }catch (bad_array_new_length e){}
-
-
-    try {
-
-        c5 = new ThreeOfAKind(allCard);
-        allValue.push_back(c5->valueCards());
-        cout << c5->valueCards() << endl;
-        delete c5;
-    }catch (bad_array_new_length e){}
-
-    try {
-
-        c8 = new FourOfAKind(allCard);
-        allValue.push_back(c8->valueCards());
-        cout << c8->valueCards() << endl;
-    }catch (bad_array_new_length e){}
-
-    try {
-
+        cout << "masuk c2\n";
         c2 = new StraightFlush(allCard);
-        allValue.push_back(c2->valueCards());
-        cout << c2->valueCards() << endl;
+        if(c2->valueCards() != 0){
+            allValue.push_back(c2->valueCards());
+            cout << c2->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
         delete c2;
-    }catch (bad_array_new_length e){}
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
 
+    try {
+        cout << "masuk c3\n";
+        c3=new TwoPair(allCard);
+        if(c3->valueCards() != 0){
+            allValue.push_back(c3->valueCards());
+            cout << c3->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c3;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
 
 
     try {
-
+        cout << "masuk c4\n";
         c4 = new OnePair(allCard);
-        allValue.push_back(c4->valueCards());
-        cout << c4->valueCards() << endl;
-        delete c4;
-    }catch (bad_array_new_length e){}
-
+        if(c4->valueCards() != 0){
+            allValue.push_back(c4->valueCards());
+            cout << c4->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c4;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
 
 
     try {
+        cout << "masuk c5\n";
+        c5 = new ThreeOfAKind(allCard);
+        if(c5->valueCards() != 0){
+            allValue.push_back(c5->valueCards());
+            cout << c5->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c5;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
 
+    try {
+        cout << "masuk c6\n";
         c6 = new Flush(allCard);
-        allValue.push_back(c6->valueCards());
-        cout << c6->valueCards() << endl;
-        delete c6;
-    }catch (bad_array_new_length e){}
+        if(c6->valueCards() != 0){
+            allValue.push_back(c6->valueCards());
+            cout << c6->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c6;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
+
+    try {
+        cout << "masuk c7\n";
+        c7 = new FullHouse(allCard);
+        if(c7->valueCards() != 0){
+            allValue.push_back(c7->valueCards());
+            cout << c7->valueCards() << endl;
+        }else{
+            allValue.push_back(0);
+        }
+            delete c7;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
+
+    try {
+        cout << "masuk c8\n";
+        c8 = new FourOfAKind(allCard);
+        if(c8->valueCards() != 0){
+            allValue.push_back(c8->valueCards());
+            cout << c8->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c8;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
+
+    try {
+        cout << "masuk c9\n";
+        c9 = new HighCard(allCard);
+        if(c9->valueCards() != 0){
+            allValue.push_back(c9->valueCards());
+            cout << c9->valueCards() << endl;
+        }
+        else{
+            allValue.push_back(0);
+        }
+            delete c9;
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
+
+
+    cout << "allcard " << allCard.size() << endl;
+    cout << "allValue " << allValue.size() << endl;
 
 
 
 
 
-
-
-
-
+    cout << "\n\n\n\n----------------\n\n\n\n\n\n";
 
     float max = *max_element(allValue.begin(),allValue.end());
     allValue.clear();

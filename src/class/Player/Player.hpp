@@ -16,7 +16,7 @@ class Player{
 protected:
     static int currentTurn;
     const int turn;
-    int point;
+    unsigned long int point;
     string playerName;
     vector<Ability*> abilityCard;
     vector <Card*> cards;
@@ -31,7 +31,7 @@ public:
     int getTurn() const;
     vector<Card*> getCardsPlayer();
     int getSizeCardsPlayer();
-    int getPoint();
+    unsigned long int getPoint();
     bool operator==(const Player&);
     bool operator!=(const Player&);
     Calculable* getHighestComboValue(vector<Card*>);
@@ -45,7 +45,7 @@ public:
     void removeBackCard();
     void removeFirstCard();
     void removeAbilityCard();
-    void setPoint(int);
+    void setPoint(unsigned long int);
     vector<Ability*> getAbility() const;
 
 
