@@ -7,6 +7,10 @@ Player::Player(string playerName):turn(currentTurn+1){
     currentTurn++;
 }
 
+int Player::getTurn() const{
+    return turn;
+}
+
 void Player::addCard(Card &c){
     cards.push_back(&c);
 }
@@ -75,12 +79,7 @@ bool Player::operator!=(const Player &p) {
 int Player::getPoint() {
     return this->point;
 }
-int Player::getTurn() const{
-    return turn;
-}
-int Player::getSizeCardsPlayer() {
-    return this->cards.size();
-}
-vector<Ability*> Player::getAbility() const {
-    return this->abilityCard;
+
+Calculable *Player::getHighestComboValue(vector<Card *> cards) {
+    return this->highestComboValue;
 }

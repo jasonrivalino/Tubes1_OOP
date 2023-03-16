@@ -9,6 +9,7 @@
 #include "../Ability/AbilityCard.hpp"
 
 class Ability;
+#include "../Card/Calculable/Calculable.hpp"
 
 using namespace std;
 class Player{
@@ -19,6 +20,10 @@ protected:
     string playerName;
     vector<Ability*> abilityCard;
     vector <Card*> cards;
+    // vector <vector<Card, int>> allCombo;
+    // // vector <Card> highestCombo;
+    Calculable *highestComboValue;
+
 public:
     /*
      memanggil class dengan mengatur nama dari sang player dan giliran player
@@ -26,6 +31,15 @@ public:
     Player(string playerName);
     // dcctor
     ~Player();
+
+    // untuk mendapatkan giliran dari player yang dipilih
+    int getTurn() const;
+
+    //untuk mendapatkan seluruh kartu yang dimiliki oleh player
+    vector<Card*> getCardsPlayer();
+
+    // mendapatkan banyaknya kartu yang player punya
+    int getSizeCardsPlayer();
 
     // menambahkan kartu palyer
     void addCard(Card &c);
@@ -61,20 +75,15 @@ public:
     //untuk mendapatkan poin dari player yang dipilih
     int getPoint();
 
-    // untuk mendapatkan giliran dari player yang dipilih
-    int getTurn() const;
-
-    //untuk mendapatkan seluruh kartu yang dimiliki oleh player
-    vector<Card*> getCardsPlayer();
-
-    // mendapatkan banyaknya kartu yang player punya
-    int getSizeCardsPlayer();
-
     //apakah player sama
     bool operator==(const Player&);
 
     //apakah player tidak sama
     bool operator!=(const Player&);
+
+    //untuk mendapatkan combo tertinggi dari player yang dipilih
+    Calculable* getHighestComboValue(vector<Card*>);
+
 };
 
 #endif
