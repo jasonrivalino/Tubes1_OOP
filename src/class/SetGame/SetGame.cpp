@@ -17,8 +17,11 @@ SetGame::SetGame(int jumPlayer,int choose) {
 
 
     string warna[4] = {"K","H","M","B"};
+    string namaPlayer;
     for(int i=1;i<jumPlayer+1;i++){
-        this->players.push_back(new Player("P"+i));
+        cout<<"masukkan nama player-"<<i<<": ";
+        cin>>namaPlayer;
+        this->players.push_back(new Player(namaPlayer));
     }
     this->ability.push_back(new ReRoll);
     this->ability.push_back(new Quadruple);
@@ -143,7 +146,7 @@ void SetGame::printCards() {
 void SetGame::endRound(Table& t) {
 
     this->round++;
-    if(round==7){
+    if(round==6){
         string warna[4] = {"K","H","M","B"};
 
 
