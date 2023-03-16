@@ -289,6 +289,9 @@ string Switch::getNameCard() const {
 
 void Switch::effect(Player &p1, Player &Target, SetGame &s){
     int idxPlayer=0;
+    Card *c1= p1.getCardsPlayer()[0];
+    Card *c2 = p1.getCardsPlayer()[1];
+
 
     for(int i=0;i<s.getPlayers().size();i++){
         if(s.getPlayers()[i]->getTurn()==p1.getTurn()){
@@ -298,16 +301,21 @@ void Switch::effect(Player &p1, Player &Target, SetGame &s){
             s.getPlayers()[i]->addCardSpesPos(*Target.getCardsPlayer()[0],0);
             s.getPlayers()[i]->addCardSpesPos(*Target.getCardsPlayer()[1],1);
         }
+    }
+    for(int i=0;i<s.getPlayers().size();i++){
         if(s.getPlayers()[i]->getTurn()==Target.getTurn()){
+
             s.getPlayers()[i]->removeFirstCard();
             s.getPlayers()[i]->removeFirstCard();
-            s.getPlayers()[i]->addCardSpesPos(*p1.getCardsPlayer()[0],0);
-            s.getPlayers()[i]->addCardSpesPos(*p1.getCardsPlayer()[1],1);
+            s.getPlayers()[i]->addCardSpesPos(*c1,0);
+            s.getPlayers()[i]->addCardSpesPos(*c2,1);
+
+
         }
     }
 
     cout<<"Kedua kartu pemain-"<<p1.getTurn()<<" telah ditukar dengan pemain-"<<Target.getTurn()<<endl;
-    cout<<"Kartumu sekarang adalah "<<p1.getCardsPlayer()[0]->getNameCard()<<""<<p1.getCardsPlayer()[1]->getNumberCard()<<" "<<Target.getCardsPlayer()[1]->getNameCard()<<""<<Target.getCardsPlayer()[1]->getNumberCard()<<endl;
+    cout<<"Kartumu sekarang adalah "<<s.getPlayers()[idxPlayer]->getCardsPlayer()[0]->getNameCard()<<""<<s.getPlayers()[idxPlayer]->getCardsPlayer()[0]->getNumberCard()<<" "<<s.getPlayers()[idxPlayer]->getCardsPlayer()[1]->getNameCard()<<""<<s.getPlayers()[idxPlayer]->getCardsPlayer()[1]->getNumberCard()<<endl;
 
     s.getPlayers()[idxPlayer]->getAbility()[0]->setIsCardUsed(true);
 
