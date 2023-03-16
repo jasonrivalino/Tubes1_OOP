@@ -15,7 +15,7 @@ SetGame::SetGame(int jumPlayer,int choose) {
 
 
 
-    string warna[4] = {"Kuning","Hijau","Merah","Biru"};
+    string warna[4] = {"K","H","M","B"};
     for(int i=1;i<jumPlayer+1;i++){
         this->players.push_back(new Player("P"+i));
     }
