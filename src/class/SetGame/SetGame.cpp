@@ -194,11 +194,15 @@ void SetGame::endRound(Table& t) {
         if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
         t.removeTableCard();
         this->removeAllCards();
-        for(int i=0; this->players.size();i++){
+        for(int i=0; i<this->players.size();i++){
             this->players[i]->removeAbilityCard();
+            this->players[i]->removeAllCard();
+
         }
 
+
         int choose;
+
         cout<<"pilih kartu random mengguakan txt atau tidak\n1. Ya\n2. Tidak"<<endl;
         cout<<">>";
         cin>>choose;
@@ -271,55 +275,8 @@ void SetGame::endRound(Table& t) {
 
 
     if(round==2) this->shareAbilityCard();
-    if(round>1|| round<7) this->shareCardToTable(t);
+    if(round>1&& round!=7) {this->shareCardToTable(t);}
     if (this->turn == 7) this->turn = 1; else this->turn++;
-
-
-
-
-
-
-
-
-
-
-
-
-//    this->pointGame=64;
-
-
-
-//    this->cards.clear();
-
-//    this->ability.push_back(new ReRoll);
-//    this->ability.push_back(new Quadruple);
-//    this->ability.push_back(new Quarter);
-//    this->ability.push_back(new ReverseDirection);
-//    this->ability.push_back(new SwapCard);
-//    this->ability.push_back(new Switch);
-//    this->ability.push_back(new Abilityless);
-//    random_shuffle(this->ability.begin(), this->ability.end());
-
-//    for(int i=0;i<52;i++){
-//        int numCard = i%13+1;
-//        int numWarna = i/13;
-//
-//        this->cards.push_back(new Card(warna[numWarna],numCard));
-//    }
-//    random_shuffle(this->cards.begin(), this->cards.end());
-//
-//    if(this->players[1]->getTurn()-this->players[0]->getTurn()==-1){
-//        reverseTurn();
-//    }
-
-//    int idxPlayer=0;
-//    for(int i=0;i< this->players.size();i++){
-//        if(*this->players[i]==playerWin) idxPlayer=i;
-//    }
-//
-//
-//    this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+this->pointGame);
-//    this->pointGame=64;
 }
 void SetGame::reverseTurn() {
     this->turn=(8- this->turn);

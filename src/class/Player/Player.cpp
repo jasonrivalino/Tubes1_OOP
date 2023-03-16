@@ -86,7 +86,9 @@ string Player::getName() const {return this->playerName;}
 Calculable *Player::getHighestComboValue(vector<Card *> cards) {
     return this->highestComboValue;
 }
-
+void Player::removeAllCard() {
+    this->cards.clear();
+}
 vector<Ability *> Player::getAbility() const {
     return this->abilityCard;
 }
