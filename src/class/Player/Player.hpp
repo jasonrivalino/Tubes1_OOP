@@ -46,6 +46,7 @@ public:
     void removeBackCard();
     void removeFirstCard();
     void removeAbilityCard();
+    void removeAllCard();
     void setPoint(unsigned long int);
     vector<Ability*> getAbility() const;
 

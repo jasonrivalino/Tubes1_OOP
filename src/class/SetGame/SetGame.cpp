@@ -186,11 +186,15 @@ void SetGame::endRound(Table& t) {
         if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
         t.removeTableCard();
         this->removeAllCards();
-        for(int i=0; this->players.size();i++){
+        for(int i=0; i<this->players.size();i++){
             this->players[i]->removeAbilityCard();
+            this->players[i]->removeAllCard();
+
         }
 
+
         int choose;
+
         cout<<"pilih kartu random mengguakan txt atau tidak\n1. Ya\n2. Tidak"<<endl;
         cout<<">>";
         cin>>choose;
