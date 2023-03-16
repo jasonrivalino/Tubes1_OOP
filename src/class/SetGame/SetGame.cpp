@@ -175,7 +175,7 @@ void SetGame::endRound(Table& t) {
         int idxPlayer =0;
         for(int i=0;i<allPlayerComb.size();i++) if(max==allPlayerComb[i]) idxPlayer=i;
 
-        cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<endl;
+        cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<" ("<< this->players[idxPlayer]->getName()<<")"<<endl;
 
         this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+ this->pointGame);
 

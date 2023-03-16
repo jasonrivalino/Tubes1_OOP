@@ -31,6 +31,7 @@ public:
     int getTurn() const;
     vector<Card*> getCardsPlayer();
     int getSizeCardsPlayer();
+    string getName()const;
     unsigned long int getPoint();
     bool operator==(const Player&);
     bool operator!=(const Player&);

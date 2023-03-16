@@ -71,7 +71,7 @@ int main(){
                 table.showTable();
                 cout << endl;
                 playerCurrentTurn = game.playerTurn();
-                cout << "PLAYER " << playerCurrentTurn->getTurn() << endl;
+                cout << "PLAYER " << playerCurrentTurn->getTurn() <<" ("<<playerCurrentTurn->getName()<<")"<< endl;
                 int choose = actChoose();
 
                 bool rightChoose = false;
