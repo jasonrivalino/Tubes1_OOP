@@ -31,16 +31,35 @@ int main(){
     p.addCard(c1);
     p.addCard(c7);
 
-    Calculable *cal, *cal2, *calJ;
-    CardAce cardAce("K",1);
-    CardTwo cardTwo("M",2);
-    CardJack cardJack("B",11);
-    cal = &cardAce;
-    cal2 = &cardTwo;
-    calJ = &cardJack;
-    cout << cal->valueCards() << endl;
-    cout << cal2->valueCards() << endl;
-    cout << calJ->valueCards() << endl;
+    vector<Card*> coba = p.getCardsPlayer();
+
+    Calculable *test= new HighCard(coba);
+    // vector <Card*> vx;
+    // vx.push_back(&c1);
+
+
+    
+    cout << test->valueCards() << endl;
+
+
+
+
+
+    // cout << p.getCardsPlayer()[0]->getNameCard() << "   " << p.getCardsPlayer()[0]->getNumberCard()<<endl;
+
+    // cout << vx.size() << endl;
+
+
+    // Calculable *cal, *cal2, *calJ;
+    // CardAce cardAce("K",1);
+    // CardTwo cardTwo("M",2);
+    // CardJack cardJack("B",11);
+    // cal = &cardAce;
+    // cal2 = &cardTwo;
+    // calJ = &cardJack;
+    // cout << cal->valueCards() << endl;
+    // cout << cal2->valueCards() << endl;
+    // cout << calJ->valueCards() << endl;
 
 
 
