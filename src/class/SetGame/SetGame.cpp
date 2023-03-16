@@ -146,7 +146,7 @@ void SetGame::printCards() {
 void SetGame::endRound(Table& t) {
 
     this->round++;
-    if(round==6){
+    if(round==7){
         string warna[4] = {"K","H","M","B"};
 
 
@@ -263,7 +263,7 @@ void SetGame::endRound(Table& t) {
 
 
     if(round==2) this->shareAbilityCard();
-    if(round>1) this->shareCardToTable(t);
+    if(round>1|| round<7) this->shareCardToTable(t);
     if (this->turn == 7) this->turn = 1; else this->turn++;
 
 
