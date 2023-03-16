@@ -8,7 +8,8 @@
 
 
 SetGame::SetGame(int jumPlayer,int choose) {
-    string path;
+    string path = "src/config/card.txt";
+    
     this->turn=1;
     this->round=1;
     this->pointGame=64;
