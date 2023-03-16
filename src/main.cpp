@@ -216,9 +216,10 @@ int main(){
             }
             playerTurn = 1;
             game.endRound(table);
-            gameNumber++;
+
         }
         game.setRound(1);
+        gameNumber++;
     }
 
 

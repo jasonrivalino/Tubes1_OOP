@@ -10,7 +10,7 @@
 #include "../Ability/AbilityCard.hpp"
 #include "../Table/Table.hpp"
 #include "../Card/Calculable/Calculable.hpp"
-
+#include "../Random/Random.cpp"
 
 using namespace std;
 #include <iostream>

@@ -8,7 +8,7 @@
 
 
 SetGame::SetGame(int jumPlayer,int choose) {
-    string path = "src/config/card.txt";
+    string path = "././config/card.txt";
     
     this->turn=1;
     this->round=1;
@@ -30,11 +30,13 @@ SetGame::SetGame(int jumPlayer,int choose) {
 
     random_shuffle(this->ability.begin(), this->ability.end());
     if(choose==2) {
-        for(int i=0;i<52;i++){
-            int numCard = i%13+1;
-            int numWarna = i/13;
-
-            this->cards.push_back(new Card(warna[numWarna],numCard));
+        vector<int> sampleNum{1,2,3,4,5,6,7,8,9,10,11,12,13};
+        for(int i=0;i<4;i++){
+            vector<int> numCard;
+            randomIndex(sampleNum,numCard);
+            for(int j=0;j<13;j++){
+                this->cards.push_back(new Card(warna[i],numCard[j]));
+            }
         }
 
         random_shuffle(this->cards.begin(), this->cards.end());
@@ -195,17 +197,19 @@ void SetGame::endRound(Table& t) {
             cin>>choose;
         }
         if(choose==2) {
-            for(int i=0;i<52;i++){
-                int numCard = i%13+1;
-                int numWarna = i/13;
-
-                this->cards.push_back(new Card(warna[numWarna],numCard));
+            vector<int> sampleNum{1,2,3,4,5,6,7,8,9,10,11,12,13};
+            for(int i=0;i<4;i++){
+                vector<int> numCard;
+                randomIndex(sampleNum,numCard);
+                for(int j=0;j<13;j++){
+                    this->cards.push_back(new Card(warna[i],numCard[j]));
+                }
             }
 
             random_shuffle(this->cards.begin(), this->cards.end());
         }
         else {
-            string path = "src/config/card.txt";
+            string path = "././config/card.txt";
             // cout << "fdfdfd";
             ifstream inFile(path);
             int numCard, numWarna;
