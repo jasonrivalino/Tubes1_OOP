@@ -79,7 +79,9 @@ bool Player::operator!=(const Player &p) {
 int Player::getPoint() {
     return this->point;
 }
-
+int Player::getSizeCardsPlayer() {
+    return this->cards.size();
+}
 Calculable *Player::getHighestComboValue(vector<Card *> cards) {
     return this->highestComboValue;
 }

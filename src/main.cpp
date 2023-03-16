@@ -39,6 +39,7 @@ int main(){
     Action* action;
     int playerTurn=1;
     int fileSourceCardChoose;
+    int gameNumber=0;
 
     splash.SplashOpening();
 
@@ -58,159 +59,162 @@ int main(){
 
     SetGame game(7,fileSourceCardChoose);
 
-    while (game.getRound()<7){
-        cout<<"RONDE "<<game.getRound()<<"\n"<<endl;
+    while (game.getHighPointPlayer()< pow(2,32)) {
+        cout<<"GAME "<<gameNumber<<endl;
+        while (game.getRound() < 7) {
+            cout << "RONDE " << game.getRound() << "\n" << endl;
 
 
-        while (playerTurn<8){
-            table.showTable();
-            cout<<endl;
-            playerCurrentTurn = game.playerTurn();
-            cout<<"PLAYER "<<playerCurrentTurn->getTurn()<<endl;
-            int choose = actChoose();
+            while (playerTurn < 8) {
+                table.showTable();
+                cout << endl;
+                playerCurrentTurn = game.playerTurn();
+                cout << "PLAYER " << playerCurrentTurn->getTurn() << endl;
+                int choose = actChoose();
 
-            bool rightChoose = false;
-            while (!rightChoose) {
-                switch (choose) {
-                    case 1:
-                        action = new NextAct(*playerCurrentTurn, game);
-                        action->Act();
-                        rightChoose = true;
-                        break;
-                    case 2:
-                        action = new DoubleAct(*playerCurrentTurn, game);
-                        action->Act();
-                        rightChoose = true;
-                        game.nextTurn();
-                        break;
-                    case 3:
-                        action = new HalfAct(*playerCurrentTurn, game);
-                        action->Act();
-                        rightChoose = true;
-                        game.nextTurn();
-                        break;
-                    case 4:
-                        action = new QuarterAct(*playerCurrentTurn, game);
+                bool rightChoose = false;
+                while (!rightChoose) {
+                    switch (choose) {
+                        case 1:
+                            action = new NextAct(*playerCurrentTurn, game);
+                            action->Act();
+                            rightChoose = true;
+                            break;
+                        case 2:
+                            action = new DoubleAct(*playerCurrentTurn, game);
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                            break;
+                        case 3:
+                            action = new HalfAct(*playerCurrentTurn, game);
+                            action->Act();
+                            rightChoose = true;
+                            game.nextTurn();
+                            break;
+                        case 4:
+                            action = new QuarterAct(*playerCurrentTurn, game);
 
-                        try {
-                            action->Act();
-                            cout<<"teset"<<endl;
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveQuarterCard e) {
-                            cout << e.what() << endl;
-                        } catch (quarterIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (quarterCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 5:
-                        action = new QuadrupleAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveQuadrupleCard e) {
-                            cout << e.what() << endl;
-                        } catch (quadrupleIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (quadrupleCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 6:
-                        action = new ReRollAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveReRollCard e) {
-                            cout << e.what() << endl;
-                        } catch (reRollIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (reRollCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 7:
-                        action = new ReverseAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveReverseCard e) {
-                            cout << e.what() << endl;
-                        } catch (reverseIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (reverseCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 8:
-                        action = new SwitchAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveSwitchCard e) {
-                            cout << e.what() << endl;
-                        } catch (switchIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (switchCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 9:
-                        action = new SwapAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveSwapCard e) {
-                            cout << e.what() << endl;
-                        } catch (swapIsDeath e) {
-                            cout << e.what() << endl;
-                        } catch (swapCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 10:
-                        action = new AbilityLessAct(*playerCurrentTurn, game);
-                        try {
-                            action->Act();
-                            rightChoose = true;
-                            game.nextTurn();
-                        } catch (notHaveAbilityCard e) {
-                            cout << e.what() << endl;
-                        } catch (allCardUsed e){
-                            cout<<e.what()<<endl;
-                        } catch (abilityCardIsUsed e){
-                            cout << e.what() << endl;
-                        }
-                        break;
-                    case 11:
-                        playerCurrentTurn->printCards();
-                        break;
-                    case 12:
-                        cout<<"Point kamu adalah : "<<playerCurrentTurn->getPoint()<<endl;
+                            try {
+                                action->Act();
+                                cout << "teset" << endl;
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveQuarterCard e) {
+                                cout << e.what() << endl;
+                            } catch (quarterIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (quarterCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 5:
+                            action = new QuadrupleAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveQuadrupleCard e) {
+                                cout << e.what() << endl;
+                            } catch (quadrupleIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (quadrupleCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 6:
+                            action = new ReRollAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveReRollCard e) {
+                                cout << e.what() << endl;
+                            } catch (reRollIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (reRollCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 7:
+                            action = new ReverseAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveReverseCard e) {
+                                cout << e.what() << endl;
+                            } catch (reverseIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (reverseCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 8:
+                            action = new SwitchAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveSwitchCard e) {
+                                cout << e.what() << endl;
+                            } catch (switchIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (switchCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 9:
+                            action = new SwapAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveSwapCard e) {
+                                cout << e.what() << endl;
+                            } catch (swapIsDeath e) {
+                                cout << e.what() << endl;
+                            } catch (swapCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 10:
+                            action = new AbilityLessAct(*playerCurrentTurn, game);
+                            try {
+                                action->Act();
+                                rightChoose = true;
+                                game.nextTurn();
+                            } catch (notHaveAbilityCard e) {
+                                cout << e.what() << endl;
+                            } catch (allCardUsed e) {
+                                cout << e.what() << endl;
+                            } catch (abilityCardIsUsed e) {
+                                cout << e.what() << endl;
+                            }
+                            break;
+                        case 11:
+                            playerCurrentTurn->printCards();
+                            break;
+                        case 12:
+                            cout << "Point kamu adalah : " << playerCurrentTurn->getPoint() << endl;
 
-                }
-                if(!rightChoose) {
-                    cout << "Silakan masukkan pilihan lagi: " << endl;
-                    cout << ">>";
-                    cin >> choose;
-                    while (choose>12||choose<1){
-                        cout<<"input salah!"<<endl;
-                        cout<<">>";
-                        cin>>choose;
+                    }
+                    if (!rightChoose) {
+                        cout << "Silakan masukkan pilihan lagi: " << endl;
+                        cout << ">>";
+                        cin >> choose;
+                        while (choose > 12 || choose < 1) {
+                            cout << "input salah!" << endl;
+                            cout << ">>";
+                            cin >> choose;
+                        }
                     }
                 }
+                playerTurn++;
             }
-            playerTurn++;
+            playerTurn = 1;
+            game.endRound(table);
         }
-        playerTurn=1;
-        game.endRound(table);
     }
 
 

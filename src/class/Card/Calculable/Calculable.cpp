@@ -214,6 +214,7 @@ StraightFlush :: StraightFlush(vector<Card*> &v) : Cards(cards) {
     for(int i = 4; i >= 0; i--){
         ret += forSort[i] * pow(10, -1-i);
     }
+    this -> value = ret;
 }
 double StraightFlush :: valueCards() {
     return this -> value;

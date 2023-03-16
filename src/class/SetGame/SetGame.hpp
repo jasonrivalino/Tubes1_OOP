@@ -9,6 +9,7 @@
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
 #include "../Table/Table.hpp"
+#include "../Card/Calculable/Calculable.hpp"
 
 
 using namespace std;
@@ -56,6 +57,7 @@ public:
     int getSizeCards() const;
     int getTurn() const;
     int getRound() const;
+    int getHighPointPlayer() const;
     long int getPointGame() const;
 };
 

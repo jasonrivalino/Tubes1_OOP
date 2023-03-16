@@ -6,6 +6,7 @@
 
 
 
+
 SetGame::SetGame(int jumPlayer,int choose) {
     string path;
     this->turn=1;
@@ -136,7 +137,15 @@ void SetGame::printCards() {
 void SetGame::endRound(Table& t) {
 
     this->round++;
-    if(round==7) return;
+    if(round==7){
+        vector<double> allPlayerComb;
+
+
+
+
+
+
+    }
     if(round==2) this->shareAbilityCard();
     if(round>1) this->shareCardToTable(t);
     if (this->turn == 7) this->turn = 1; else this->turn++;
@@ -223,4 +232,9 @@ int SetGame::getTurn() const {
 }
 int SetGame::getRound() const {
     return this->round;
+}
+int SetGame::getHighPointPlayer() const {
+    vector<int> point;
+    for(int i=0;i< this->players.size();i++) point.push_back(this->players[i]->getPoint());
+    return *max_element(point.begin(),point.end());
 }
