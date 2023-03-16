@@ -238,3 +238,37 @@ int SetGame::getHighPointPlayer() const {
     for(int i=0;i< this->players.size();i++) point.push_back(this->players[i]->getPoint());
     return *max_element(point.begin(),point.end());
 }
+float SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
+    vector<Card*> allCard;
+    vector<float> allValue;
+    for(int i=0;i<p.size();i++) allCard.push_back(p[i]);
+    for(int i=0;i<t.size();i++) allCard.push_back(t[i]);
+
+    Calculable *c;
+    c=new Straight(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new StraightFlush(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new OnePair(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new TwoPair(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new ThreeOfAKind(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new Flush(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new FullHouse(allCard);
+    allValue.push_back(c->valueCards());
+
+    c=new FourOfAKind(allCard);
+    allValue.push_back(c->valueCards());
+
+
+    return *max_element(allValue.begin(),allValue.end());
+}
