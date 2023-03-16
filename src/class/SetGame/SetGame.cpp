@@ -139,11 +139,28 @@ void SetGame::endRound(Table& t) {
     this->round++;
     if(round==7){
         vector<double> allPlayerComb;
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[0]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[1]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[2]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[3]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[4]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[5]->getCardsPlayer(),t.getCards()));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[6]->getCardsPlayer(),t.getCards()));
+
+        double max = *max_element(allPlayerComb.begin(),allPlayerComb.end());
+
+        int idxPlayer =0;
+        for(int i=0;i<allPlayerComb.size();i++) if(max==allPlayerComb[i]) idxPlayer=i;
+
+        cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<endl;
+
+        this->players[idxPlayer]->setPoint(this->getPointGame()+ this->pointGame);
 
 
 
-
-
+        this->pointGame=64;
+        this->turn=1;
+        if(this->players[1]->getTurn()-)
 
     }
     if(round==2) this->shareAbilityCard();
@@ -233,14 +250,14 @@ int SetGame::getTurn() const {
 int SetGame::getRound() const {
     return this->round;
 }
-int SetGame::getHighPointPlayer() const {
+long int SetGame::getHighPointPlayer() const {
     vector<int> point;
     for(int i=0;i< this->players.size();i++) point.push_back(this->players[i]->getPoint());
     return *max_element(point.begin(),point.end());
 }
-float SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
+double SetGame::getHighCombinationPlayer(vector<Card *> p, vector<Card *> t) {
     vector<Card*> allCard;
-    vector<float> allValue;
+    vector<double> allValue;
     for(int i=0;i<p.size();i++) allCard.push_back(p[i]);
     for(int i=0;i<t.size();i++) allCard.push_back(t[i]);
 
