@@ -33,7 +33,7 @@ void SwitchAct::Act() {
 
 
 
-    cout<<"Player "<< this->p->getTurn()<<" melakukan Swap"<<endl;
+    cout<<"Player "<< this->p->getTurn()<<" melakukan Switch"<<endl;
     cout<<"Silahkan pilih pemain yang kartunya ingin anda tukar:"<<endl;
     for(int i=0;i<allPlayers.size();i++) cout<<i+1<<" Player "<<allPlayers[i]->getTurn()<<endl;
 
