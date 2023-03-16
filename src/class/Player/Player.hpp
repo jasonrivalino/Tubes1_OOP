@@ -8,6 +8,8 @@
 #include "../Card/Card.hpp"
 #include "../Ability/AbilityCard.hpp"
 
+// #include "../Combination/Combination.hpp"
+
 class Ability;
 #include "../Card/Calculable/Calculable.hpp"
 
@@ -31,6 +33,7 @@ public:
     int getTurn() const;
     vector<Card*> getCardsPlayer();
     int getSizeCardsPlayer();
+    string getName()const;
     unsigned long int getPoint();
     bool operator==(const Player&);
     bool operator!=(const Player&);

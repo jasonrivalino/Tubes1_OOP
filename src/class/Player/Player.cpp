@@ -82,6 +82,7 @@ unsigned long int Player::getPoint() {
 int Player::getSizeCardsPlayer() {
     return this->cards.size();
 }
+string Player::getName() const {return this->playerName;}
 Calculable *Player::getHighestComboValue(vector<Card *> cards) {
     return this->highestComboValue;
 }

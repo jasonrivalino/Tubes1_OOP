@@ -63,14 +63,78 @@ Dalam rangka merayakan pesta panen gula di kerajaan permen, akan diadakan kompet
 
 ## Struktur File
 ```bash
-📦Tubes1_OOP
+Tubes1_OOP                            
+├─ src                                
+│  ├─ class                           
+│  │  ├─ Ability                      
+│  │  │  ├─ AbilityCard.cpp           
+│  │  │  └─ AbilityCard.hpp           
+│  │  ├─ Card                         
+│  │  │  ├─ Calculable                
+│  │  │  │  ├─ Calculable.cpp         
+│  │  │  │  └─ Calculable.hpp         
+│  │  │  ├─ Card.cpp                  
+│  │  │  └─ Card.hpp                  
+│  │  ├─ Combination                  
+│  │  │  ├─ Combination.cpp           
+│  │  │  └─ Combination.hpp           
+│  │  ├─ Exception                    
+│  │  │  └─ Exception.hpp             
+│  │  ├─ Player                       
+│  │  │  ├─ PlayerAction              
+│  │  │  │  ├─ AllAct                 
+│  │  │  │  │  ├─ AbilityLessAct.cpp  
+│  │  │  │  │  ├─ AbilityLessAct.hpp  
+│  │  │  │  │  ├─ DoubleAct.cpp       
+│  │  │  │  │  ├─ DoubleAct.hpp       
+│  │  │  │  │  ├─ HalfAct.cpp         
+│  │  │  │  │  ├─ HalfAct.hpp         
+│  │  │  │  │  ├─ NextAct.cpp         
+│  │  │  │  │  ├─ NextAct.hpp         
+│  │  │  │  │  ├─ QuadrupleAct.cpp    
+│  │  │  │  │  ├─ QuadrupleAct.hpp    
+│  │  │  │  │  ├─ QuarterAct.cpp      
+│  │  │  │  │  ├─ QuarterAct.hpp      
+│  │  │  │  │  ├─ ReRollAct.cpp       
+│  │  │  │  │  ├─ ReRollAct.hpp       
+│  │  │  │  │  ├─ ReverseAct.cpp      
+│  │  │  │  │  ├─ ReverseAct.hpp      
+│  │  │  │  │  ├─ SwapAct.cpp         
+│  │  │  │  │  ├─ SwapAct.hpp         
+│  │  │  │  │  ├─ SwitchAct.cpp       
+│  │  │  │  │  └─ SwitchAct.hpp       
+│  │  │  │  ├─ Action.cpp             
+│  │  │  │  └─ Action.hpp             
+│  │  │  ├─ Player.cpp                
+│  │  │  └─ Player.hpp                
+│  │  ├─ Random                       
+│  │  │  └─ Random.cpp                
+│  │  ├─ SetGame                      
+│  │  │  ├─ SetGame.cpp               
+│  │  │  └─ SetGame.hpp               
+│  │  ├─ Splash                       
+│  │  │  ├─ Splash.cpp                
+│  │  │  └─ Splash.hpp                
+│  │  └─ Table                        
+│  │     ├─ Table.cpp                 
+│  │     └─ Table.hpp                 
+│  ├─ config                          
+│  │  └─ card.txt                     
+│  ├─ main.cpp                        
+│  └─ main.o                          
+└─ README.md                          
+
  ```
  
 ## Requirements
-Kebutuhan yang diperlukan untuk menajalankan program adalah sebagai berikut:
+Kebutuhan yang diperlukan untuk menjalankan program adalah sebagai berikut:
+1. sistem operasi LINUX dengan G++ versi 11, 14 atau 17.
 
 ## Cara Menjalankan Program
 Langkah-langkah proses menjalankan program adalah sebagai berikut:
+1. Buka terminal
+2. Masuk ke direktori Tubes1_OOP
+3. Ketikkan perintah `g++ src/main.cpp src/class/*/*.cpp src/class/*/*/*.cpp src/class/*/*/*/*.cpp -o src/main.o` untuk melakukan kompilasi program
 
 ## Acknowledgements
 - Tuhan Yang Maha Esa

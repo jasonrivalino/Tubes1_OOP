@@ -10,8 +10,9 @@
 #include "../Ability/AbilityCard.hpp"
 #include "../Table/Table.hpp"
 #include "../Card/Calculable/Calculable.hpp"
-#include "../Combination/Combination.hpp"
 
+
+#include "../Random/Random.cpp"
 
 using namespace std;
 #include <iostream>
@@ -21,7 +22,7 @@ using namespace std;
 
 class Player;
 class Ability;
-
+// class Combination;
 class SetGame {
 private:
     vector<Card*> cards;
@@ -37,6 +38,7 @@ public:
 
     void addCard(Card card);
     void removeBackCard();
+    void removeAllCards();
     void removeFirstCard();
     void removeAbilityCards();
     void shareCardToPlayer(int shareCard);

@@ -1,10 +1,12 @@
 #include "../Player/Player.hpp"
 #include "../Table/Table.hpp"
-#include "../Card/Card.hpp"
 #include <iostream>
+#include <algorithm>
+#include <map>
 
 using namespace std;
 
+class Player;
 class Combination
 {
 private:

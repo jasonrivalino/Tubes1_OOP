@@ -1,6 +1,6 @@
 
 #include "class/SetGame/SetGame.hpp"
-#include "class/Combination/Combination.hpp"
+// #include "class/Combination/Combination.hpp"
 #include "class/Player/PlayerAction/Action.hpp"
 #include "class/Player/PlayerAction/AllAct/SwapAct.hpp"
 #include "class/Player/PlayerAction/AllAct/NextAct.hpp"
@@ -71,7 +71,7 @@ int main(){
                 table.showTable();
                 cout << endl;
                 playerCurrentTurn = game.playerTurn();
-                cout << "PLAYER " << playerCurrentTurn->getTurn() << endl;
+                cout << "PLAYER " << playerCurrentTurn->getTurn() <<" ("<<playerCurrentTurn->getName()<<")"<< endl;
                 int choose = actChoose();
 
                 bool rightChoose = false;
@@ -216,8 +216,10 @@ int main(){
             }
             playerTurn = 1;
             game.endRound(table);
+
         }
         game.setRound(1);
+        gameNumber++;
     }
 
 

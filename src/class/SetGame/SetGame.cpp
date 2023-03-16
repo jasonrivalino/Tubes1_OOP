@@ -3,12 +3,13 @@
 //
 
 #include "SetGame.hpp"
+#include "../Combination/Combination.hpp"
 
 
 
 
 SetGame::SetGame(int jumPlayer,int choose) {
-    string path = "src/config/card.txt";
+    string path = "././config/card.txt";
     
     this->turn=1;
     this->round=1;
@@ -17,8 +18,11 @@ SetGame::SetGame(int jumPlayer,int choose) {
 
 
     string warna[4] = {"K","H","M","B"};
+    string namaPlayer;
     for(int i=1;i<jumPlayer+1;i++){
-        this->players.push_back(new Player("P"+i));
+        cout<<"masukkan nama player-"<<i<<": ";
+        cin>>namaPlayer;
+        this->players.push_back(new Player(namaPlayer));
     }
     this->ability.push_back(new ReRoll);
     this->ability.push_back(new Quadruple);
@@ -179,7 +183,7 @@ void SetGame::endRound(Table& t) {
         int idxPlayer =0;
         for(int i=0;i<allPlayerComb.size();i++) if(max==allPlayerComb[i]) idxPlayer=i;
 
-        cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<endl;
+        cout<<"pemenang ronde ini adalah PLAYER "<< this->players[idxPlayer]->getTurn()<<" ("<< this->players[idxPlayer]->getName()<<")"<<endl;
 
         this->players[idxPlayer]->setPoint(this->players[idxPlayer]->getPoint()+ this->pointGame);
 
@@ -267,7 +271,7 @@ void SetGame::endRound(Table& t) {
 
 
     if(round==2) this->shareAbilityCard();
-    if(round>1) this->shareCardToTable(t);
+    if(round>1|| round<7) this->shareCardToTable(t);
     if (this->turn == 7) this->turn = 1; else this->turn++;
 
 
@@ -419,9 +423,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     // cout << "------------------\n";
 
     try {
-        cout << "High Card\n";
         vector<Card*> v = c.isHighCard(player,table);
         if(v.size() != 0){
+        cout << "High Card\n";
             c0 = new HighCard(v);
             allValue.push_back(c0->valueCards());
             delete c0;
@@ -437,9 +441,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
 
 
     try {
-        cout << "One Pair\n";
         vector<Card*> v = c.isOnePair(player,table);
         if(v.size() != 0){
+        cout << "One Pair\n";
             c1 = new OnePair(v);
             allValue.push_back(c1->valueCards());
             delete c1;
@@ -454,9 +458,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "Two Pair\n";
         vector<Card*> v = c.isTwoPair(player,table);
         if(v.size() != 0){
+        cout << "Two Pair\n";
             c2 = new TwoPair(v);
             allValue.push_back(c2->valueCards());
             delete c2;
@@ -471,9 +475,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "ThreeOfAKind\n";
         vector<Card*> v = c.isThreeOfAKind(player,table);
         if(v.size() != 0){
+        cout << "ThreeOfAKind\n";
             c3 = new ThreeOfAKind(v);
             allValue.push_back(c3->valueCards());
             delete c3;
@@ -488,9 +492,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "Straight\n";
         vector<Card*> v = c.isStraight(player,table);
         if(v.size() != 0){
+        cout << "Straight\n";
             c4 = new Straight(v);
             allValue.push_back(c4->valueCards());
             delete c4;
@@ -505,9 +509,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "Flush\n";
         vector<Card*> v = c.isFlush(player,table);
         if(v.size() != 0){
+        cout << "Flush\n";
             c5 = new Flush(v);
             allValue.push_back(c5->valueCards());
             delete c5;
@@ -522,9 +526,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "FullHouse\n";
         vector<Card*> v = c.isFullHouse(player,table);
         if(v.size() != 0){
+        cout << "FullHouse\n";
             c6 = new FullHouse(v);
             allValue.push_back(c6->valueCards());
             delete c6;
@@ -540,9 +544,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
 
 
     try {
-        cout << "FourOfAKind\n";
         vector<Card*> v = c.isFourOfAKind(player,table);
         if(v.size() != 0){
+        cout << "FourOfAKind\n";
             c7 = new FourOfAKind(v);
             allValue.push_back(c7->valueCards());
             delete c7;
@@ -557,9 +561,9 @@ double SetGame::getHighCombinationPlayer(Player &player, Table &table) {
     }
 
     try {
-        cout << "StraightFlush\n";
         vector<Card*> v = c.isStraightFlush(player,table);
         if(v.size() != 0){
+        cout << "StraightFlush\n";
             c8 = new StraightFlush(v);
             allValue.push_back(c8->valueCards());
             delete c8;
