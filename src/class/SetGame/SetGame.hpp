@@ -58,7 +58,7 @@ public:
     int getTurn() const;
     int getRound() const;
     long int getHighPointPlayer() const;
-    double getHighCombinationPlayer(vector<Card*>,vector<Card*>);
+    double getHighCombinationPlayer(vector<Card*>&,vector<Card*>&);
     long int getPointGame() const;
 };
 

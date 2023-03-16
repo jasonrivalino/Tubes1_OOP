@@ -139,13 +139,24 @@ void SetGame::endRound(Table& t) {
     this->round++;
     if(round==7){
         vector<double> allPlayerComb;
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[0]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[1]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[2]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[3]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[4]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[5]->getCardsPlayer(),t.getCards()));
-        allPlayerComb.push_back(this->getHighCombinationPlayer(this->players[6]->getCardsPlayer(),t.getCards()));
+
+        vector<Card*> p1=this->players[0]->getCardsPlayer();
+        vector<Card*> p2= this->players[1]->getCardsPlayer();
+        vector<Card*> p3= this->players[2]->getCardsPlayer();
+        vector<Card*> p4= this->players[3]->getCardsPlayer();
+        vector<Card*> p5= this->players[4]->getCardsPlayer();
+        vector<Card*> p6= this->players[5]->getCardsPlayer();
+        vector<Card*> p7= this->players[6]->getCardsPlayer();
+        vector<Card*> table = t.getCards();
+
+
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p1,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p2,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p3,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p4,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p5,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p6,table));
+        allPlayerComb.push_back(this->getHighCombinationPlayer(p7,table));
 
         double max = *max_element(allPlayerComb.begin(),allPlayerComb.end());
 
@@ -160,9 +171,12 @@ void SetGame::endRound(Table& t) {
 
         this->pointGame=64;
         this->turn=1;
-        if(this->players[1]->getTurn()-)
-
+        if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
+        this->round=1;
+        t.removeTableCard();
     }
+
+
     if(round==2) this->shareAbilityCard();
     if(round>1) this->shareCardToTable(t);
     if (this->turn == 7) this->turn = 1; else this->turn++;
@@ -255,37 +269,102 @@ long int SetGame::getHighPointPlayer() const {
     for(int i=0;i< this->players.size();i++) point.push_back(this->players[i]->getPoint());
     return *max_element(point.begin(),point.end());
 }
-double SetGame::getHighCombinationPlayer(vector<Card *> p, vector<Card *> t) {
+double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     vector<Card*> allCard;
     vector<double> allValue;
     for(int i=0;i<p.size();i++) allCard.push_back(p[i]);
     for(int i=0;i<t.size();i++) allCard.push_back(t[i]);
 
-    Calculable *c;
-    c=new Straight(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new StraightFlush(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new OnePair(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new TwoPair(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new ThreeOfAKind(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new Flush(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new FullHouse(allCard);
-    allValue.push_back(c->valueCards());
-
-    c=new FourOfAKind(allCard);
-    allValue.push_back(c->valueCards());
 
 
-    return *max_element(allValue.begin(),allValue.end());
+    Calculable *c1;
+    Calculable *c2;
+    Calculable *c3;
+    Calculable *c4;
+    Calculable *c5;
+    Calculable *c6;
+    Calculable *c7;
+    Calculable *c8;
+
+    try {
+
+        c3=new TwoPair(allCard);
+        allValue.push_back(c3->valueCards());
+        cout << c3->valueCards() << endl;
+    }catch (bad_array_new_length e){}
+
+
+    try {
+
+        c1 = new Straight(allCard);
+        allValue.push_back(c1->valueCards());
+        cout << c1->valueCards() << endl;
+        delete c1;
+    }catch (bad_array_new_length e){}
+
+    try {
+
+        c7 = new FullHouse(allCard);
+        allValue.push_back(c7->valueCards());
+        cout << c7->valueCards() << endl;
+        delete c7;
+    }catch (bad_array_new_length e){}
+
+
+    try {
+
+        c5 = new ThreeOfAKind(allCard);
+        allValue.push_back(c5->valueCards());
+        cout << c5->valueCards() << endl;
+        delete c5;
+    }catch (bad_array_new_length e){}
+
+    try {
+
+        c8 = new FourOfAKind(allCard);
+        allValue.push_back(c8->valueCards());
+        cout << c8->valueCards() << endl;
+    }catch (bad_array_new_length e){}
+
+    try {
+
+        c2 = new StraightFlush(allCard);
+        allValue.push_back(c2->valueCards());
+        cout << c2->valueCards() << endl;
+        delete c2;
+    }catch (bad_array_new_length e){}
+
+
+
+    try {
+
+        c4 = new OnePair(allCard);
+        allValue.push_back(c4->valueCards());
+        cout << c4->valueCards() << endl;
+        delete c4;
+    }catch (bad_array_new_length e){}
+
+
+
+    try {
+
+        c6 = new Flush(allCard);
+        allValue.push_back(c6->valueCards());
+        cout << c6->valueCards() << endl;
+        delete c6;
+    }catch (bad_array_new_length e){}
+
+
+
+
+
+
+
+
+
+
+    float max = *max_element(allValue.begin(),allValue.end());
+    allValue.clear();
+
+    return max;
 }

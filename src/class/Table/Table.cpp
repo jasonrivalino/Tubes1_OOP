@@ -17,6 +17,9 @@ void Table::addCard(Card &c) {
 void Table::removeBackCard() {
     this->cards.pop_back();
 }
+void Table::removeTableCard() {
+    this->cards.clear();
+}
 
 void Table::endRound() {
     for(int i=0;i< this->cards.size();i++) removeBackCard();

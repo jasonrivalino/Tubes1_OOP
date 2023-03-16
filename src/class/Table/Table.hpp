@@ -22,6 +22,7 @@ public:
     void addCard(Card&);
     void showTable();
     void removeBackCard();
+    void removeTableCard();
     void endRound();
 
 

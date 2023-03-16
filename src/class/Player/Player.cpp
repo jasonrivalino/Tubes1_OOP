@@ -85,3 +85,7 @@ int Player::getSizeCardsPlayer() {
 Calculable *Player::getHighestComboValue(vector<Card *> cards) {
     return this->highestComboValue;
 }
+
+vector<Ability *> Player::getAbility() const {
+    return this->abilityCard;
+}
