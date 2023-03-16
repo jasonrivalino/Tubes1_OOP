@@ -10,6 +10,7 @@
 #include "../Ability/AbilityCard.hpp"
 #include "../Table/Table.hpp"
 #include "../Card/Calculable/Calculable.hpp"
+#include "../Card/Combination/Combination.hpp"
 
 
 using namespace std;

@@ -30,11 +30,13 @@ SetGame::SetGame(int jumPlayer,int choose) {
 
     random_shuffle(this->ability.begin(), this->ability.end());
     if(choose==2) {
-        for(int i=0;i<52;i++){
-            int numCard = i%13+1;
-            int numWarna = i/13;
-
-            this->cards.push_back(new Card(warna[numWarna],numCard));
+        vector<int> sampleNum{1,2,3,4,5,6,7,8,9,10,11,12,13};
+        for(int i=0;i<4;i++){
+            vector<int> numCard;
+            randomIndex(sampleNum,numCard);
+            for(int j=0;j<13;j++){
+                this->cards.push_back(new Card(warna[i],numCard[j]));
+            }
         }
 
         random_shuffle(this->cards.begin(), this->cards.end());
@@ -100,6 +102,9 @@ void SetGame::addCard(Card card) {
 void  SetGame::removeBackCard() {
     this->cards.pop_back();
 }
+void SetGame::removeAllCards() {
+    this->cards.clear();
+}
 void SetGame::removeFirstCard() {
     this->cards.erase(this->cards.begin());
 }
@@ -139,6 +144,9 @@ void SetGame::endRound(Table& t) {
 
     this->round++;
     if(round==7){
+        string warna[4] = {"K","H","M","B"};
+
+
         vector<double> allPlayerComb;
 
         vector<Card*> p1=this->players[0]->getCardsPlayer();
@@ -173,8 +181,81 @@ void SetGame::endRound(Table& t) {
         this->pointGame=64;
         this->turn=1;
         if(this->players[1]->getTurn()-players[0]->getTurn()==-1) reverseTurn();
-    
         t.removeTableCard();
+        this->removeAllCards();
+        for(int i=0; this->players.size();i++){
+            this->players[i]->removeAbilityCard();
+        }
+
+        int choose;
+        cout<<"pilih kartu random mengguakan txt atau tidak\n1. Ya\n2. Tidak"<<endl;
+        cout<<">>";
+        cin>>choose;
+        while(choose>2||choose<1){
+            cout<<"input salah"<<endl;
+            cout<<">>";
+            cin>>choose;
+        }
+        if(choose==2) {
+            vector<int> sampleNum{1,2,3,4,5,6,7,8,9,10,11,12,13};
+            for(int i=0;i<4;i++){
+                vector<int> numCard;
+                randomIndex(sampleNum,numCard);
+                for(int j=0;j<13;j++){
+                    this->cards.push_back(new Card(warna[i],numCard[j]));
+                }
+            }
+
+            random_shuffle(this->cards.begin(), this->cards.end());
+        }
+        else {
+            string path = "././config/card.txt";
+            // cout << "fdfdfd";
+            ifstream inFile(path);
+            int numCard, numWarna;
+            char ch;
+            bool angka = false;
+
+            // cout << path << endl;
+            if (!inFile) {
+                std::cerr << "Unable to open file";
+                exit(1);
+            }
+
+            while (inFile >> noskipws >> ch) {
+                if(ch >= 'A' && ch <= 'Z'){
+                    if (ch == 'H'){
+                        numWarna = 0;
+                    }
+                    else if (ch == 'B') {
+                        numWarna = 1;
+                    }
+                    else if (ch == 'K') {
+                        numWarna = 2;
+                    }
+                    else if (ch == 'M') {
+                        numWarna = 3;
+                    }
+                }
+                else if(ch >= '0' &&  ch <= '9'){
+                    if(!angka) {
+                        angka = true;
+                        numCard = ch - '0';
+                    }
+                    else {
+                        numCard = numCard*10 + ch - '0';
+                    }
+                }
+                else if(ch == '\n') {
+                    angka = false;
+                    this->cards.push_back(new Card(warna[numWarna],numCard));
+                }
+                // cout<<"warna : " << warna[numWarna]<<" angka : "<<numCard<<endl;
+            }
+
+            inFile.close();
+        }
+
     }
 
 
@@ -283,7 +364,7 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     for(int i=0;i<t.size();i++) allCard.push_back(t[i]);
 
 
-
+    Calculable *c0;
     Calculable *c1;
     Calculable *c2;
     Calculable *c3;
@@ -292,7 +373,6 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     Calculable *c6;
     Calculable *c7;
     Calculable *c8;
-    Calculable *c9;
 
     for(auto x : allCard) {
         cout << x->getNameCard() << "     " << x->getNumberCard() << endl;
@@ -309,20 +389,35 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     // cout << c9->valueCards() << endl;
     // cout << "------------------\n";
 
+    try {
+        cout << "High Card\n";
+        vector<Card*> v = isHighCard(p,t);
+        if(v.size() != 0){
+            c0 = new HighCard(v);
+            allValue.push_back(c0->valueCards());
+            delete c0;
+        }
+        else{
+            allValue.push_back(0);
+        }
+    }catch (bad_array_new_length e){
+        allValue.push_back(0);
+    }catch (bad_alloc e){
+        allValue.push_back(0);
+    }
+
 
     try {
-        cout << "masuk c1\n";
-        c1 = new Straight(allCard);
-        cout << c1->valueCards() << endl;
-        cout << "fdfdfdfd\n";
-        if(c1->valueCards() != 0){
+        cout << "One Pair\n";
+        vector<Card*> v = isOnePair(p,t);
+        if(v.size() != 0){
+            c1 = new OnePair(v);
             allValue.push_back(c1->valueCards());
-            cout << c1->valueCards() << endl;
+            delete c1;
         }
         else{
             allValue.push_back(0);
         }
-        delete c1;
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
@@ -330,16 +425,16 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     }
 
     try {
-        cout << "masuk c2\n";
-        c2 = new StraightFlush(allCard);
-        if(c2->valueCards() != 0){
+        cout << "Two Pair\n";
+        vector<Card*> v = isTwoPair(p,t);
+        if(v.size() != 0){
+            c2 = new TwoPair(v);
             allValue.push_back(c2->valueCards());
-            cout << c2->valueCards() << endl;
+            delete c2;
         }
         else{
             allValue.push_back(0);
         }
-        delete c2;
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
@@ -347,52 +442,50 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     }
 
     try {
-        cout << "masuk c3\n";
-        c3=new TwoPair(allCard);
-        if(c3->valueCards() != 0){
+        cout << "ThreeOfAKind\n";
+        vector<Card*> v = isThreeOfAKind(p,t);
+        if(v.size() != 0){
+            c3 = new ThreeOfAKind(v);
             allValue.push_back(c3->valueCards());
-            cout << c3->valueCards() << endl;
-        }
-        else{
-            allValue.push_back(0);
-        }
             delete c3;
+        }
+        else{
+            allValue.push_back(0);
+        }
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
         allValue.push_back(0);
     }
 
-
     try {
-        cout << "masuk c4\n";
-        c4 = new OnePair(allCard);
-        if(c4->valueCards() != 0){
+        cout << "Straight\n";
+        vector<Card*> v = isStraight(p,t);
+        if(v.size() != 0){
+            c4 = new Straight(v);
             allValue.push_back(c4->valueCards());
-            cout << c4->valueCards() << endl;
-        }
-        else{
-            allValue.push_back(0);
-        }
             delete c4;
+        }
+        else{
+            allValue.push_back(0);
+        }
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
         allValue.push_back(0);
     }
 
-
     try {
-        cout << "masuk c5\n";
-        c5 = new ThreeOfAKind(allCard);
-        if(c5->valueCards() != 0){
+        cout << "Flush\n";
+        vector<Card*> v = isFlush(p,t);
+        if(v.size() != 0){
+            c5 = new Flush(v);
             allValue.push_back(c5->valueCards());
-            cout << c5->valueCards() << endl;
-        }
-        else{
-            allValue.push_back(0);
-        }
             delete c5;
+        }
+        else{
+            allValue.push_back(0);
+        }
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
@@ -400,32 +493,34 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     }
 
     try {
-        cout << "masuk c6\n";
-        c6 = new Flush(allCard);
-        if(c6->valueCards() != 0){
+        cout << "FullHouse\n";
+        vector<Card*> v = isFullHouse(p,t);
+        if(v.size() != 0){
+            c6 = new FullHouse(v);
             allValue.push_back(c6->valueCards());
-            cout << c6->valueCards() << endl;
-        }
-        else{
-            allValue.push_back(0);
-        }
             delete c6;
+        }
+        else{
+            allValue.push_back(0);
+        }
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
         allValue.push_back(0);
     }
 
+
     try {
-        cout << "masuk c7\n";
-        c7 = new FullHouse(allCard);
-        if(c7->valueCards() != 0){
+        cout << "FourOfAKind\n";
+        vector<Card*> v = isFourOfAKind(p,t);
+        if(v.size() != 0){
+            c7 = new FourOfAKind(v);
             allValue.push_back(c7->valueCards());
-            cout << c7->valueCards() << endl;
-        }else{
-            allValue.push_back(0);
-        }
             delete c7;
+        }
+        else{
+            allValue.push_back(0);
+        }
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
@@ -433,39 +528,21 @@ double SetGame::getHighCombinationPlayer(vector<Card *> &p, vector<Card *> &t) {
     }
 
     try {
-        cout << "masuk c8\n";
-        c8 = new FourOfAKind(allCard);
-        if(c8->valueCards() != 0){
+        cout << "StraightFlush\n";
+        vector<Card*> v = isStraightFlush(p,t);
+        if(v.size() != 0){
+            c8 = new StraightFlush(v);
             allValue.push_back(c8->valueCards());
-            cout << c8->valueCards() << endl;
-        }
-        else{
-            allValue.push_back(0);
-        }
             delete c8;
-    }catch (bad_array_new_length e){
-        allValue.push_back(0);
-    }catch (bad_alloc e){
-        allValue.push_back(0);
-    }
-
-    try {
-        cout << "masuk c9\n";
-        c9 = new HighCard(allCard);
-        if(c9->valueCards() != 0){
-            allValue.push_back(c9->valueCards());
-            cout << c9->valueCards() << endl;
         }
         else{
             allValue.push_back(0);
         }
-            delete c9;
     }catch (bad_array_new_length e){
         allValue.push_back(0);
     }catch (bad_alloc e){
         allValue.push_back(0);
     }
-
 
     cout << "allcard " << allCard.size() << endl;
     cout << "allValue " << allValue.size() << endl;
