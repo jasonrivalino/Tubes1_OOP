@@ -39,7 +39,7 @@ int main(){
     Action* action;
     int playerTurn=1;
     int fileSourceCardChoose;
-    int gameNumber=0;
+    int gameNumber=1;
 
     splash.SplashOpening();
 
