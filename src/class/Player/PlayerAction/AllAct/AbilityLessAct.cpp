@@ -30,8 +30,8 @@ void AbilityLessAct::Act() {
         }
     }
 
-    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardUsed()) throw abilityCardIsUsed();
     if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveAbilityCard();
+    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardUsed()) throw abilityCardIsUsed();
     if(!(s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="AbilityLess")) throw notHaveAbilityCard();
 
 

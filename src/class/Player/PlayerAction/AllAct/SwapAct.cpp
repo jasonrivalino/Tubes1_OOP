@@ -17,8 +17,8 @@ void SwapAct::Act() {
         if(this->s->getPlayers()[i]==p) idxPlayer=i;
     }
 
-    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardUsed()) throw swapCardIsUsed();
     if(this->s->getPlayers()[idxPlayer]->getAbility().size()==0) throw notHaveSwapCard();
+    if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardUsed()) throw swapCardIsUsed();
     if(!(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getNameCard()=="Swap")) throw notHaveSwapCard();
     if(this->s->getPlayers()[idxPlayer]->getAbility()[0]->getIsCardDeath()) throw swapIsDeath();
 
